@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="SecuritySuite">
+
+    <test name="SecuritySuiteTest">
+        <parameter name="secret" value="2bb80d537b1da3e38bd30361aa855686bde0eacd7162fef6a25fe97bf527a25b"/>
+        <parameter name="jwtValidDayCount" value="1"/>
+        <parameter name="IMEI" value="111111111111111"/>
+
+        <classes>
+            <class name="lightsearch.server.security.HashAlgorithmSHA512TestNG"/>
+            <class name="lightsearch.server.security.JWTGeneratorDefaultTestNG"/>
+        </classes>
+    </test>
+
+</suite>

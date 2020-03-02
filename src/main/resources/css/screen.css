@@ -1,0 +1,112 @@
+@media screen and (min-width: 360px) {
+  button {
+    font-size: 16pt;
+  }
+
+  select {
+    font-size: 12pt;
+  }
+
+  table {
+    font-size: 12pt;
+  }
+
+  #tablesContainer {
+    padding-bottom: 12%;
+  }
+
+  #optionsContainer {
+    padding-bottom: 12%;
+  }
+
+  #clTitle {
+    padding-top: 1%;
+  }
+
+  #blTitle {
+    padding-top: 8%;
+  }
+
+  #addBlOpt,#toutClOpt {
+    font-size: 15pt;
+    margin-inline-start: 2%;
+    margin-block-start: 1%;
+    margin-block-end: 1.4%;
+  }
+
+  #btnApplyAddBl,#btnApplyToutCl {
+    padding-block-end: 3%;
+    margin-inline-end: -30%;
+    margin-block-start: -3.5%;
+  }
+
+  #btnApplyAddBl {
+    margin-inline-end: -33%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  button {
+    font-size: 12pt;
+  }
+
+  select {
+    font-size: 8pt;
+  }
+
+  table {
+    font-size: 8pt;
+  }
+
+  input[type='text'] {
+    width: 55%;
+    font-size: 9pt;
+  }
+
+  #toutInput {
+    width: 51%;
+  }
+
+  #clTitle {
+    padding-top: 4%;
+  }
+
+  #blTitle {
+    padding-top: 17%;
+  }
+
+  #tablesContainer {
+    padding-bottom: 21%;
+  }
+
+  #addBlOpt, #toutClOpt {
+    font-size: 11pt;
+    margin-inline-start: 3%;
+    margin-block-start: 5%;
+    margin-block-end: 5%;
+  }
+
+  #btnApplyAddBl, #btnApplyToutCl {
+    padding-block-end: 4%;
+    padding-block-start: 4%;
+    padding-inline-start: 4%;
+    padding-inline-end: 4%;
+  }
+
+  #btnApplyAddBl {
+    margin-inline-end: -30.2%;
+  }
+
+  #btnApplyToutCl {
+    margin-inline-end: -27.6%;
+  }
+
+  #addBlInputDiv, #toutClInputDiv {
+    margin-inline-start: -7%;
+  }
+
+  #addBlLabel, #toutClLabel {
+    font-size: 9pt;
+    margin-inline-end: 1%;
+  }
+}

@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="PropertyEntitySuite">
+
+    <test name="PropertyEntitySuiteTest">
+        <parameter name="simpleName" value="sName"/>
+        <parameter name="simpleValue" value="sValue"/>
+        <parameter name="toutValue" value="2"/>
+        <parameter name="dbNameValue" value="database"/>
+        <parameter name="ipValue" value="127.0.0.1"/>
+        <parameter name="portValue" value="8080"/>
+        <parameter name="dbUsernameValue" value="user"/>
+        <parameter name="dbPassValue" value="pa55!"/>
+        <parameter name="driverClassName" value="org.firebirdsql.jdbc.FBDriver"/>
+        <parameter name="dbURL" value="jdbc:firebirdsql://127.0.0.1:5432/db/db.fdb?encoding=win1251&amp;useUnicode=true&amp;characterEncoding=win1251&amp;defaultResultSetHoldable=true"/>
+
+        <classes>
+            <class name="lightsearch.server.entity.SimplePropertyTestNG"/>
+            <class name="lightsearch.server.entity.DatabaseNamePropertyTestNG"/>
+            <class name="lightsearch.server.entity.ClientTimeoutPropertyTestNG"/>
+            <class name="lightsearch.server.entity.IpPropertyTestNG"/>
+            <class name="lightsearch.server.entity.PortPropertyTestNG"/>
+            <class name="lightsearch.server.entity.SpringDatasourcePasswordPropertyTestNG"/>
+            <class name="lightsearch.server.entity.SpringDatasourceUsernamePropertyTestNG"/>
+            <class name="lightsearch.server.entity.SpringDatasourceURLFirebirdWindowsPropertyTestNG"/>
+            <class name="lightsearch.server.entity.SpringDatasourcePropertyTestNG"/>
+            <class name="lightsearch.server.entity.DatasourceDriverClassNamePropertyTestNG"/>
+            <class name="lightsearch.server.entity.DatasourcePasswordPropertyTestNG"/>
+            <class name="lightsearch.server.entity.DatasourceUsernamePropertyTestNG"/>
+            <class name="lightsearch.server.entity.DatasourceURLPropertyTestNG"/>
+        </classes>
+    </test>
+
+</suite>

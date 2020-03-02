@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="AdminCommandResultEntitySuite">
+
+    <test name="AdminCommandResultEntitySuiteTest">
+        <classes>
+            <class name="lightsearch.server.entity.AdminCommandResultSimpleTestNG"/>
+            <class name="lightsearch.server.entity.AdminCommandResultWithBlacklistTestNG"/>
+            <class name="lightsearch.server.entity.AdminCommandResultWithClientsTestNG"/>
+        </classes>
+    </test>
+
+</suite>

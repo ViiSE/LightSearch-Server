@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="JWTHeaderEntitySuite">
+
+    <test name="JWTHeaderEntitySuiteTest">
+        <parameter name="IMEI" value="111111111111111"/>
+        <parameter name="secret" value="feklfjhriagerhilt34oii4q3lbkbearklgnafjnwrojwneon"/>
+        <parameter name="jwtValidDayCount" value="1"/>
+
+        <classes>
+            <class name="lightsearch.server.entity.JWTTokenHeaderDefaultTestNG"/>
+        </classes>
+    </test>
+
+</suite>

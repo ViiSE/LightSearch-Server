@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="PropertiesSuite">
+
+    <test name="PropertiesSuiteTest">
+        <parameter name="dbName" value="database"/>
+        <parameter name="dbIp" value="127.0.0.1"/>
+        <parameter name="dbPort" value="8080"/>
+        <parameter name="dbUsername" value="user"/>
+        <parameter name="dbPass" value="pa55!"/>
+        <parameter name="tout" value="2"/>
+
+        <classes>
+            <class name="lightsearch.server.properties.SpringDatasourcePropertyCreatorTestNG"/>
+            <class name="lightsearch.server.properties.ApplicationPropertiesDirectoryTestNG"/>
+            <class name="lightsearch.server.properties.PropertiesChangerLocalTestNG"/>
+            <class name="lightsearch.server.properties.PropertiesChangerFileTestNG"/>
+            <class name="lightsearch.server.properties.DatasourcePropertiesFileReaderMapOfPropertiesTestNG"/>
+        </classes>
+    </test>
+
+</suite>

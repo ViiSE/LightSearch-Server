@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="ProducerProcessSuite">
+
+    <parameter name="dir" value="dir/to/props"/>
+    <parameter name="append" value="false"/>
+
+    <suite-files>
+        <suite-file path="cmd/client/process/producer-cmd-client-processor-suite.xml"/>
+        <suite-file path="cmd/admin/process/producer-cmd-admin-processor-suite.xml"/>
+        <suite-file path="database/producer-database-suite.xml"/>
+        <suite-file path="entity/producer-entity-suite.xml"/>
+        <suite-file path="properties/producer-properties-suite.xml"/>
+        <suite-file path="time/producer-time-suite.xml"/>
+    </suite-files>
+
+</suite>

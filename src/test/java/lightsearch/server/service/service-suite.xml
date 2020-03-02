@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="ServiceSuite">
+
+    <test name="ServiceSuiteTest">
+        <parameter name="hashIMEI" value="6759eac4e14e880a28e88d0c0a530927932aed1920c2f9f93db6202c9fab89a092769bfd0beeee23d36876a268596a1cd934f8ea00151572b8b73d9ee4b0b6a8"/>
+        <parameter name="IMEI" value="333333333333333"/>
+        <parameter name="secret" value="afhraughruighwrifhwruiafhuerihireuhfuierhfuierhfuiehiufpohj"/>
+        <parameter name="jwtValidDayCount" value="1"/>
+        <parameter name="username" value="user"/>
+
+        <packages>
+            <package name="lightsearch.server.service"/>
+        </packages>
+    </test>
+
+</suite>

@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="ProducerPropertiesSuite">
+
+    <parameter name="dir" value="dir/to/props"/>
+    <parameter name="append" value="false"/>
+
+    <test name="ProducerPropertiesTest">
+        <packages>
+            <package name="lightsearch.server.producer.properties"/>
+        </packages>
+    </test>
+
+</suite>

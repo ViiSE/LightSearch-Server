@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="CmdAdminProcessSuite">
+
+    <parameter name="IMEI" value="111111111111111"/>
+    <parameter name="IMEIInClients" value="222222222222222"/>
+
+    <test name="CmdAdminProcessSuiteTest">
+        <classes>
+            <class name="lightsearch.server.cmd.admin.process.AddBlacklistProcessTestNG"/>
+            <class name="lightsearch.server.cmd.admin.process.BlacklistRequestProcessTestNG"/>
+            <class name="lightsearch.server.cmd.admin.process.ChangeDatabaseProcessTestNG"/>
+            <class name="lightsearch.server.cmd.admin.process.ClientKickProcessTestNG"/>
+            <class name="lightsearch.server.cmd.admin.process.ClientListRequestProcessTestNG"/>
+            <class name="lightsearch.server.cmd.admin.process.ClientTimeoutProcessTestNG"/>
+            <class name="lightsearch.server.cmd.admin.process.DelBlacklistProcessTestNG"/>
+        </classes>
+    </test>
+
+</suite>

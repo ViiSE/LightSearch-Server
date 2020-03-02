@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="ValidatorEntitySuite">
+
+    <test name="ValidatorEntitySuiteTest">
+        <parameter name="ipValid" value="127.0.0.1"/>
+        <parameter name="ipInvalid" value="127.0..1.0"/>
+        <parameter name="portValid" value="8080"/>
+        <parameter name="portInvalid" value="70000"/>
+        <parameter name="toutValid" value="2"/>
+        <parameter name="toutInvalid" value="-2"/>
+
+        <classes>
+            <class name="lightsearch.server.validator.IpValidatorTestNG"/>
+            <class name="lightsearch.server.validator.PortValidatorTestNG"/>
+            <class name="lightsearch.server.validator.ClientTimeoutValidatorTestNG"/>
+        </classes>
+    </test>
+
+</suite>

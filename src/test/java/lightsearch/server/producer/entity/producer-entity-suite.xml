@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="ProducerEntitySuite">
+
+    <parameter name="cmdName" value="login"/>
+    <parameter name="userIdent" value="101"/>
+    <parameter name="checkEan13" value="true"/>
+    <parameter name="barcode" value="22505"/>
+    <parameter name="factoryBarcode" value="22505303"/>
+    <parameter name="IMEI" value="111111111111111"/>
+    <parameter name="delivery" value="1"/>
+    <parameter name="cardCode" value="222"/>
+    <parameter name="TK" value="tk1"/>
+    <parameter name="sklad" value="skl1"/>
+    <parameter name="os" value="Linux"/>
+    <parameter name="model" value="Laptop"/>
+    <parameter name="ip" value="127.0.0.1"/>
+    <parameter name="username" value="user"/>
+    <parameter name="password" value="pass"/>
+    <parameter name="tout" value="1"/>
+    <parameter name="port" value="5432"/>
+    <parameter name="dbName" value="databaseName"/>
+    <parameter name="token" value="iAmJWTToken,seriously }=( "/>
+    <parameter name="id" value="id1"/>
+    <parameter name="name" value="Item1"/>
+    <parameter name="amount" value="5"/>
+    <parameter name="subdiv" value="sb1"/>
+
+    <test name="ProducerEntityTest">
+        <packages>
+            <package name="lightsearch.server.producer.entity"/>
+        </packages>
+    </test>
+
+</suite>

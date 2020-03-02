@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="CmdClientProcessSuite">
+
+    <parameter name="IMEI" value="111111111111111"/>
+    <parameter name="ip" value="127.0.0.1"/>
+    <parameter name="os" value="Linux"/>
+    <parameter name="model" value="Laptop"/>
+    <parameter name="username" value="test"/>
+    <parameter name="password" value="321"/>
+    <parameter name="userIdent" value="test"/>
+    <parameter name="factoryBarcode" value="4607051090156"/>
+    <parameter name="barcode" value="BOSCH"/>
+    <parameter name="barcodeForBind" value="725646"/>
+    <parameter name="checkEan13" value="false"/>
+    <parameter name="cardCode" value="222"/>
+    <parameter name="delivery" value="1"/>
+    <parameter name="sklad" value="all"/>
+    <parameter name="TK" value="all"/>
+
+    <test name="CmdClientProcessSuiteTest">
+        <classes>
+            <class name="lightsearch.server.cmd.client.process.LoginProcessIntegrationTestNG"/>
+            <class name="lightsearch.server.cmd.client.process.BindCheckProcessIntegrationTestNG"/>
+            <class name="lightsearch.server.cmd.client.process.BindProcessIntegrationTestNG"/>
+            <class name="lightsearch.server.cmd.client.process.UnbindCheckProcessIntegrationTestNG"/>
+            <class name="lightsearch.server.cmd.client.process.UnbindProcessIntegrationTestNG"/>
+            <class name="lightsearch.server.cmd.client.process.SearchProcessIntegrationTestNG"/>
+        </classes>
+    </test>
+
+</suite>

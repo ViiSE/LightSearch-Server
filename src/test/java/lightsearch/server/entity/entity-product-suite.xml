@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="ProductEntitySuite">
+
+    <test name="ProductEntitySuiteTest">
+        <parameter name="id" value="id1"/>
+        <parameter name="amount" value="15."/>
+        <parameter name="name" value="Item 1"/>
+        <parameter name="subdiv" value="sb1"/>
+
+        <classes>
+            <class name="lightsearch.server.entity.ProductSimpleTestNG"/>
+            <class name="lightsearch.server.entity.ProductWithAmountTestNG"/>
+            <class name="lightsearch.server.entity.ProductWithNameTestNG"/>
+            <class name="lightsearch.server.entity.ProductWithSubdivisionTestNG"/>
+        </classes>
+    </test>
+
+</suite>

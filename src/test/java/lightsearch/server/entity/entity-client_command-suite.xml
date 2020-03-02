@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="ClientCommandEntitySuite">
+
+    <test name="ClientCommandEntitySuiteTest">
+        <parameter name="barcode" value="22505"/>
+        <parameter name="cardCode" value="101"/>
+        <parameter name="delivery" value="0"/>
+        <parameter name="IMEI" value="11111111111111"/>
+        <parameter name="ip" value="127.0.0.1"/>
+        <parameter name="model" value="laptop"/>
+        <parameter name="os" value="linux"/>
+        <parameter name="sklad" value="skl"/>
+        <parameter name="TK" value="TK1"/>
+        <parameter name="userIdent" value="111"/>
+        <parameter name="username" value="John"/>
+        <parameter name="password" value="pa55!"/>
+        <parameter name="factoryBarcode" value="22505303"/>
+        <parameter name="checkEan13" value="true"/>
+
+        <classes>
+            <class name="lightsearch.server.entity.ClientCommandSimpleTestNG"/>
+            <class name="lightsearch.server.entity.ClientCommandWithBarcodeTestNG"/>
+            <class name="lightsearch.server.entity.ClientCommandWithCardCodeTestNG"/>
+            <class name="lightsearch.server.entity.ClientCommandWithDeliveryTestNG"/>
+            <class name="lightsearch.server.entity.ClientCommandWithIMEITestNG"/>
+            <class name="lightsearch.server.entity.ClientCommandWithIpTestNG"/>
+            <class name="lightsearch.server.entity.ClientCommandWithProductsTestNG"/>
+            <class name="lightsearch.server.entity.ClientCommandWithSkladTestNG"/>
+            <class name="lightsearch.server.entity.ClientCommandWithTKTestNG"/>
+            <class name="lightsearch.server.entity.ClientCommandWithUserIdentifierTestNG"/>
+            <class name="lightsearch.server.entity.ClientCommandWithUsernameAndPasswordTestNG"/>
+            <class name="lightsearch.server.entity.ClientCommandWithCheckEAN13TestNG"/>
+            <class name="lightsearch.server.entity.ClientCommandWithFactoryBarcodeTestNG"/>
+        </classes>
+    </test>
+
+</suite>

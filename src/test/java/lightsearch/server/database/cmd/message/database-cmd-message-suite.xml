@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="DatabaseCommandMessageSuite">
+
+    <test name="DatabaseCommandMessageSuiteTest">
+        <parameter name="userIdent" value="101"/>
+        <parameter name="cardCode" value="222"/>
+        <parameter name="delivery" value="1"/>
+        <parameter name="delivery" value="1"/>
+        <parameter name="barcode" value="some input"/>
+        <parameter name="sklad" value="all"/>
+        <parameter name="TK" value="all"/>
+        <parameter name="username" value="user"/>
+        <parameter name="password" value="5TRONGpa55!"/>
+        <parameter name="factoryBarcode" value="22505303"/>
+        <parameter name="checkEan13" value="true"/>
+
+
+        <packages>
+            <package name="lightsearch.server.database.cmd.message"/>
+        </packages>
+    </test>
+
+</suite>

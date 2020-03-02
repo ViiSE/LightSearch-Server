@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="InitializationSuite">
+
+    <test name="InitializationSuiteTest">
+        <packages>
+            <package name="lightsearch.server.initialization"/>
+        </packages>
+    </test>
+
+</suite>

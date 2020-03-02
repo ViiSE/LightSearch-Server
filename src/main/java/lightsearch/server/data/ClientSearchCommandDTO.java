@@ -1,0 +1,64 @@
+/*
+ * Copyright 2019 ViiSE.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package lightsearch.server.data;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(value = "ClientSearchCommand", description = "Команда клиента для поиска товара")
+@JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class ClientSearchCommandDTO {
+
+    @ApiModelProperty(notes = "Строка поиска", position = 1)
+    private String barcode;
+    @ApiModelProperty(notes = "Склад", position = 2)
+    private String sklad;
+    @ApiModelProperty(notes = "ТК", position = 3)
+    @JsonProperty("tk")
+    private String TK;
+
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
+    }
+
+    public String getBarcode() {
+        return barcode;
+    }
+
+    public void setSklad(String sklad) {
+        this.sklad = sklad;
+    }
+
+    public String getSklad() {
+        return sklad;
+    }
+
+    @JsonProperty("tk")
+    public void setTK(String TK) {
+        this.TK = TK;
+    }
+
+    @JsonProperty("tk")
+    public String getTK() {
+        return TK;
+    }
+}

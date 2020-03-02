@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="CheckerSuite">
+
+    <test name="CheckerSuiteTest">
+        <parameter name="validIMEI" value="111111111111111"/>
+        <parameter name="blacklistIMEI" value="222222222222222"/>
+        <parameter name="foundIMEI" value="id1"/>
+        <parameter name="invalidIMEI" value="333333333333333"/>
+        <parameter name="validTimeout" value="1"/>
+        <parameter name="invalidTimeout" value="0"/>
+        <parameter name="factoryBarcode" value="22505303"/>
+        <parameter name="barcode" value="22505"/>
+        <parameter name="isCheckEAN13" value="true"/>
+        <parameter name="cardCode" value="222"/>
+        <parameter name="userIdent" value="101"/>
+        <parameter name="sklad" value="skl1"/>
+        <parameter name="TK" value="tk1"/>
+        <parameter name="delivery" value="1"/>
+
+        <packages>
+            <package name="lightsearch.server.checker"/>
+        </packages>
+    </test>
+
+</suite>

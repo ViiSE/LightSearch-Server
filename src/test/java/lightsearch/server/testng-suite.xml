@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="TestNGSuite">
+
+    <suite-files>
+        <!--  Unit tests   -->
+        <suite-file path="checker/checker-suite.xml"/>
+        <suite-file path="cmd/admin/process/cmd-admin-processor-suite.xml"/>
+        <suite-file path="database/cmd/message/database-cmd-message-suite.xml"/>
+        <suite-file path="entity/entity-suite.xml"/>
+        <suite-file path="identifier/identifier-suite.xml"/>
+        <suite-file path="initialization/initialization-suite.xml"/>
+        <suite-file path="properties/properties-suite.xml"/>
+        <suite-file path="security/security-suite.xml"/>
+        <suite-file path="service/service-suite.xml"/>
+        <suite-file path="time/time-suite.xml"/>
+        <suite-file path="validator/validator-suite.xml"/>
+
+        <!--  Integration tests   -->
+<!--        <suite-file path="cmd/client/processor/cmd-client-processor-suite.xml"/>-->
+        <suite-file path="database/database-suite.xml"/>
+        <suite-file path="producer/producer-suite.xml"/>
+
+    </suite-files>
+
+</suite>

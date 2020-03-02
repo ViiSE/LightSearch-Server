@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="ClientEntitySuite">
+
+    <suite-files>
+        <suite-file path="entity-admin_command_result-suite.xml"/>
+        <suite-file path="entity-client-suite.xml"/>
+        <suite-file path="entity-client_command-suite.xml"/>
+        <suite-file path="entity-client_command_result-suite.xml"/>
+        <suite-file path="entity-jwt_header-suite.xml"/>
+        <suite-file path="entity-product-suite.xml"/>
+        <suite-file path="entity-product-suite.xml"/>
+        <suite-file path="entity-response_result-suite.xml"/>
+    </suite-files>
+
+</suite>
