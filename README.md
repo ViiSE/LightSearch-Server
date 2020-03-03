@@ -58,6 +58,11 @@ LightSearch Server имеет три роли пользователей - admin
 - Изменение параметров подключения к базе данных (PUT /admins/commands/datasource)
 - Перезагрузка LightSearch Server (GET /admins/commands/restart)
 
+Ссылки
+------
+История проекта LightSearch доступна в [документах](https://github.com/ViiSE/LightSearch/tree/master/Documents/Project%20history)
+и в [заметках разработки](https://github.com/ViiSE/LightSearch/blob/master/Dev%20notes).
+
 Используемые библиотеки и технологии
 ------------------------------------
 - [Spring Framework](https://github.com/spring-projects/spring-framework)
