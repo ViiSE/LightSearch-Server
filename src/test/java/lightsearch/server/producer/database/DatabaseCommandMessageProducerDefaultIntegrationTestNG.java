@@ -197,10 +197,10 @@ public class DatabaseCommandMessageProducerDefaultIntegrationTestNG extends Abst
         testMethod("getDatabaseCommandMessageSearchSoftCheckDefaultWindowsJSONInstance()");
 
         ClientCommand cmd = new ClientCommandWithBarcodeImpl(
-                new ClientCommandWithUserIdentifierImpl(
+                new ClientCommandWithUsernameImpl(
                         new ClientCommandSimpleImpl(
                                 ClientCommands.SEARCH),
-                        "101"),
+                        "user"),
                 "22505");
 
         DatabaseCommandMessage commandMessage = producer

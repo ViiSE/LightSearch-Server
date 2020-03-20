@@ -41,10 +41,10 @@ public class SearchSoftCheckProcessIntegrationTestNG extends AbstractTestNGSprin
     private Processes<ClientCommand, ClientCommandResult> holder;
 
     @Test
-    @Parameters({"barcode", "userIdent"})
+    @Parameters({"barcode", "username"})
     public void apply(String barcode, String userIdent) throws JsonProcessingException {
         ClientCommand clientCommand = new ClientCommandWithBarcodeImpl(
-                new ClientCommandWithUserIdentifierImpl(
+                new ClientCommandWithUsernameImpl(
                         new ClientCommandSimpleImpl(
                                 ClientCommands.SEARCH_SOFT_CHECK),
                         userIdent),

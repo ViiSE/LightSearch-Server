@@ -107,4 +107,9 @@ public class ClientCommandProducerDefaultImpl implements ClientCommandProducer {
     public ClientCommand getClientCommandWithCheckEAN13Instance(ClientCommand command, boolean checkEan13) {
         return (ClientCommand) ctx.getBean("clientCommandWithCheckEAN13", command, checkEan13);
     }
+
+    @Override
+    public ClientCommand getClientCommandWithUsernameInstance(ClientCommand command, String username) {
+        return (ClientCommand) ctx.getBean("clientCommandWithUsername", command, username);
+    }
 }

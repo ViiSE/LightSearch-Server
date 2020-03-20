@@ -18,10 +18,7 @@
 package lightsearch.server.database.cmd.message;
 
 import lightsearch.server.constants.ClientCommands;
-import lightsearch.server.entity.ClientCommand;
-import lightsearch.server.entity.ClientCommandSimpleImpl;
-import lightsearch.server.entity.ClientCommandWithBarcodeImpl;
-import lightsearch.server.entity.ClientCommandWithUserIdentifierImpl;
+import lightsearch.server.entity.*;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
@@ -35,14 +32,14 @@ public class DatabaseCommandMessageSearchSoftCheckDefaultWindowsJSONTestNG {
     DatabaseCommandMessage dbCmdMessage;
 
     @BeforeClass
-    @Parameters({"barcode", "userIdent"})
-    public void setUpClass(String barcode, String userIdent) {
+    @Parameters({"barcode", "username"})
+    public void setUpClass(String barcode, String username) {
         String command = ClientCommands.SEARCH_SOFT_CHECK;
 
         ClientCommand clientCommand = new ClientCommandWithBarcodeImpl(
-                new ClientCommandWithUserIdentifierImpl(
+                new ClientCommandWithUsernameImpl(
                         new ClientCommandSimpleImpl(command),
-                        userIdent),
+                        username),
                 barcode);
 
         dbCmdMessage = new DatabaseCommandMessageSearchSoftCheckDefaultWindowsJSONImpl(clientCommand);

@@ -448,8 +448,8 @@ public class ClientsCommandsController {
     @ApiOperation(value = "Поиск товаров для мягкого чека", authorizations = {@Authorization(value = "Bearer")})
     @ApiResponses(value = {
             @ApiResponse(code = 200,
-                    message = "Выгружает все товары, находящихся в том же подразделении, что и пользователь с " +
-                            "идентификатором <b>user_ident</b>."),
+                    message = "Выгружает все товары, находящихся в том же подразделении, что и пользователь с именем " +
+                            "<b>username</b>."),
             @ApiResponse(code = 401,
                     message = "Для использования данной точки необходимо авторизоваться в LightSearch через точку " +
                             "<b>/clients/login</b>."),
@@ -460,13 +460,13 @@ public class ClientsCommandsController {
             @ApiParam(required = true, value = "Можно указывать штрих-код, короткий код, наименование или часть " +
                     "наименования товара.")
             @RequestParam String barcode,
-            @ApiParam(required = true, value = "Идентификатор пользователя")
-            @RequestParam(required = false) String userIdent) throws ClientErrorException {
+            @ApiParam(required = true, value = "Имя пользователя")
+            @RequestParam(required = false) String username) throws ClientErrorException {
         ClientCommand cmd = cmdProducer.getClientCommandWithBarcodeInstance(
-                cmdProducer.getClientCommandWithUserIdentifierInstance(
+                cmdProducer.getClientCommandWithUsernameInstance(
                         cmdProducer.getClientCommandSimpleInstance(
                                 ClientCommands.SEARCH_SOFT_CHECK),
-                        userIdent),
+                        username),
                 barcode);
 
         ClientCommandResultDTO cmdRes = getCommandResult(ClientCommands.SEARCH_SOFT_CHECK, cmd);

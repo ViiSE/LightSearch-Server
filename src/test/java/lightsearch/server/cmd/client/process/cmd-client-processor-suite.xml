@@ -27,9 +27,9 @@
 <!--            <class name="lightsearch.server.cmd.client.process.UnbindCheckProcessIntegrationTestNG"/>-->
 <!--            <class name="lightsearch.server.cmd.client.process.UnbindProcessIntegrationTestNG"/>-->
 <!--            <class name="lightsearch.server.cmd.client.process.SearchProcessIntegrationTestNG"/>-->
-<!--            <class name="lightsearch.server.cmd.client.process.SearchSoftCheckProcessIntegrationTestNG"/>-->
+            <class name="lightsearch.server.cmd.client.process.SearchSoftCheckProcessIntegrationTestNG"/>
 <!--            <class name="lightsearch.server.cmd.client.process.SkladListProcessIntegrationTestNG"/>-->
-            <class name="lightsearch.server.cmd.client.process.TKListProcessIntegrationTestNG"/>
+<!--            <class name="lightsearch.server.cmd.client.process.TKListProcessIntegrationTestNG"/>-->
         </classes>
     </test>
 

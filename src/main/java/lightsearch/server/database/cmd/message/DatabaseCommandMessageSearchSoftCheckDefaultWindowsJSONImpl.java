@@ -27,14 +27,14 @@ public class DatabaseCommandMessageSearchSoftCheckDefaultWindowsJSONImpl impleme
 
     private final String command;
     private final String barcode;
-    private final String userIdent;
+    private final String username;
 
     public DatabaseCommandMessageSearchSoftCheckDefaultWindowsJSONImpl(ClientCommand clientCommand) {
         ClientCommandDTO cmdDTO = (ClientCommandDTO) clientCommand.formForSend();
 
         this.command = clientCommand.name();
         this.barcode = cmdDTO.getBarcode();
-        this.userIdent = cmdDTO.getUserIdentifier();
+        this.username = cmdDTO.getUsername();
     }
     
     @Override
@@ -42,7 +42,7 @@ public class DatabaseCommandMessageSearchSoftCheckDefaultWindowsJSONImpl impleme
         return "{\r\n"
                 + "\"" + DatabaseCommandMessages.COMMAND + "\":\""  + command + "\",\r\n"
                 + "\"" + DatabaseCommandMessages.BARCODE + "\":\"" + barcode + "\",\r\n"
-                + "\"" + DatabaseCommandMessages.USER_IDENT + "\":\"" + userIdent + "\"\r\n"
+                + "\"" + DatabaseCommandMessages.USERNAME + "\":\"" + username + "\"\r\n"
                 + "}";
     }
 }
