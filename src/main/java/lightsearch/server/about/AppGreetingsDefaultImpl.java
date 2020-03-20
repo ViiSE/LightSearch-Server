@@ -21,7 +21,7 @@ import org.springframework.stereotype.Component;
 @Component("appGreetingsDefault")
 public class AppGreetingsDefaultImpl implements AppGreetings {
 
-    private final static String APP_VERSION = "3.3.0";
+    private final static String APP_VERSION = "3.4.0";
 
     @Override
     public String greetings() {
