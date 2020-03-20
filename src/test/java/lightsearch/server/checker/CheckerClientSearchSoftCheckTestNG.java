@@ -37,11 +37,11 @@ public class CheckerClientSearchSoftCheckTestNG {
     }
 
     @Test
-    @Parameters({"barcode", "userIdent"})
-    public void check_valid(String barcode, String userIdent) {
+    @Parameters({"barcode", "username"})
+    public void check_valid(String barcode, String username) {
         testMethod("check()");
 
-        ClientCommand cmd = createClientCommand(barcode, userIdent);
+        ClientCommand cmd = createClientCommand(barcode, username);
         try {
             cmdChecker.check(cmd);
         } catch (CheckerException e) {
@@ -63,15 +63,15 @@ public class CheckerClientSearchSoftCheckTestNG {
         return new Object[][] {
                 {"", "111", "[invalid barcode (empty)]"},
                 {null, "111", "[invalid barcode (null)]"},
-                {"22505", "", "[invalid userIdent (empty)]"},
-                {"22505", null, "[invalid userIdent (null)]"}
+                {"test", "", "[invalid username (empty)]"},
+                {"tesst", null, "[invalid username (null)]"}
         };
     }
 
-    private ClientCommand createClientCommand(String barcode, String userIdent) {
+    private ClientCommand createClientCommand(String barcode, String username) {
         return new ClientCommandWithBarcodeImpl(
-                new ClientCommandWithUserIdentifierImpl(
-                        new ClientCommandSimpleImpl(ClientCommands.SEARCH_SOFT_CHECK), userIdent), barcode);
+                new ClientCommandWithUsernameImpl(
+                        new ClientCommandSimpleImpl(ClientCommands.SEARCH_SOFT_CHECK), username), barcode);
     }
 
     @AfterClass

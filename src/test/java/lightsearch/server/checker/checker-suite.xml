@@ -18,6 +18,7 @@
         <parameter name="sklad" value="skl1"/>
         <parameter name="TK" value="tk1"/>
         <parameter name="delivery" value="1"/>
+        <parameter name="username" value="test"/>
 
         <packages>
             <package name="lightsearch.server.checker"/>
