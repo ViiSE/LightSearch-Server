@@ -79,4 +79,19 @@ public class ProcessClientProducerDefaultImpl implements ProcessClientProducer<C
     public ClientProcess<ClientCommandResult> getUnbindProcessInstance() {
         return ctx.getBean("unbindProcess", UnbindProcess.class);
     }
+
+    @Override
+    public ClientProcess<ClientCommandResult> getSearchSoftCheckProcessInstance() {
+        return ctx.getBean("searchSoftCheckProcess", SearchSoftCheckProcess.class);
+    }
+
+    @Override
+    public ClientProcess<ClientCommandResult> getSkladListProcessInstance() {
+        return ctx.getBean("skladListProcess", SkladListProcess.class);
+    }
+
+    @Override
+    public ClientProcess<ClientCommandResult> getTKListProcessInstance() {
+        return ctx.getBean("tkListProcess", TKListProcess.class);
+    }
 }

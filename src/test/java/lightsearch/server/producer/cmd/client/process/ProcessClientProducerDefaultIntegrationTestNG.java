@@ -133,6 +133,33 @@ public class ProcessClientProducerDefaultIntegrationTestNG extends AbstractTestN
         assertTrue(process instanceof UnbindCheckProcess);
     }
 
+    @Test
+    public void getSearchSoftCheckProcessInstance() {
+        testMethod("getSearchSoftCheckProcessInstance()");
+
+        ClientProcess<ClientCommandResult> process = producer.getSearchSoftCheckProcessInstance();
+        System.out.println("instance: " + process);
+        assertTrue(process instanceof SearchSoftCheckProcess);
+    }
+
+    @Test
+    public void getSkladListProcessInstance() {
+        testMethod("getSkladListProcessInstance()");
+
+        ClientProcess<ClientCommandResult> process = producer.getSkladListProcessInstance();
+        System.out.println("instance: " + process);
+        assertTrue(process instanceof SkladListProcess);
+    }
+
+    @Test
+    public void getTKListProcessInstance() {
+        testMethod("getTKListProcessInstance()");
+
+        ClientProcess<ClientCommandResult> process = producer.getTKListProcessInstance();
+        System.out.println("instance: " + process);
+        assertTrue(process instanceof TKListProcess);
+    }
+
     @AfterClass
     public void teardownClass() {
         testEnd(ProcessClientProducerDefaultImpl.class);

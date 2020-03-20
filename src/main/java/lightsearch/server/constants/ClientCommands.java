@@ -27,8 +27,11 @@ public class ClientCommands {
     public static final String CANCEL_SOFT_CHECK = "cancel_soft_check";
     public static final String CONFIRM_SOFT_CHECK_PRODUCTS = "confirm_prod_sf";
     public static final String SEARCH = "search";
+    public static final String SEARCH_SOFT_CHECK = "search_soft_check";
     public static final String BIND_CHECK = "bind_check";
     public static final String BIND = "bind";
     public static final String UNBIND_CHECK = "unbind_check";
     public static final String UNBIND = "unbind";
+    public static final String SKLAD_LIST = "sklad_list";
+    public static final String TK_LIST = "tk_list";
 }

@@ -21,12 +21,15 @@
 
     <test name="CmdClientProcessSuiteTest">
         <classes>
-            <class name="lightsearch.server.cmd.client.process.LoginProcessIntegrationTestNG"/>
-            <class name="lightsearch.server.cmd.client.process.BindCheckProcessIntegrationTestNG"/>
-            <class name="lightsearch.server.cmd.client.process.BindProcessIntegrationTestNG"/>
-            <class name="lightsearch.server.cmd.client.process.UnbindCheckProcessIntegrationTestNG"/>
-            <class name="lightsearch.server.cmd.client.process.UnbindProcessIntegrationTestNG"/>
-            <class name="lightsearch.server.cmd.client.process.SearchProcessIntegrationTestNG"/>
+<!--            <class name="lightsearch.server.cmd.client.process.LoginProcessIntegrationTestNG"/>-->
+<!--            <class name="lightsearch.server.cmd.client.process.BindCheckProcessIntegrationTestNG"/>-->
+<!--            <class name="lightsearch.server.cmd.client.process.BindProcessIntegrationTestNG"/>-->
+<!--            <class name="lightsearch.server.cmd.client.process.UnbindCheckProcessIntegrationTestNG"/>-->
+<!--            <class name="lightsearch.server.cmd.client.process.UnbindProcessIntegrationTestNG"/>-->
+<!--            <class name="lightsearch.server.cmd.client.process.SearchProcessIntegrationTestNG"/>-->
+<!--            <class name="lightsearch.server.cmd.client.process.SearchSoftCheckProcessIntegrationTestNG"/>-->
+<!--            <class name="lightsearch.server.cmd.client.process.SkladListProcessIntegrationTestNG"/>-->
+            <class name="lightsearch.server.cmd.client.process.TKListProcessIntegrationTestNG"/>
         </classes>
     </test>
 

@@ -29,4 +29,7 @@ public interface ProcessClientProducer<R> {
     ClientProcess<R> getBindCheckProcessInstance();
     ClientProcess<R> getUnbindCheckProcessInstance();
     ClientProcess<R> getUnbindProcessInstance();
+    ClientProcess<R> getSearchSoftCheckProcessInstance();
+    ClientProcess<R> getSkladListProcessInstance();
+    ClientProcess<R> getTKListProcessInstance();
 }

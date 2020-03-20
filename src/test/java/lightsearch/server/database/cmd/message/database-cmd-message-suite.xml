@@ -16,7 +16,6 @@
         <parameter name="factoryBarcode" value="22505303"/>
         <parameter name="checkEan13" value="true"/>
 
-
         <packages>
             <package name="lightsearch.server.database.cmd.message"/>
         </packages>

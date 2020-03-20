@@ -79,4 +79,19 @@ public class DatabaseCommandMessageProducerDefaultImpl implements DatabaseComman
     public DatabaseCommandMessage getDatabaseCommandMessageUnbindDefaultWindowsJSONInstance(ClientCommand command) {
         return (DatabaseCommandMessage) ctx.getBean("databaseCommandMessageUnbindDefaultWindowsJSON", command);
     }
+
+    @Override
+    public DatabaseCommandMessage getDatabaseCommandMessageSearchSoftCheckDefaultWindowsJSONInstance(ClientCommand command) {
+        return (DatabaseCommandMessage) ctx.getBean("databaseCommandMessageSearchSoftCheckDefaultWindowsJSON", command);
+    }
+
+    @Override
+    public DatabaseCommandMessage getDatabaseCommandMessageTKListDefaultWindowsJSONInstance(ClientCommand command) {
+        return (DatabaseCommandMessage) ctx.getBean("databaseCommandMessageTKListDefaultWindowsJSON", command);
+    }
+
+    @Override
+    public DatabaseCommandMessage getDatabaseCommandMessageSkladListDefaultWindowsJSONInstance(ClientCommand command) {
+        return (DatabaseCommandMessage) ctx.getBean("databaseCommandMessageSkladListDefaultWindowsJSON", command);
+    }
 }

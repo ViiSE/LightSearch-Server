@@ -192,6 +192,47 @@ public class DatabaseCommandMessageProducerDefaultIntegrationTestNG extends Abst
         assertTrue(commandMessage instanceof DatabaseCommandMessageSearchDefaultWindowsJSONImpl);
     }
 
+    @Test
+    public void getDatabaseCommandMessageSearchSoftCheckDefaultWindowsJSONInstance() {
+        testMethod("getDatabaseCommandMessageSearchSoftCheckDefaultWindowsJSONInstance()");
+
+        ClientCommand cmd = new ClientCommandWithBarcodeImpl(
+                new ClientCommandWithUserIdentifierImpl(
+                        new ClientCommandSimpleImpl(
+                                ClientCommands.SEARCH),
+                        "101"),
+                "22505");
+
+        DatabaseCommandMessage commandMessage = producer
+                .getDatabaseCommandMessageSearchSoftCheckDefaultWindowsJSONInstance(cmd);
+        System.out.println("instance: " + commandMessage);
+        assertTrue(commandMessage instanceof DatabaseCommandMessageSearchSoftCheckDefaultWindowsJSONImpl);
+    }
+
+    @Test
+    public void getDatabaseCommandMessageSkladListDefaultWindowsJSONInstance() {
+        testMethod("getDatabaseCommandMessageSkladListDefaultWindowsJSONInstance()");
+
+        ClientCommand cmd = new ClientCommandSimpleImpl(ClientCommands.SKLAD_LIST);
+
+        DatabaseCommandMessage commandMessage = producer
+                .getDatabaseCommandMessageSkladListDefaultWindowsJSONInstance(cmd);
+        System.out.println("instance: " + commandMessage);
+        assertTrue(commandMessage instanceof DatabaseCommandMessageSkladListDefaultWindowsJSONImpl);
+    }
+
+    @Test
+    public void getDatabaseCommandMessageTKListDefaultWindowsJSONInstance() {
+        testMethod("getDatabaseCommandMessageTKListDefaultWindowsJSONInstance()");
+
+        ClientCommand cmd = new ClientCommandSimpleImpl(ClientCommands.TK_LIST);
+
+        DatabaseCommandMessage commandMessage = producer
+                .getDatabaseCommandMessageTKListDefaultWindowsJSONInstance(cmd);
+        System.out.println("instance: " + commandMessage);
+        assertTrue(commandMessage instanceof DatabaseCommandMessageTKListDefaultWindowsJSONImpl);
+    }
+
     @AfterClass
     public void teardownClass() {
         testEnd(DatabaseCommandMessageProducerDefaultImpl.class);

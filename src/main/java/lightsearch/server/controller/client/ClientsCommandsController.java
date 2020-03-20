@@ -445,6 +445,95 @@ public class ClientsCommandsController {
         return result;
     }
 
+    @ApiOperation(value = "Поиск товаров для мягкого чека", authorizations = {@Authorization(value = "Bearer")})
+    @ApiResponses(value = {
+            @ApiResponse(code = 200,
+                    message = "Выгружает все товары, находящихся в том же подразделении, что и пользователь с " +
+                            "идентификатором <b>user_ident</b>."),
+            @ApiResponse(code = 401,
+                    message = "Для использования данной точки необходимо авторизоваться в LightSearch через точку " +
+                            "<b>/clients/login</b>."),
+            @ApiResponse(code = 500,
+                    message = "Произошла внутренняя ошибка в LightSearch.")})
+    @GetMapping("/clients/softChecks/products")
+    public ClientSearchCommandResultDTO requestSoftChecksProducts(
+            @ApiParam(required = true, value = "Можно указывать штрих-код, короткий код, наименование или часть " +
+                    "наименования товара.")
+            @RequestParam String barcode,
+            @ApiParam(required = true, value = "Идентификатор пользователя")
+            @RequestParam(required = false) String userIdent) throws ClientErrorException {
+        ClientCommand cmd = cmdProducer.getClientCommandWithBarcodeInstance(
+                cmdProducer.getClientCommandWithUserIdentifierInstance(
+                        cmdProducer.getClientCommandSimpleInstance(
+                                ClientCommands.SEARCH_SOFT_CHECK),
+                        userIdent),
+                barcode);
+
+        ClientCommandResultDTO cmdRes = getCommandResult(ClientCommands.SEARCH_SOFT_CHECK, cmd);
+        ClientSearchCommandResultDTO result = new ClientSearchCommandResultDTO();
+        result.setIsDone(cmdRes.getIsDone() ? "true" : "false");
+        result.setMessage(cmdRes.getMessage());
+
+        if(!result.getIsDone())
+            throw new ClientErrorException(HttpStatus.INTERNAL_SERVER_ERROR, result.getMessage());
+
+        result.setData(cmdRes.getData());
+
+        return result;
+    }
+
+    @ApiOperation(value = "Выгружает список всех складов предприятия", authorizations = {@Authorization(value = "Bearer")})
+    @ApiResponses(value = {
+            @ApiResponse(code = 200,
+                    message = "Выгружает все склады предприятия."),
+            @ApiResponse(code = 401,
+                    message = "Для использования данной точки необходимо авторизоваться в LightSearch через точку " +
+                            "<b>/clients/login</b>."),
+            @ApiResponse(code = 500,
+                    message = "Произошла внутренняя ошибка в LightSearch.")})
+    @GetMapping("/clients/skladList")
+    public ClientSkladListCommandResultDTO requestSkladList() throws ClientErrorException {
+        ClientCommand cmd = cmdProducer.getClientCommandSimpleInstance(ClientCommands.SKLAD_LIST);
+
+        ClientCommandResultDTO cmdRes = getCommandResult(ClientCommands.SKLAD_LIST, cmd);
+        ClientSkladListCommandResultDTO result = new ClientSkladListCommandResultDTO();
+        result.setIsDone(cmdRes.getIsDone() ? "true" : "false");
+        result.setMessage(cmdRes.getMessage());
+
+        if(!result.getIsDone())
+            throw new ClientErrorException(HttpStatus.INTERNAL_SERVER_ERROR, result.getMessage());
+
+        result.setSkladList(cmdRes.getSkladList());
+
+        return result;
+    }
+
+    @ApiOperation(value = "Выгружает список всех ТК предприятия", authorizations = {@Authorization(value = "Bearer")})
+    @ApiResponses(value = {
+            @ApiResponse(code = 200,
+                    message = "Выгружает все ТК предприятия."),
+            @ApiResponse(code = 401,
+                    message = "Для использования данной точки необходимо авторизоваться в LightSearch через точку " +
+                            "<b>/clients/login</b>."),
+            @ApiResponse(code = 500,
+                    message = "Произошла внутренняя ошибка в LightSearch.")})
+    @GetMapping("/clients/tkList")
+    public ClientTKCommandResultDTO requestTKList() throws ClientErrorException {
+        ClientCommand cmd = cmdProducer.getClientCommandSimpleInstance(ClientCommands.TK_LIST);
+
+        ClientCommandResultDTO cmdRes = getCommandResult(ClientCommands.TK_LIST, cmd);
+        ClientTKCommandResultDTO result = new ClientTKCommandResultDTO();
+        result.setIsDone(cmdRes.getIsDone() ? "true" : "false");
+        result.setMessage(cmdRes.getMessage());
+
+        if(!result.getIsDone())
+            throw new ClientErrorException(HttpStatus.INTERNAL_SERVER_ERROR, result.getMessage());
+
+        result.setTKList(cmdRes.getTKList());
+
+        return result;
+    }
+
     private ClientCommandResultDTO getCommandResult(String cmdName, ClientCommand cmd) {
         return (ClientCommandResultDTO) processes.get(cmdName).apply(cmd).formForSend();
     }

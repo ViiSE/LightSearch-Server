@@ -42,6 +42,9 @@ public class ClientProcessesWithClientResultImpl implements Processes<ClientComm
         processes.put(ClientCommands.BIND, prcProducer.getBindProcessInstance());
         processes.put(ClientCommands.UNBIND, prcProducer.getUnbindProcessInstance());
         processes.put(ClientCommands.UNBIND_CHECK, prcProducer.getUnbindCheckProcessInstance());
+        processes.put(ClientCommands.SEARCH_SOFT_CHECK, prcProducer.getSearchSoftCheckProcessInstance());
+        processes.put(ClientCommands.SKLAD_LIST, prcProducer.getSkladListProcessInstance());
+        processes.put(ClientCommands.TK_LIST, prcProducer.getTKListProcessInstance());
     }
 
     @Override

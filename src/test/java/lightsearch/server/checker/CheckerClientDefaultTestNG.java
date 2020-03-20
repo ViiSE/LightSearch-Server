@@ -38,13 +38,13 @@ public class CheckerClientDefaultTestNG {
     public void setUpClass(String blIMEI) {
         HashAlgorithm ha = new HashAlgorithmSHA512Impl();
         BlacklistService<String> blacklistService = new BlacklistServiceDefaultImpl(ha);
-        blacklistService.blacklist().add(blIMEI);
+        blacklistService.add(blIMEI);
         cmdChecker = new CommandCheckerClientDefaultImpl(blacklistService);
 
         testBegin(CommandCheckerClientDefaultImpl.class);
     }
 
-    @Test
+    @Test()
     @Parameters({"validIMEI"})
     public void check_validIMEI(String IMEI) {
         testMethod("check() [valid IMEI]");

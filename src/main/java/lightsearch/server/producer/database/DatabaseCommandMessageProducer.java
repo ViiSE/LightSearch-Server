@@ -30,4 +30,7 @@ public interface DatabaseCommandMessageProducer {
     DatabaseCommandMessage getDatabaseCommandMessageBindDefaultWindowsJSONInstance(ClientCommand command);
     DatabaseCommandMessage getDatabaseCommandMessageUnbindCheckDefaultWindowsJSONInstance(ClientCommand command);
     DatabaseCommandMessage getDatabaseCommandMessageUnbindDefaultWindowsJSONInstance(ClientCommand command);
+    DatabaseCommandMessage getDatabaseCommandMessageSearchSoftCheckDefaultWindowsJSONInstance(ClientCommand command);
+    DatabaseCommandMessage getDatabaseCommandMessageTKListDefaultWindowsJSONInstance(ClientCommand command);
+    DatabaseCommandMessage getDatabaseCommandMessageSkladListDefaultWindowsJSONInstance(ClientCommand command);
 }
