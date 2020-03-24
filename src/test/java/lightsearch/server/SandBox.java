@@ -21,12 +21,23 @@ import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
+import java.time.*;
+import java.util.Date;
 
-public class SandBox extends AbstractTestNGSpringContextTests {
+public class SandBox {
 
     /* ~Welcome to the SandBox! You can do whatever you want here. This is experiments zone. Enjoy!~ */
 
     @Test
     public void sandBox() throws JsonProcessingException, IOException {
+        LocalDate date = LocalDate.now().plusDays(1);
+        LocalTime time = LocalTime.MIDNIGHT;
+        LocalDateTime dateTime = LocalDateTime.of(date, time);
+
+        long dateTimeMills = dateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+        Date oldDate = new Date(dateTimeMills);
+
+        System.out.println(dateTimeMills);
+        System.out.println(oldDate.toInstant().toEpochMilli());
     }
 }

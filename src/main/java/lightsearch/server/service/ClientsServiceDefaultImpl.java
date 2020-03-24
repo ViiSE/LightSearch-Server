@@ -22,7 +22,7 @@ import lightsearch.server.exception.ClientNotFoundException;
 import lightsearch.server.producer.entity.ClientProducer;
 import lightsearch.server.producer.entity.JWTTokenHeaderProducer;
 import lightsearch.server.security.HashAlgorithm;
-import lightsearch.server.security.JWTGenerator;
+import lightsearch.server.security.JWT;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
@@ -36,19 +36,19 @@ public class ClientsServiceDefaultImpl implements ClientsService<String, Client>
     private final HashAlgorithm hashAlgorithm;
     private final ObjectMapper mapper;
     private final ClientProducer clientProducer;
-    private final JWTGenerator<String> jwtGenerator;
+    private final JWT<String> jwt;
     private final JWTTokenHeaderProducer jwtTokenHeaderProducer;
 
     public ClientsServiceDefaultImpl(
             @Qualifier("hashAlgorithmsSHA512") HashAlgorithm hashAlgorithm,
             ObjectMapper mapper,
             ClientProducer clientProducer,
-            JWTGenerator<String> jwtGenerator,
+            JWT<String> jwt,
             JWTTokenHeaderProducer jwtTokenHeaderProducer) {
         this.hashAlgorithm = hashAlgorithm;
         this.mapper = mapper;
         this.clientProducer = clientProducer;
-        this.jwtGenerator = jwtGenerator;
+        this.jwt = jwt;
         this.jwtTokenHeaderProducer = jwtTokenHeaderProducer;
     }
 
@@ -67,7 +67,7 @@ public class ClientsServiceDefaultImpl implements ClientsService<String, Client>
         if(IMEI != null)
             if(!(IMEI.isEmpty()))
                 if(client != null) {
-                    String jwtToken = jwtGenerator.generate(IMEI);
+                    String jwtToken = jwt.generate(IMEI);
 
                     Client cl = clientProducer.getClientWithJWTTokenInstance(
                             client,

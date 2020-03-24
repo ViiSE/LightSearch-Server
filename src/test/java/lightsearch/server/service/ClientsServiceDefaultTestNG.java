@@ -24,7 +24,8 @@ import lightsearch.server.producer.entity.ClientProducerTestImpl;
 import lightsearch.server.producer.entity.JWTTokenHeaderProducerTestImpl;
 import lightsearch.server.security.HashAlgorithm;
 import lightsearch.server.security.HashAlgorithmSHA512Impl;
-import lightsearch.server.security.JWTGeneratorDefaultImpl;
+import lightsearch.server.security.JWTFromIMEIImpl;
+import lightsearch.server.time.JWTExpirationDateImpl;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
@@ -46,10 +47,10 @@ public class ClientsServiceDefaultTestNG {
                 hashAlgorithm,
                 TestUtils.objectMapperWithJavaTimeModule(),
                 new ClientProducerTestImpl(),
-                new JWTGeneratorDefaultImpl(
+                new JWTFromIMEIImpl(
                         secret,
-                        jwtValidDayCount,
-                        hashAlgorithm),
+                        hashAlgorithm,
+                        new JWTExpirationDateImpl(jwtValidDayCount)),
                 new JWTTokenHeaderProducerTestImpl());
 
         testBegin(BlacklistServiceDefaultImpl.class);

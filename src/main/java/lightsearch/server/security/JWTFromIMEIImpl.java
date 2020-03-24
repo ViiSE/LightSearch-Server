@@ -20,7 +20,7 @@ package lightsearch.server.security;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import lightsearch.server.time.TimeUtils;
+import lightsearch.server.time.JWTExpiration;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -31,27 +31,26 @@ import java.security.Key;
 import java.util.Date;
 import java.util.Random;
 
-@Component("jwtGeneratorDefault")
-public class JWTGeneratorDefaultImpl implements JWTGenerator<String> {
+@Component("jwtFromIMEI")
+public class JWTFromIMEIImpl implements JWT<String> {
 
     private final String secret;
-    private final long jwtValidDayCount;
     private final HashAlgorithm hashAlgorithm;
+    private final JWTExpiration<Date> jwtExpiration;
 
-    public JWTGeneratorDefaultImpl(
+    public JWTFromIMEIImpl(
             @Value("${lightsearch.server.jwt-secret}") String secret,
-            @Value("#{new Long('${lightsearch.server.jwt-valid-day-count}')}") long jwtValidDayCount,
-            @Qualifier("hashAlgorithmsSHA512") HashAlgorithm hashAlgorithm) {
+            @Qualifier("hashAlgorithmsSHA512") HashAlgorithm hashAlgorithm,
+            JWTExpiration<Date> jwtExpiration) {
         this.secret = secret;
-        this.jwtValidDayCount = jwtValidDayCount;
         this.hashAlgorithm = hashAlgorithm;
+        this.jwtExpiration = jwtExpiration;
     }
 
     @Override
     public String generate(String IMEI) {
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
-        long nowMills = System.currentTimeMillis();
-        Date now = new Date(nowMills);
+        Date validDate = jwtExpiration.until();
 
         byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(secret);
         Key signingKey = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());
@@ -61,13 +60,13 @@ public class JWTGeneratorDefaultImpl implements JWTGenerator<String> {
         String subject = hashAlgorithm.digest(IMEI);
 
         JwtBuilder jwtBuilder = Jwts.builder()
-                .setIssuedAt(now)
+                .setIssuedAt(validDate)
                 .setId(id)
                 .setIssuer("lightsearch")
                 .setSubject(subject)
                 .signWith(signatureAlgorithm, signingKey);
 
-        long expMills = nowMills + TimeUtils.convertDaysToMilliseconds(jwtValidDayCount);
+        long expMills = validDate.toInstant().toEpochMilli();
         Date exp = new Date(expMills);
 
         jwtBuilder.setExpiration(exp);

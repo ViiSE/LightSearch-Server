@@ -18,6 +18,7 @@
 package lightsearch.server.security;
 
 import io.jsonwebtoken.*;
+import lightsearch.server.time.JWTExpirationDateImpl;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -27,9 +28,9 @@ import javax.xml.bind.DatatypeConverter;
 import static org.testng.Assert.assertEquals;
 import static test.message.TestMessage.catchMessage;
 
-public class JWTGeneratorDefaultTestNG {
+public class JWTFromIMEITestNG {
 
-    private JWTGenerator<String> jwtGenerator;
+    private JWT<String> jwt;
     private HashAlgorithm hashAlgorithm = new HashAlgorithmSHA512Impl();
 
     @BeforeClass
@@ -37,13 +38,13 @@ public class JWTGeneratorDefaultTestNG {
     public void setUpClass(String secret, long jwtValidDayCount) {
 
         hashAlgorithm = new HashAlgorithmSHA512Impl();
-        jwtGenerator = new JWTGeneratorDefaultImpl(secret, jwtValidDayCount, hashAlgorithm);
+        jwt = new JWTFromIMEIImpl(secret, hashAlgorithm, new JWTExpirationDateImpl(jwtValidDayCount));
     }
 
     @Test
     @Parameters({"IMEI", "secret"})
     public void generate(String IMEI, String secret) {
-        String token = jwtGenerator.generate(IMEI);
+        String token = jwt.generate(IMEI);
 
         System.out.println("Token: " + token);
         try {

@@ -10,7 +10,8 @@
 
         <classes>
             <class name="lightsearch.server.security.HashAlgorithmSHA512TestNG"/>
-            <class name="lightsearch.server.security.JWTGeneratorDefaultTestNG"/>
+            <class name="lightsearch.server.security.JWTFromIMEITestNG"/>
+            <class name="lightsearch.server.security.JWTExpirationDateTestNG"/>
         </classes>
     </test>
 

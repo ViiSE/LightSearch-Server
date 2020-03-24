@@ -17,6 +17,6 @@
 
 package lightsearch.server.security;
 
-public interface JWTGenerator<T> {
+public interface JWT<T> {
     String generate(T v);
 }

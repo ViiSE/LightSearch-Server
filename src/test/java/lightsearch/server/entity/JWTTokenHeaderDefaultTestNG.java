@@ -22,8 +22,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lightsearch.server.data.JWTTokenHeaderDTO;
 import lightsearch.server.security.HashAlgorithm;
 import lightsearch.server.security.HashAlgorithmSHA512Impl;
-import lightsearch.server.security.JWTGenerator;
-import lightsearch.server.security.JWTGeneratorDefaultImpl;
+import lightsearch.server.security.JWT;
+import lightsearch.server.security.JWTFromIMEIImpl;
+import lightsearch.server.time.JWTExpirationDateImpl;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -42,12 +43,12 @@ public class JWTTokenHeaderDefaultTestNG {
     @Parameters({"secret", "jwtValidDayCount", "IMEI"})
     public void setUpClass(String secret, long jwtValidDayCount, String IMEI) {
         HashAlgorithm hashAlgorithm = new HashAlgorithmSHA512Impl();
-        JWTGenerator<String> jwtGenerator = new JWTGeneratorDefaultImpl(
+        JWT<String> jwt = new JWTFromIMEIImpl(
                 secret,
-                jwtValidDayCount,
-                hashAlgorithm);
+                hashAlgorithm,
+                new JWTExpirationDateImpl(jwtValidDayCount));
 
-        token = jwtGenerator.generate(IMEI);
+        token = jwt.generate(IMEI);
     }
 
     @Test

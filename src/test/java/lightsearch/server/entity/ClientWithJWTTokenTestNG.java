@@ -21,8 +21,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import lightsearch.server.data.ClientDTO;
 import lightsearch.server.security.HashAlgorithm;
 import lightsearch.server.security.HashAlgorithmSHA512Impl;
-import lightsearch.server.security.JWTGenerator;
-import lightsearch.server.security.JWTGeneratorDefaultImpl;
+import lightsearch.server.security.JWT;
+import lightsearch.server.security.JWTFromIMEIImpl;
+import lightsearch.server.time.JWTExpirationDateImpl;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -41,14 +42,14 @@ public class ClientWithJWTTokenTestNG {
     @Parameters({"secret", "jwtValidDayCount", "IMEI"})
     public void setUpClass(String secret, long jwtValidDayCount, String IMEI) {
         HashAlgorithm hashAlgorithm = new HashAlgorithmSHA512Impl();
-        JWTGenerator<String> jwtGenerator = new JWTGeneratorDefaultImpl(
+        JWT<String> jwt = new JWTFromIMEIImpl(
                 secret,
-                jwtValidDayCount,
-                hashAlgorithm);
+                hashAlgorithm,
+                new JWTExpirationDateImpl(jwtValidDayCount));
 
         tokenHeader = new JWTTokenHeaderDefaultImpl(
                 TestUtils.objectMapperWithJavaTimeModule(),
-                jwtGenerator.generate(IMEI));
+                jwt.generate(IMEI));
     }
 
     @Test
