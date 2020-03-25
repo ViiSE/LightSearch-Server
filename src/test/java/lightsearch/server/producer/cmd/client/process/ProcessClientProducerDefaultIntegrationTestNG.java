@@ -160,6 +160,15 @@ public class ProcessClientProducerDefaultIntegrationTestNG extends AbstractTestN
         assertTrue(process instanceof TKListProcess);
     }
 
+    @Test
+    public void getCheckAuthProcessInstance() {
+        testMethod("getCheckAuthProcessInstance()");
+
+        ClientProcess<ClientCommandResult> process = producer.getCheckAuthProcessInstance();
+        System.out.println("instance: " + process);
+        assertTrue(process instanceof CheckAuthProcess);
+    }
+
     @AfterClass
     public void teardownClass() {
         testEnd(ProcessClientProducerDefaultImpl.class);

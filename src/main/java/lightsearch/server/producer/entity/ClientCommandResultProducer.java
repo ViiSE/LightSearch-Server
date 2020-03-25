@@ -24,4 +24,5 @@ public interface ClientCommandResultProducer {
     ClientCommandResult getClientCommandResultFromDatabaseInstance(ClientCommandResultDTO clientCommandResultDTO);
     ClientCommandResult getClientCommandResultSimpleInstance(boolean isDone, String message);
     ClientCommandResult getClientCommandResultWithTokenInstance(ClientCommandResult clientCommandResult, String token);
+    ClientCommandResult getClientCommandResultCheckAuthInstance(boolean isOk);
 }

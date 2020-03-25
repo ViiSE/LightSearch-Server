@@ -45,6 +45,7 @@ public class ClientProcessesWithClientResultImpl implements Processes<ClientComm
         processes.put(ClientCommands.SEARCH_SOFT_CHECK, prcProducer.getSearchSoftCheckProcessInstance());
         processes.put(ClientCommands.SKLAD_LIST, prcProducer.getSkladListProcessInstance());
         processes.put(ClientCommands.TK_LIST, prcProducer.getTKListProcessInstance());
+        processes.put(ClientCommands.CHECK_AUTH, prcProducer.getCheckAuthProcessInstance());
     }
 
     @Override

@@ -14,19 +14,25 @@
  *  limitations under the License.
  */
 
-package lightsearch.server.about;
+package lightsearch.server.cmd.client.process;
 
+import lightsearch.server.entity.ClientCommand;
+import lightsearch.server.entity.ClientCommandResult;
+import lightsearch.server.producer.entity.ClientCommandResultProducer;
 import org.springframework.stereotype.Component;
 
-@Component("appGreetingsDefault")
-public class AppGreetingsDefaultImpl implements AppGreetings {
+@Component("checkAuthProcess")
+public class CheckAuthProcess implements ClientProcess<ClientCommandResult> {
 
-    private final static String APP_VERSION = "3.5.0";
+    private final ClientCommandResultProducer resultProducer;
+
+    public CheckAuthProcess(
+            ClientCommandResultProducer resultProducer) {
+        this.resultProducer = resultProducer;
+    }
 
     @Override
-    public String greetings() {
-        return "------------------------------------------------\n" +
-                "LightSearch Server, version " + APP_VERSION + "\nWelcome!\n" +
-                "------------------------------------------------";
+    public ClientCommandResult apply(ClientCommand command) {
+        return resultProducer.getClientCommandResultCheckAuthInstance(true);
     }
 }

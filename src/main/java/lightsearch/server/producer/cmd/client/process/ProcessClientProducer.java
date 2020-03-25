@@ -32,4 +32,5 @@ public interface ProcessClientProducer<R> {
     ClientProcess<R> getSearchSoftCheckProcessInstance();
     ClientProcess<R> getSkladListProcessInstance();
     ClientProcess<R> getTKListProcessInstance();
+    ClientProcess<R> getCheckAuthProcessInstance();
 }

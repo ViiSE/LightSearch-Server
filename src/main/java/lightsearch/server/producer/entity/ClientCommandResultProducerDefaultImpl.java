@@ -45,4 +45,9 @@ public class ClientCommandResultProducerDefaultImpl implements ClientCommandResu
     public ClientCommandResult getClientCommandResultWithTokenInstance(ClientCommandResult clientCommandResult, String token) {
         return (ClientCommandResult) ctx.getBean("clientCommandResultWithToken", clientCommandResult, token);
     }
+
+    @Override
+    public ClientCommandResult getClientCommandResultCheckAuthInstance(boolean isOk) {
+        return (ClientCommandResult) ctx.getBean("clientCommandResultCheckAuth", isOk);
+    }
 }

@@ -51,6 +51,18 @@ public class ClientsCommandsController {
         this.productProducer = productProducer;
     }
 
+    @ApiOperation(value = "Проверка авторизации пользователей LightSearch")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200,
+                    message = "Пользователь авторизован."),
+            @ApiResponse(code = 401,
+                    message = "Пользователь не авторизован.")})
+    @GetMapping("clients/checkAuth")
+    public ClientCheckAuthCommandResultDTO checkAuth() {
+        return ((ClientCheckAuthCommandResultDTO)
+                processes.get(ClientCommands.CHECK_AUTH).apply(null).formForSend());
+    }
+
     @ApiOperation(value = "Авторизация пользователей LightSearch")
     @ApiResponses(value = {
             @ApiResponse(code = 200,

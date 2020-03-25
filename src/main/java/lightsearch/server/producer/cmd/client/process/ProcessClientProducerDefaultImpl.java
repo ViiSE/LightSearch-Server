@@ -94,4 +94,9 @@ public class ProcessClientProducerDefaultImpl implements ProcessClientProducer<C
     public ClientProcess<ClientCommandResult> getTKListProcessInstance() {
         return ctx.getBean("tkListProcess", TKListProcess.class);
     }
+
+    @Override
+    public ClientProcess<ClientCommandResult> getCheckAuthProcessInstance() {
+        return ctx.getBean("checkAuthProcess", CheckAuthProcess.class);
+    }
 }
