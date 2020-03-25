@@ -137,7 +137,7 @@ public class ClientsCommandsController {
             @RequestParam(required = false, defaultValue = Commands.ALL) String sklad,
             @ApiParam(value = "Доступные значения: \"null\" - поиск не идет по ТК, \"all\" - поиск по всем ТК, или " +
                     "конкретное название ТК. <i>По умолчанию - все ТК.</i>")
-            @RequestParam(required = false, defaultValue = Commands.ALL) String TK) throws ClientErrorException {
+            @RequestParam(required = false, defaultValue = Commands.ALL, name = "tk") String TK) throws ClientErrorException {
         ClientCommand cmd = cmdProducer.getClientCommandWithBarcodeInstance(
                 cmdProducer.getClientCommandWithSkladInstance(
                         cmdProducer.getClientCommandWithTKInstance(
