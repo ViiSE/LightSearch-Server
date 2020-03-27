@@ -56,7 +56,9 @@ public class BindCheckProcess implements ClientProcess<ClientCommandResult> {
             DatabaseCommandMessage dbCmdMessage =
                     dbCmdMsgProducer.getDatabaseCommandMessageBindCheckDefaultWindowsJSONInstance(command);
 
-            return cmdExec.exec(dbCmdMessage);
+            ClientCommandResult cmdRes = cmdExec.exec(dbCmdMessage);
+
+            return resultProducer.getClientCommandResultBindCheckInstance(cmdRes);
         } catch (CheckerException | CommandExecutorException ex) {
             return resultProducer.getClientCommandResultSimpleInstance(
                     false,

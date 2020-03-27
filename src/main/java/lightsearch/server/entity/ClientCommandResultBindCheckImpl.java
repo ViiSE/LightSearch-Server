@@ -17,20 +17,19 @@
 
 package lightsearch.server.entity;
 
+import lightsearch.server.data.ClientBindCheckCommandResultDTO;
 import lightsearch.server.data.ClientCommandResultDTO;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-@Component("clientCommandResultWithToken")
+@Component("clientCommandResultBindCheck")
 @Scope("prototype")
-public class ClientCommandWithTokenImpl implements ClientCommandResult {
+public class ClientCommandResultBindCheckImpl implements ClientCommandResult {
 
     private final ClientCommandResult clientCommandResult;
-    private final String token;
 
-    public ClientCommandWithTokenImpl(ClientCommandResult clientCommandResult, String token) {
+    public ClientCommandResultBindCheckImpl(ClientCommandResult clientCommandResult) {
         this.clientCommandResult = clientCommandResult;
-        this.token = token;
     }
 
     @Override
@@ -45,9 +44,11 @@ public class ClientCommandWithTokenImpl implements ClientCommandResult {
 
     @Override
     public Object formForSend() {
-        ClientCommandResultDTO resultDTO = (ClientCommandResultDTO) clientCommandResult.formForSend();
-        resultDTO.setToken(token);
+        ClientCommandResultDTO resDTO = (ClientCommandResultDTO) clientCommandResult.formForSend();
+        ClientBindCheckCommandResultDTO result = new ClientBindCheckCommandResultDTO();
+        result.setIsDone(resDTO.getIsDone() ? "true" : "false");
+        result.setData(resDTO.getData());
 
-        return resultDTO;
+        return result;
     }
 }

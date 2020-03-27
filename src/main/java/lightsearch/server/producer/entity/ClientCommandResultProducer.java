@@ -25,4 +25,16 @@ public interface ClientCommandResultProducer {
     ClientCommandResult getClientCommandResultSimpleInstance(boolean isDone, String message);
     ClientCommandResult getClientCommandResultWithTokenInstance(ClientCommandResult clientCommandResult, String token);
     ClientCommandResult getClientCommandResultCheckAuthInstance(boolean isOk);
+    ClientCommandResult getClientCommandResultLoginInstance(ClientCommandResult clientCommandResult);
+    ClientCommandResult getClientCommandResultSearchInstance(ClientCommandResult clientCommandResult);
+    ClientCommandResult getClientCommandResultOpenSoftCheckInstance(ClientCommandResult clientCommandResult);
+    ClientCommandResult getClientCommandResultCloseSoftCheckInstance(ClientCommandResult clientCommandResult);
+    ClientCommandResult getClientCommandResultCancelSoftCheckInstance(ClientCommandResult clientCommandResult);
+    ClientCommandResult getClientCommandResultConfirmSoftCheckProductsInstance(ClientCommandResult clientCommandResult);
+    ClientCommandResult getClientCommandResultBindCheckInstance(ClientCommandResult clientCommandResult);
+    ClientCommandResult getClientCommandResultBindInstance(ClientCommandResult clientCommandResult);
+    ClientCommandResult getClientCommandResultUnbindCheckInstance(ClientCommandResult clientCommandResult);
+    ClientCommandResult getClientCommandResultUnbindInstance(ClientCommandResult clientCommandResult);
+    ClientCommandResult getClientCommandResultSkladListInstance(ClientCommandResult clientCommandResult);
+    ClientCommandResult getClientCommandResultTKListInstance(ClientCommandResult clientCommandResult);
 }

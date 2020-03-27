@@ -25,10 +25,10 @@ import io.swagger.annotations.ApiModelProperty;
 
 import java.util.List;
 
-@ApiModel(value = "ClientTKCommandResult", description = "Результат работы команды выгрузки списка ТК")
+@ApiModel(value = "ClientTKListCommandResult", description = "Результат работы команды выгрузки списка ТК")
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ClientTKCommandResultDTO {
+public class ClientTKListCommandResultDTO {
 
     @ApiModelProperty(notes = "Статус выполненной команды", position = 1)
     private boolean isDone;

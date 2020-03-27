@@ -50,4 +50,64 @@ public class ClientCommandResultProducerDefaultImpl implements ClientCommandResu
     public ClientCommandResult getClientCommandResultCheckAuthInstance(boolean isOk) {
         return (ClientCommandResult) ctx.getBean("clientCommandResultCheckAuth", isOk);
     }
+
+    @Override
+    public ClientCommandResult getClientCommandResultLoginInstance(ClientCommandResult clientCommandResult) {
+        return (ClientCommandResult) ctx.getBean("clientCommandResultLogin", clientCommandResult);
+    }
+
+    @Override
+    public ClientCommandResult getClientCommandResultSearchInstance(ClientCommandResult clientCommandResult) {
+        return (ClientCommandResult) ctx.getBean("clientCommandResultSearch", clientCommandResult);
+    }
+
+    @Override
+    public ClientCommandResult getClientCommandResultOpenSoftCheckInstance(ClientCommandResult clientCommandResult) {
+        return (ClientCommandResult) ctx.getBean("clientCommandResultOpenSoftCheck", clientCommandResult);
+    }
+
+    @Override
+    public ClientCommandResult getClientCommandResultCloseSoftCheckInstance(ClientCommandResult clientCommandResult) {
+        return (ClientCommandResult) ctx.getBean("clientCommandResultCloseSoftCheck", clientCommandResult);
+    }
+
+    @Override
+    public ClientCommandResult getClientCommandResultCancelSoftCheckInstance(ClientCommandResult clientCommandResult) {
+        return (ClientCommandResult) ctx.getBean("clientCommandResultCancelSoftCheck", clientCommandResult);
+    }
+
+    @Override
+    public ClientCommandResult getClientCommandResultConfirmSoftCheckProductsInstance(ClientCommandResult clientCommandResult) {
+        return (ClientCommandResult) ctx.getBean("clientCommandResultConfirmSoftCheckProducts", clientCommandResult);
+    }
+
+    @Override
+    public ClientCommandResult getClientCommandResultBindCheckInstance(ClientCommandResult clientCommandResult) {
+        return (ClientCommandResult) ctx.getBean("clientCommandResultBindCheck", clientCommandResult);
+    }
+
+    @Override
+    public ClientCommandResult getClientCommandResultBindInstance(ClientCommandResult clientCommandResult) {
+        return (ClientCommandResult) ctx.getBean("clientCommandResultBind", clientCommandResult);
+    }
+
+    @Override
+    public ClientCommandResult getClientCommandResultUnbindCheckInstance(ClientCommandResult clientCommandResult) {
+        return (ClientCommandResult) ctx.getBean("clientCommandResultUnbindCheck", clientCommandResult);
+    }
+
+    @Override
+    public ClientCommandResult getClientCommandResultUnbindInstance(ClientCommandResult clientCommandResult) {
+        return (ClientCommandResult) ctx.getBean("clientCommandResultUnbind", clientCommandResult);
+    }
+
+    @Override
+    public ClientCommandResult getClientCommandResultSkladListInstance(ClientCommandResult clientCommandResult) {
+        return (ClientCommandResult) ctx.getBean("clientCommandResultSkladList", clientCommandResult);
+    }
+
+    @Override
+    public ClientCommandResult getClientCommandResultTKListInstance(ClientCommandResult clientCommandResult) {
+        return (ClientCommandResult) ctx.getBean("clientCommandResultTKList", clientCommandResult);
+    }
 }

@@ -67,7 +67,8 @@ public class LoginProcess implements ClientProcess<ClientCommandResult> {
             ClientCommandResult result = cmdExec.exec(dbCmdMessage);
 
             String jwtToken = clientsService.addClient(cmdDTO.getIMEI(), cmdDTO.getUsername()).toString();
-            return resultProducer.getClientCommandResultWithTokenInstance(result, jwtToken);
+            return resultProducer.getClientCommandResultLoginInstance(
+                    resultProducer.getClientCommandResultWithTokenInstance(result, jwtToken));
         } catch (CheckerException | CommandExecutorException ex) {
             return resultProducer.getClientCommandResultSimpleInstance(
                     false,

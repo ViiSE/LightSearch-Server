@@ -8,6 +8,19 @@
             <class name="lightsearch.server.entity.ClientCommandResultSimpleTestNG"/>
             <class name="lightsearch.server.entity.ClientCommandResultFromDatabaseTestNG"/>
             <class name="lightsearch.server.entity.ClientCommandResultCheckAuthTestNG"/>
+            <class name="lightsearch.server.entity.ClientCommandResultBindCheckTestNG"/>
+            <class name="lightsearch.server.entity.ClientCommandResultBindTestNG"/>
+            <class name="lightsearch.server.entity.ClientCommandResultCancelSoftCheckTestNG"/>
+            <class name="lightsearch.server.entity.ClientCommandResultCheckAuthTestNG"/>
+            <class name="lightsearch.server.entity.ClientCommandResultCloseSoftCheckTestNG"/>
+            <class name="lightsearch.server.entity.ClientCommandResultConfirmSoftCheckProductsTestNG"/>
+            <class name="lightsearch.server.entity.ClientCommandResultLoginTestNG"/>
+            <class name="lightsearch.server.entity.ClientCommandResultOpenSoftCheckTestNG"/>
+            <class name="lightsearch.server.entity.ClientCommandResultSearchTestNG"/>
+            <class name="lightsearch.server.entity.ClientCommandResultSkladListTestNG"/>
+            <class name="lightsearch.server.entity.ClientCommandResultTKListTestNG"/>
+            <class name="lightsearch.server.entity.ClientCommandResultUnbindCheckTestNG"/>
+            <class name="lightsearch.server.entity.ClientCommandResultUnbindTestNG"/>
         </classes>
     </test>
 

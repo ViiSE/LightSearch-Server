@@ -17,49 +17,44 @@
 
 package lightsearch.server.entity;
 
-import lightsearch.server.data.ClientCheckAuthCommandResultDTO;
+import lightsearch.server.data.ClientBindCommandResultDTO;
 import lightsearch.server.data.ClientCommandResultDTO;
+import lightsearch.server.data.ClientUnbindCommandResultDTO;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import test.TestUtils;
 
 import java.io.IOException;
 
-import static org.testng.Assert.assertEquals;
 import static test.message.TestMessage.*;
 
-public class ClientCommandResultCheckAuthTestNG {
+public class ClientCommandResultUnbindTestNG {
+
+    private ClientCommandResult commandResult;
 
     @BeforeClass
     public void setUpClass() {
-        testBegin(ClientCommandResultCheckAuthImpl.class);
+        ClientCommandResultDTO resDTO = new ClientCommandResultDTO();
+        resDTO.setIsDone(String.valueOf(true));
+        resDTO.setMessage("Unbind");
+
+        commandResult = new ClientCommandResultUnbindImpl(
+                new ClientCommandResultFromDatabaseImpl(resDTO));
+
+        testBegin(ClientCommandResultUnbindImpl.class);
     }
 
-    @Test(dataProvider = "createDP")
-    public void formForSend(boolean isOk, String cause) throws IOException {
-        testMethod("formForSend() " + cause);
+    @Test
+    public void formForSend() throws IOException {
+        testMethod("formForSend()");
 
-        ClientCommandResult clientCommandResult = new ClientCommandResultCheckAuthImpl(isOk);
-        ClientCheckAuthCommandResultDTO cmdResDTO = (ClientCheckAuthCommandResultDTO) clientCommandResult.formForSend();
-        boolean isD = cmdResDTO.isOk();
-
-        assertEquals(isD, isOk);
-
+        ClientUnbindCommandResultDTO cmdResDTO = (ClientUnbindCommandResultDTO) commandResult.formForSend();
         System.out.println(TestUtils.objectMapperWithJavaTimeModule().writeValueAsString(cmdResDTO));
-    }
-
-    @DataProvider
-    public Object[][] createDP() {
-        return new Object[][] {
-                {true, "[true]"},
-                {false, "[false]"}
-        };
     }
 
     @AfterClass
     public void teardownClass() {
-        testEnd(ClientCommandResultCheckAuthImpl.class);
+        testEnd(ClientCommandResultUnbindImpl.class);
     }
 }

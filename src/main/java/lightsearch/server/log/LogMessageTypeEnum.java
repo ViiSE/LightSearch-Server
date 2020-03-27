@@ -22,7 +22,7 @@ package lightsearch.server.log;
 public enum LogMessageTypeEnum {
     INFO {
         @Override
-        public String stringValue() { return "Info"; }
+        public String stringValue() { return "Info "; }
     },
     ERROR {
         @Override

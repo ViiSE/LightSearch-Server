@@ -55,7 +55,9 @@ public class ConfirmSoftCheckProductsProcess implements ClientProcess<ClientComm
             DatabaseCommandMessage dbCmdMessage =
                     dbCmdMsgProducer.getDatabaseCommandMessageConfirmSoftCheckProductsDefaultWindowsJSONInstance(command);
 
-            return cmdExec.exec(dbCmdMessage);
+            ClientCommandResult cmdRes = cmdExec.exec(dbCmdMessage);
+
+            return resultProducer.getClientCommandResultConfirmSoftCheckProductsInstance(cmdRes);
         } catch (CheckerException | CommandExecutorException ex) {
             return resultProducer
                     .getClientCommandResultSimpleInstance(false, ex.getMessage());

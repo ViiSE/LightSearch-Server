@@ -37,7 +37,6 @@ public class ClientCommandResultFromDatabaseTestNG {
     @BeforeClass
     public void setUpClass() {
         LocalDateTime dt = LocalDateTime.now();
-        ResponseResult rr = new ResponseResultSimpleImpl(dt);
 
         ClientCommandResultDTO cmdResDTO = new ClientCommandResultDTO();
         cmdResDTO.setIsDone(String.valueOf(true));

@@ -17,49 +17,45 @@
 
 package lightsearch.server.entity;
 
-import lightsearch.server.data.ClientCheckAuthCommandResultDTO;
 import lightsearch.server.data.ClientCommandResultDTO;
+import lightsearch.server.data.ClientOpenSoftCheckCommandResultDTO;
+import lightsearch.server.data.ClientSearchCommandResultDTO;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import test.TestUtils;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
-import static org.testng.Assert.assertEquals;
 import static test.message.TestMessage.*;
 
-public class ClientCommandResultCheckAuthTestNG {
+public class ClientCommandResultOpenSoftCheckTestNG {
+
+    private ClientCommandResult commandResult;
 
     @BeforeClass
     public void setUpClass() {
-        testBegin(ClientCommandResultCheckAuthImpl.class);
+        ClientCommandResultDTO resDTO = new ClientCommandResultDTO();
+        resDTO.setIsDone(String.valueOf(true));
+        resDTO.setMessage("OpenSoftCheck");
+
+        commandResult = new ClientCommandResultOpenSoftCheckImpl(
+                new ClientCommandResultFromDatabaseImpl(resDTO));
+
+        testBegin(ClientCommandResultOpenSoftCheckImpl.class);
     }
 
-    @Test(dataProvider = "createDP")
-    public void formForSend(boolean isOk, String cause) throws IOException {
-        testMethod("formForSend() " + cause);
+    @Test
+    public void formForSend() throws IOException {
+        testMethod("formForSend()");
 
-        ClientCommandResult clientCommandResult = new ClientCommandResultCheckAuthImpl(isOk);
-        ClientCheckAuthCommandResultDTO cmdResDTO = (ClientCheckAuthCommandResultDTO) clientCommandResult.formForSend();
-        boolean isD = cmdResDTO.isOk();
-
-        assertEquals(isD, isOk);
-
+        ClientOpenSoftCheckCommandResultDTO cmdResDTO = (ClientOpenSoftCheckCommandResultDTO) commandResult.formForSend();
         System.out.println(TestUtils.objectMapperWithJavaTimeModule().writeValueAsString(cmdResDTO));
-    }
-
-    @DataProvider
-    public Object[][] createDP() {
-        return new Object[][] {
-                {true, "[true]"},
-                {false, "[false]"}
-        };
     }
 
     @AfterClass
     public void teardownClass() {
-        testEnd(ClientCommandResultCheckAuthImpl.class);
+        testEnd(ClientCommandResultOpenSoftCheckImpl.class);
     }
 }

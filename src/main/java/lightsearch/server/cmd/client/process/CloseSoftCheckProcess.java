@@ -55,7 +55,9 @@ public class CloseSoftCheckProcess implements ClientProcess<ClientCommandResult>
             DatabaseCommandMessage dbCmdMessage =
                     dbCmdMsgProducer.getDatabaseCommandMessageCloseSoftCheckDefaultWindowsJSONInstance(command);
 
-            return cmdExec.exec(dbCmdMessage);
+            ClientCommandResult cmdRes = cmdExec.exec(dbCmdMessage);
+
+            return resultProducer.getClientCommandResultCloseSoftCheckInstance(cmdRes);
         } catch (CheckerException | CommandExecutorException ex) {
             return resultProducer
                     .getClientCommandResultSimpleInstance(false, ex.getMessage());

@@ -55,7 +55,9 @@ public class UnbindProcess implements ClientProcess<ClientCommandResult> {
             DatabaseCommandMessage dbCmdMessage =
                     dbCmdMsgProducer.getDatabaseCommandMessageUnbindDefaultWindowsJSONInstance(command);
 
-            return cmdExec.exec(dbCmdMessage);
+            ClientCommandResult cmdRes = cmdExec.exec(dbCmdMessage);
+
+            return resultProducer.getClientCommandResultUnbindInstance(cmdRes);
         } catch (CheckerException | CommandExecutorException ex) {
             return resultProducer.getClientCommandResultSimpleInstance(
                     false,

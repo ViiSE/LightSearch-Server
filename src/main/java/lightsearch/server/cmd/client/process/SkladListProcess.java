@@ -47,7 +47,9 @@ public class SkladListProcess implements ClientProcess<ClientCommandResult> {
             DatabaseCommandMessage dbCmdMessage =
                     dbCmdMsgProducer.getDatabaseCommandMessageSkladListDefaultWindowsJSONInstance(command);
 
-            return cmdExec.exec(dbCmdMessage);
+            ClientCommandResult cmdRes = cmdExec.exec(dbCmdMessage);
+
+            return resultProducer.getClientCommandResultSkladListInstance(cmdRes);
         } catch (CommandExecutorException ex) {
             return resultProducer.getClientCommandResultSimpleInstance(
                     false,

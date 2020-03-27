@@ -101,21 +101,7 @@ public class ClientsCommandsController {
                                 cmdDTO.getIp()),
                         cmdDTO.getUsername(),
                         cmdDTO.getPassword());
-
-        ClientCommandResultDTO resDTO = getCommandResult(ClientCommands.LOGIN, cmd);
-        ClientLoginCommandResultDTO result = new ClientLoginCommandResultDTO();
-        result.setIsDone(resDTO.getIsDone() ? "true" : "false");
-        result.setMessage(resDTO.getMessage());
-
-        if(!result.getIsDone())
-            throw new ClientErrorException(HttpStatus.UNAUTHORIZED, result.getMessage());
-
-        result.setSkladList(resDTO.getSkladList());
-        result.setTKList(resDTO.getTKList());
-        result.setToken(resDTO.getToken());
-        result.setUserIdentifier(resDTO.getUserIdentifier());
-
-        return result;
+        return (ClientLoginCommandResultDTO) getCommandResult(ClientCommands.LOGIN, cmd);
     }
 
     @ApiOperation(value = "Поиск товаров", authorizations = {@Authorization(value = "Bearer")})
@@ -147,17 +133,7 @@ public class ClientsCommandsController {
                         sklad),
                 barcode);
 
-        ClientCommandResultDTO cmdRes = getCommandResult(ClientCommands.SEARCH, cmd);
-        ClientSearchCommandResultDTO result = new ClientSearchCommandResultDTO();
-        result.setIsDone(cmdRes.getIsDone() ? "true" : "false");
-        result.setMessage(cmdRes.getMessage());
-
-        if(!result.getIsDone())
-            throw new ClientErrorException(HttpStatus.INTERNAL_SERVER_ERROR, result.getMessage());
-
-        result.setData(cmdRes.getData());
-
-        return result;
+        return (ClientSearchCommandResultDTO) getCommandResult(ClientCommands.SEARCH, cmd);
     }
 
     @ApiOperation(value = "Проверка привязки товара к заводскому штрих-коду", authorizations = {@Authorization(value = "Bearer")})
@@ -191,16 +167,7 @@ public class ClientsCommandsController {
                         cmdDTO.getCheckEan13()),
                 cmdDTO.getBarcode());
 
-        ClientCommandResultDTO cmdRes = getCommandResult(ClientCommands.BIND_CHECK, cmd);
-        ClientBindCheckCommandResultDTO result = new ClientBindCheckCommandResultDTO();
-        result.setIsDone(cmdRes.getIsDone() ? "true" : "false");
-
-        if(!result.getIsDone())
-            throw new ClientErrorException(HttpStatus.BAD_REQUEST, cmdRes.getMessage());
-
-        result.setData(cmdRes.getData());
-
-        return result;
+        return (ClientBindCheckCommandResultDTO) getCommandResult(ClientCommands.BIND_CHECK, cmd);
     }
 
     @ApiOperation(value = "Привязка товара к заводскому штрих-коду", authorizations = {@Authorization(value = "Bearer")})
@@ -231,15 +198,7 @@ public class ClientsCommandsController {
                         cmdDTO.getBarcode()),
                 cmdDTO.getFactoryBarcode());
 
-        ClientCommandResultDTO cmdRes = getCommandResult(ClientCommands.BIND, cmd);
-        ClientBindCommandResultDTO result = new ClientBindCommandResultDTO();
-        result.setIsDone(cmdRes.getIsDone() ? "true" : "false");
-        result.setMessage(cmdRes.getMessage());
-
-        if(!result.getIsDone())
-            throw new ClientErrorException(HttpStatus.BAD_REQUEST, result.getMessage());
-
-        return result;
+        return (ClientBindCommandResultDTO) getCommandResult(ClientCommands.BIND, cmd);
     }
 
     @ApiOperation(value = "Проверка отвязки товара от заводского штрих-кода", authorizations = {@Authorization(value = "Bearer")})
@@ -262,16 +221,7 @@ public class ClientsCommandsController {
                         ClientCommands.UNBIND_CHECK),
                 cmdDTO.getBarcode());
 
-        ClientCommandResultDTO cmdRes = getCommandResult(ClientCommands.UNBIND_CHECK, cmd);
-        ClientUnbindCheckCommandResultDTO result = new ClientUnbindCheckCommandResultDTO();
-        result.setIsDone(cmdRes.getIsDone() ? "true" : "false");
-
-        if(!result.getIsDone())
-            throw new ClientErrorException(HttpStatus.BAD_REQUEST, cmdRes.getMessage());
-
-        result.setData(cmdRes.getData());
-
-        return result;
+        return (ClientUnbindCheckCommandResultDTO) getCommandResult(ClientCommands.UNBIND_CHECK, cmd);
     }
 
     @ApiOperation(value = "Отвязка товара от заводского штрих-кода", authorizations = {@Authorization(value = "Bearer")})
@@ -297,15 +247,7 @@ public class ClientsCommandsController {
                         cmdDTO.getUserIdentifier()),
                 cmdDTO.getFactoryBarcode());
 
-        ClientCommandResultDTO cmdRes = getCommandResult(ClientCommands.UNBIND, cmd);
-        ClientUnbindCommandResultDTO result = new ClientUnbindCommandResultDTO();
-        result.setIsDone(cmdRes.getIsDone() ? "true" : "false");
-        result.setMessage(cmdRes.getMessage());
-
-        if(!result.getIsDone())
-            throw new ClientErrorException(HttpStatus.BAD_REQUEST, result.getMessage());
-
-        return result;
+        return (ClientUnbindCommandResultDTO) getCommandResult(ClientCommands.UNBIND, cmd);
     }
 
     @ApiOperation(value = "Открытие мягкого чека", authorizations = {@Authorization(value = "Bearer")})
@@ -332,15 +274,7 @@ public class ClientsCommandsController {
                         cmdDTO.getCardCode()),
                 cmdDTO.getUserIdentifier());
 
-        ClientCommandResultDTO cmdRes = getCommandResult(ClientCommands.OPEN_SOFT_CHECK, cmd);
-        ClientOpenSoftCheckCommandResultDTO result = new ClientOpenSoftCheckCommandResultDTO();
-        result.setIsDone(cmdRes.getIsDone() ? "true" : "false");
-        result.setMessage(cmdRes.getMessage());
-
-        if(!result.getIsDone())
-            throw new ClientErrorException(HttpStatus.INTERNAL_SERVER_ERROR, result.getMessage());
-
-        return result;
+        return (ClientOpenSoftCheckCommandResultDTO) getCommandResult(ClientCommands.OPEN_SOFT_CHECK, cmd);
     }
 
     @ApiOperation(value = "Отмена мягкого чека", authorizations = {@Authorization(value = "Bearer")})
@@ -367,15 +301,7 @@ public class ClientsCommandsController {
                         cmdDTO.getCardCode()),
                 cmdDTO.getUserIdentifier());
 
-        ClientCommandResultDTO cmdRes = getCommandResult(ClientCommands.CANCEL_SOFT_CHECK, cmd);
-        ClientCancelSoftCheckCommandResultDTO result = new ClientCancelSoftCheckCommandResultDTO();
-        result.setIsDone(cmdRes.getIsDone() ? "true" : "false");
-        result.setMessage(cmdRes.getMessage());
-
-        if(!result.getIsDone())
-            throw new ClientErrorException(HttpStatus.INTERNAL_SERVER_ERROR, result.getMessage());
-
-        return result;
+        return (ClientCancelSoftCheckCommandResultDTO) getCommandResult(ClientCommands.CANCEL_SOFT_CHECK, cmd);
     }
 
     @ApiOperation(value = "Подтвердить товары мягкого чека", authorizations = {@Authorization(value = "Bearer")})
@@ -414,13 +340,7 @@ public class ClientsCommandsController {
                         cmdDTO.getUserIdentifier()),
                 products);
 
-        ClientCommandResultDTO cmdRes = getCommandResult(ClientCommands.CONFIRM_SOFT_CHECK_PRODUCTS, cmd);
-        ClientConfirmSoftCheckProductsCommandResultDTO result = new ClientConfirmSoftCheckProductsCommandResultDTO();
-        result.setIsDone(cmdRes.getIsDone() ? "true" : "false");
-        result.setMessage(cmdRes.getMessage());
-        result.setData(cmdRes.getData());
-
-        return result;
+        return (ClientConfirmSoftCheckProductsCommandResultDTO) getCommandResult(ClientCommands.CONFIRM_SOFT_CHECK_PRODUCTS, cmd);
     }
 
     @ApiOperation(value = "Закрытие мягкого чека", authorizations = {@Authorization(value = "Bearer")})
@@ -439,7 +359,7 @@ public class ClientsCommandsController {
                     "<code><b>clientCommand{delivery}</b></code> - способ доставки.\n" +
                     "Мягкий чек может быть закрыт только в том случае, если за карточкой " +
                     "<code><b>clientCommand{card_code}</b></code> закреплен существующий мягкий чек.")
-            @RequestBody ClientCloseSoftCheckCommandDTO cmdDTO) {
+            @RequestBody ClientCloseSoftCheckCommandDTO cmdDTO) throws ClientErrorException {
         ClientCommand cmd = cmdProducer.getClientCommandWithUserIdentifierInstance(
                 cmdProducer.getClientCommandWithCardCodeInstance(
                         cmdProducer.getClientCommandWithDeliveryInstance(
@@ -449,12 +369,7 @@ public class ClientsCommandsController {
                         cmdDTO.getCardCode()),
                 cmdDTO.getUserIdentifier());
 
-        ClientCommandResultDTO cmdRes = getCommandResult(ClientCommands.CLOSE_SOFT_CHECK, cmd);
-        ClientCloseSoftCheckCommandResultDTO result = new ClientCloseSoftCheckCommandResultDTO();
-        result.setIsDone(cmdRes.getIsDone() ? "true" : "false");
-        result.setMessage(cmdRes.getMessage());
-
-        return result;
+        return (ClientCloseSoftCheckCommandResultDTO) getCommandResult(ClientCommands.CLOSE_SOFT_CHECK, cmd);
     }
 
     @ApiOperation(value = "Поиск товаров для мягкого чека", authorizations = {@Authorization(value = "Bearer")})
@@ -481,17 +396,7 @@ public class ClientsCommandsController {
                         username),
                 barcode);
 
-        ClientCommandResultDTO cmdRes = getCommandResult(ClientCommands.SEARCH_SOFT_CHECK, cmd);
-        ClientSearchCommandResultDTO result = new ClientSearchCommandResultDTO();
-        result.setIsDone(cmdRes.getIsDone() ? "true" : "false");
-        result.setMessage(cmdRes.getMessage());
-
-        if(!result.getIsDone())
-            throw new ClientErrorException(HttpStatus.INTERNAL_SERVER_ERROR, result.getMessage());
-
-        result.setData(cmdRes.getData());
-
-        return result;
+        return (ClientSearchCommandResultDTO) getCommandResult(ClientCommands.SEARCH_SOFT_CHECK, cmd);
     }
 
     @ApiOperation(value = "Выгружает список всех складов предприятия", authorizations = {@Authorization(value = "Bearer")})
@@ -507,17 +412,7 @@ public class ClientsCommandsController {
     public ClientSkladListCommandResultDTO requestSkladList() throws ClientErrorException {
         ClientCommand cmd = cmdProducer.getClientCommandSimpleInstance(ClientCommands.SKLAD_LIST);
 
-        ClientCommandResultDTO cmdRes = getCommandResult(ClientCommands.SKLAD_LIST, cmd);
-        ClientSkladListCommandResultDTO result = new ClientSkladListCommandResultDTO();
-        result.setIsDone(cmdRes.getIsDone() ? "true" : "false");
-        result.setMessage(cmdRes.getMessage());
-
-        if(!result.getIsDone())
-            throw new ClientErrorException(HttpStatus.INTERNAL_SERVER_ERROR, result.getMessage());
-
-        result.setSkladList(cmdRes.getSkladList());
-
-        return result;
+        return (ClientSkladListCommandResultDTO) getCommandResult(ClientCommands.SKLAD_LIST, cmd);
     }
 
     @ApiOperation(value = "Выгружает список всех ТК предприятия", authorizations = {@Authorization(value = "Bearer")})
@@ -530,23 +425,17 @@ public class ClientsCommandsController {
             @ApiResponse(code = 500,
                     message = "Произошла внутренняя ошибка в LightSearch.")})
     @GetMapping("/clients/tkList")
-    public ClientTKCommandResultDTO requestTKList() throws ClientErrorException {
+    public ClientTKListCommandResultDTO requestTKList() throws ClientErrorException {
         ClientCommand cmd = cmdProducer.getClientCommandSimpleInstance(ClientCommands.TK_LIST);
 
-        ClientCommandResultDTO cmdRes = getCommandResult(ClientCommands.TK_LIST, cmd);
-        ClientTKCommandResultDTO result = new ClientTKCommandResultDTO();
-        result.setIsDone(cmdRes.getIsDone() ? "true" : "false");
-        result.setMessage(cmdRes.getMessage());
-
-        if(!result.getIsDone())
-            throw new ClientErrorException(HttpStatus.INTERNAL_SERVER_ERROR, result.getMessage());
-
-        result.setTKList(cmdRes.getTKList());
-
-        return result;
+        return (ClientTKListCommandResultDTO) getCommandResult(ClientCommands.TK_LIST, cmd);
     }
 
-    private ClientCommandResultDTO getCommandResult(String cmdName, ClientCommand cmd) {
-        return (ClientCommandResultDTO) processes.get(cmdName).apply(cmd).formForSend();
+    private Object getCommandResult(String cmdName, ClientCommand cmd) throws ClientErrorException {
+        ClientCommandResult cmdRes =  processes.get(cmdName).apply(cmd);
+        if(!cmdRes.isDone())
+            throw new ClientErrorException(HttpStatus.UNAUTHORIZED, cmdRes.message());
+        else
+            return cmdRes.formForSend();
     }
 }
