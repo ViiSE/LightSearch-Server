@@ -37,8 +37,8 @@ public class ClientCommandResultProducerDefaultImpl implements ClientCommandResu
     }
 
     @Override
-    public ClientCommandResult getClientCommandResultSimpleInstance(boolean isDone, String message) {
-        return (ClientCommandResult) ctx.getBean("clientCommandResultSimple", isDone, message);
+    public ClientCommandResult getClientCommandResultSimpleInstance(boolean isDone, String message, String logMessage) {
+        return (ClientCommandResult) ctx.getBean("clientCommandResultSimple", isDone, message, logMessage);
     }
 
     @Override

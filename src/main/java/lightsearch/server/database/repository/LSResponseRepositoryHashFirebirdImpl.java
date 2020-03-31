@@ -81,14 +81,19 @@ public class LSResponseRepositoryHashFirebirdImpl implements LSResponseRepositor
                 } catch(DataAccessException ex) {
                     if(ex.getMessage() != null)
                         if(!ex.getMessage().contains("Incorrect result size"))
-                            throw new RepositoryException("Произошла ошибка на сервере. Сообщение: " + ex.getLocalizedMessage());
+                            throw new RepositoryException(
+                                    "Произошла ошибка на сервере. Попробуйте позже.", ex.getMessage());
+                } catch (UnsupportedEncodingException ex) {
+                    throw new RepositoryException("Кодировка windows-1251 не поддерживается.",
+                            "Encoding windows-1251 is not supported. Exception: " + ex.getMessage());
                 }
             }
-            throw new RepositoryException("Request timed out");
+            throw new RepositoryException("Время ожидания запроса истекло.", "Request timeout.");
         } catch (QueryTimeoutException ex) {
-            throw new RepositoryException("Время ожидания запроса истекло");
-        } catch (DataAccessException | UnsupportedEncodingException ex) {
-            throw new RepositoryException("Произошла ошибка на сервере. Сообщение: " + ex.getLocalizedMessage());
+            throw new RepositoryException("Время ожидания запроса истекло.", "Request timeout");
+        } catch (DataAccessException ex) {
+            throw new RepositoryException(
+                    "Произошла ошибка на сервере. Попробуйте позже.", ex.getMessage());
         }
     }
 
@@ -98,9 +103,10 @@ public class LSResponseRepositoryHashFirebirdImpl implements LSResponseRepositor
             jdbcTemplate.setQueryTimeout(30);
             jdbcTemplate.update("UPDATE LS_RESPONSE SET STATE = ? WHERE LSCODE = ?", true, lsCode.getBytes("windows-1251"));
         } catch (QueryTimeoutException ex) {
-            throw new RepositoryException("Время ожидания запроса истекло");
-        }catch (UnsupportedEncodingException ex) {
-            throw new RepositoryException("Произошла ошибка на сервере. Сообщение: " + ex.getLocalizedMessage());
+            throw new RepositoryException("Произошла ошибка на сервере. Попробуйте позже.", ex.getMessage());
+        } catch (UnsupportedEncodingException ex) {
+            throw new RepositoryException("Кодировка windows-1251 не поддерживается.",
+                    "Encoding windows-1251 is not supported. Exception: " + ex.getMessage());
         }
     }
 }

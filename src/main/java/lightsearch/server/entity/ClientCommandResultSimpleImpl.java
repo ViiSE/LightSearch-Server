@@ -27,15 +27,22 @@ public class ClientCommandResultSimpleImpl implements ClientCommandResult {
 
     private final boolean isDone;
     private final String message;
+    private final String logMessage;
 
-    public ClientCommandResultSimpleImpl(boolean isDone, String message) {
+    public ClientCommandResultSimpleImpl(boolean isDone, String message, String logMessage) {
         this.isDone = isDone;
         this.message = message;
+        this.logMessage = logMessage;
     }
 
     @Override
     public String message() {
         return message;
+    }
+
+    @Override
+    public String logMessage() {
+        return logMessage;
     }
 
     @Override

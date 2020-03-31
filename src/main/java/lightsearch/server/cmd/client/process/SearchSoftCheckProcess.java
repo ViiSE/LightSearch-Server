@@ -61,7 +61,8 @@ public class SearchSoftCheckProcess implements ClientProcess<ClientCommandResult
         } catch (CheckerException | CommandExecutorException ex) {
             return resultProducer.getClientCommandResultSimpleInstance(
                     false,
-                    ex.getMessage());
+                    ex.getMessage(),
+                    ex.getLogMessage());
         }
     }
 }

@@ -37,6 +37,11 @@ public class ClientCommandResultFromDatabaseImpl implements ClientCommandResult 
     }
 
     @Override
+    public String logMessage() {
+        return "";
+    }
+
+    @Override
     public boolean isDone() {
         return clientCommandResultDTO.getIsDone();
     }

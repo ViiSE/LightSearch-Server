@@ -69,14 +69,11 @@ public class LoginProcess implements ClientProcess<ClientCommandResult> {
             String jwtToken = clientsService.addClient(cmdDTO.getIMEI(), cmdDTO.getUsername()).toString();
             return resultProducer.getClientCommandResultLoginInstance(
                     resultProducer.getClientCommandResultWithTokenInstance(result, jwtToken));
-        } catch (CheckerException | CommandExecutorException ex) {
+        } catch (CheckerException | CommandExecutorException | ClientNotFoundException ex) {
             return resultProducer.getClientCommandResultSimpleInstance(
                     false,
-                    "Невозможно создать результат команды. Сообщение: " + ex.getMessage());
-        } catch (ClientNotFoundException ex) {
-            return resultProducer.getClientCommandResultSimpleInstance(
-                    false,
-                    ex.getMessage());
+                    ex.getMessage(),
+                    ex.getLogMessage());
         }
     }
 }

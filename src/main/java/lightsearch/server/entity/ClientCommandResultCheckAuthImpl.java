@@ -37,6 +37,11 @@ public class ClientCommandResultCheckAuthImpl implements ClientCommandResult {
     }
 
     @Override
+    public String logMessage() {
+        return String.valueOf(isOk);
+    }
+
+    @Override
     public boolean isDone() {
         return isOk;
     }

@@ -53,7 +53,8 @@ public class TKListProcess implements ClientProcess<ClientCommandResult> {
         } catch (CommandExecutorException ex) {
             return resultProducer.getClientCommandResultSimpleInstance(
                     false,
-                    ex.getMessage());
+                    ex.getMessage(),
+                    ex.getLogMessage());
         }
     }
 }

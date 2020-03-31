@@ -62,7 +62,8 @@ public class BindCheckProcess implements ClientProcess<ClientCommandResult> {
         } catch (CheckerException | CommandExecutorException ex) {
             return resultProducer.getClientCommandResultSimpleInstance(
                     false,
-                    "Невозможно создать результат команды. Сообщение: " + ex.getMessage());
+                    ex.getMessage(),
+                    ex.getLogMessage());
         }
     }
 }

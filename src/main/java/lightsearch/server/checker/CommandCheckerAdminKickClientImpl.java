@@ -42,10 +42,10 @@ public class CommandCheckerAdminKickClientImpl implements Checker<AdminCommand> 
         AdminCommandKickImpl command = (AdminCommandKickImpl) admCmd;
 
         if(checker.isNull(command.IMEI()))
-            throw new CheckerException("Wrong command format. IMEI is null!", "AddBlacklist: unknown client: IMEI is null!.");
+            throw new CheckerException("Wrong command format. IMEI is null!", "AddBlacklist: unknown client: IMEI is null.");
 
         if(checker.isEmpty(command.IMEI()))
-            throw new CheckerException("Wrong command format. IMEI is empty!", "AddBlacklist: unknown client: IMEI is empty!");
+            throw new CheckerException("Wrong command format. IMEI is empty!", "AddBlacklist: unknown client: IMEI is empty.");
 
         if(!clientsService.clients().containsKey(command.IMEI()))
             throw new CheckerException("Client with current IMEI not found. (Not connected to LightSearch Server)", "Client " + command.IMEI() + " does not exist.");

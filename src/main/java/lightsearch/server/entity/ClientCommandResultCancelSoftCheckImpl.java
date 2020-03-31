@@ -38,6 +38,11 @@ public class ClientCommandResultCancelSoftCheckImpl implements ClientCommandResu
     }
 
     @Override
+    public String logMessage() {
+        return clientCommandResult.logMessage();
+    }
+
+    @Override
     public boolean isDone() {
         return clientCommandResult.isDone();
     }

@@ -35,9 +35,9 @@ public class CommandCheckerClientBindCheckImpl implements Checker<ClientCommand>
         ClientCommandDTO commandDTO = (ClientCommandDTO) command.formForSend();
 
         if(checker.isEmpty(commandDTO.getBarcode()))
-            throw new CheckerException("Неверный формат команды.", "BindCheck: wrong command.");
+            throw new CheckerException("Штрих-код пустой.", "BindCheck: barcode is empty.");
 
         if(checker.isNull(commandDTO.getBarcode()))
-            throw new CheckerException("Неверный формат команды.", "BindCheck: unknown client.");
+            throw new CheckerException("Штрих-код пустой.", "BindCheck: barcode is null.");
     }
 }

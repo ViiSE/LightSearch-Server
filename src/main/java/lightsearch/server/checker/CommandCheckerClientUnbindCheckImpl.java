@@ -35,9 +35,9 @@ public class CommandCheckerClientUnbindCheckImpl implements Checker<ClientComman
         ClientCommandDTO commandDTO = (ClientCommandDTO) command.formForSend();
 
         if(checker.isEmpty(commandDTO.getBarcode()))
-            throw new CheckerException("Неверный формат команды.", "UnbindCheck: wrong command.");
+            throw new CheckerException("Штрих-код пустой.", "UnbindCheck: barcode is empty.");
 
         if(checker.isNull(commandDTO.getBarcode()))
-            throw new CheckerException("Неверный формат команды.", "UnbindCheck: wrong command.");
+            throw new CheckerException("Штрих-код пустой.", "UnbindCheck: barcode is null.");
     }
 }

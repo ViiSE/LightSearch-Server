@@ -60,7 +60,10 @@ public class ConfirmSoftCheckProductsProcess implements ClientProcess<ClientComm
             return resultProducer.getClientCommandResultConfirmSoftCheckProductsInstance(cmdRes);
         } catch (CheckerException | CommandExecutorException ex) {
             return resultProducer
-                    .getClientCommandResultSimpleInstance(false, ex.getMessage());
+                    .getClientCommandResultSimpleInstance(
+                            false,
+                            ex.getMessage(),
+                            ex.getLogMessage());
         }
     }
 }

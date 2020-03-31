@@ -52,20 +52,22 @@ public class ClientCheckerDatabaseConnectionImpl implements Checker<ClientComman
             Class.forName(driverName);
             DriverManager.getConnection(url, username, password);
         } catch (ClassNotFoundException ex) {
-            throw new CheckerException(ex.getMessage(), "Ошибка драйвера JDBC.");
+            throw new CheckerException(ex.getMessage(), "Ошибка драйвера СУБД (JDBC). Попробуйте позже.");
         } catch (SQLException ex) {
             //335544344 - неверное имя базы
             //335544345 - неверное имя юзера или пароль
             //335544721 - неверный порт или ip, или сервер отключен
+            //335544472 - неверное имя или пароль
             switch (ex.getErrorCode()) {
                 case 335544344:
-                    throw new CheckerException("Invalid database name", "Неверное имя базы данных.");
+                    throw new CheckerException("Неверное имя базы данных.", ex.getMessage());
                 case 335544345:
-                    throw new CheckerException("Invalid username and/or password", "Неверное имя пользователя и/или пароль.");
+                case 335544472:
+                    throw new CheckerException("Неверное имя пользователя и/или пароль.", ex.getMessage());
                 case 335544721:
-                    throw new CheckerException("Invalid port and/or host, or server is shut down", "Неверный порт и/или хост, или сервер отключен.");
+                    throw new CheckerException("Неверный порт и/или хост, или сервер отключен.", ex.getMessage());
             }
-            throw new CheckerException(ex.getMessage(), "Неизвестная ошибка.");
+            throw new CheckerException("Неизвестная ошибка. Попробуйте позже.", ex.getMessage());
         } catch (ReaderException ex) {
             throw new CheckerException(ex.getMessage(), ex.getLogMessage());
         }

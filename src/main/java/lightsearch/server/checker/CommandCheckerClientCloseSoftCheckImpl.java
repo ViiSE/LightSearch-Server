@@ -35,9 +35,9 @@ public class CommandCheckerClientCloseSoftCheckImpl implements Checker<ClientCom
         ClientCommandDTO cmdDTO = (ClientCommandDTO) command.formForSend();
 
         if(checker.isEmpty(cmdDTO.getUserIdentifier(), cmdDTO.getCardCode(), cmdDTO.getDelivery()))
-            throw new CheckerException("Неверный формат команды.", "CloseSoftCheck: wrong command.");
+            throw new CheckerException("Неверный формат команды.", "CloseSoftCheck: wrong command format.");
 
         if(checker.isNull(cmdDTO.getUserIdentifier(), cmdDTO.getCardCode(), cmdDTO.getDelivery()))
-            throw new CheckerException("Неверный формат команды.", "CloseSoftCheck: unknown client.");
+            throw new CheckerException("Неверный формат команды.", "CloseSoftCheck: wrong command format.");
     }
 }

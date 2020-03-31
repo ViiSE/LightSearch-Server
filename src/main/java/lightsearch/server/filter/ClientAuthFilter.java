@@ -97,8 +97,10 @@ public class ClientAuthFilter implements Filter {
                     }
                 }
 
-                if(!isAuthHeader)
+                if(!isAuthHeader) {
                     response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                    logger.error(ClientAuthFilter.class, "Auth http header is null");
+                }
             } else {
                 response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                 logger.error(ClientAuthFilter.class, "Http header is null");

@@ -41,6 +41,6 @@ public class CommandCheckerClientContainsImpl implements Checker<String> {
 
         if(!clientsService.contains(IMEI))
             throw new CheckerException("Необходимо авторизоваться для выполнения данной функции.",
-                    "Client" + IMEI + ": unauthorized");
+                    "Client" + IMEI + ": unauthorized.");
     }
 }

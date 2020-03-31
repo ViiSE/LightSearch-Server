@@ -60,7 +60,10 @@ public class CancelSoftCheckProcess implements ClientProcess<ClientCommandResult
             return resultProducer.getClientCommandResultCancelSoftCheckInstance(cmdRes);
         } catch (CheckerException | CommandExecutorException ex) {
             return resultProducer
-                    .getClientCommandResultSimpleInstance(false, ex.getMessage());
+                    .getClientCommandResultSimpleInstance(
+                            false,
+                            ex.getMessage(),
+                            ex.getLogMessage());
         }
     }
 }

@@ -53,7 +53,8 @@ public class SkladListProcess implements ClientProcess<ClientCommandResult> {
         } catch (CommandExecutorException ex) {
             return resultProducer.getClientCommandResultSimpleInstance(
                     false,
-                    ex.getMessage());
+                    ex.getMessage(),
+                    ex.getLogMessage());
         }
     }
 }

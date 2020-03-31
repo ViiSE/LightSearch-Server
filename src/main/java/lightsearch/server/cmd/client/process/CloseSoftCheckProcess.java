@@ -60,7 +60,10 @@ public class CloseSoftCheckProcess implements ClientProcess<ClientCommandResult>
             return resultProducer.getClientCommandResultCloseSoftCheckInstance(cmdRes);
         } catch (CheckerException | CommandExecutorException ex) {
             return resultProducer
-                    .getClientCommandResultSimpleInstance(false, ex.getMessage());
+                    .getClientCommandResultSimpleInstance(
+                            false,
+                            ex.getMessage(),
+                            ex.getLogMessage());
         }
     }
 }

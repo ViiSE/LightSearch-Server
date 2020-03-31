@@ -35,9 +35,9 @@ public class CommandCheckerClientBindImpl implements Checker<ClientCommand> {
         ClientCommandDTO commandDTO = (ClientCommandDTO) command.formForSend();
 
         if(checker.isEmpty(commandDTO.getBarcode(), commandDTO.getFactoryBarcode(), commandDTO.getUserIdentifier()))
-            throw new CheckerException("Неверный формат команды.", "Bind: wrong command.");
+            throw new CheckerException("Неверный формат команды.", "Bind: wrong command format.");
 
         if(checker.isNull(commandDTO.getBarcode(), commandDTO.getFactoryBarcode(), commandDTO.getUserIdentifier()))
-            throw new CheckerException("Неверный формат команды.", "Bind: unknown client.");
+            throw new CheckerException("Неверный формат команды.", "Bind: wrong command format.");
     }
 }

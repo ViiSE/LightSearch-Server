@@ -55,7 +55,7 @@ public class DatabaseCommandExecutorImpl implements CommandExecutor<ClientComman
             ResponseResultDTO resultDTO = (ResponseResultDTO) result.formForSend();
             return resultDTO.getCmdRes();
         } catch (RepositoryException ex) {
-            throw new CommandExecutorException(ex);
+            throw new CommandExecutorException(ex.getMessage(), ex.getLogMessage());
         }
     }
 }

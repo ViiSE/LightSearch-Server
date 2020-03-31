@@ -40,10 +40,10 @@ public class CommandCheckerClientConfirmSoftCheckProductsImpl implements Checker
         List<ProductDTO> products = commandDTO.getData();
 
         if(checker.isEmpty(commandDTO.getUserIdentifier(), commandDTO.getCardCode()))
-            throw new CheckerException("Неверный формат команды.", "ConfirmSoftCheckProducts: wrong command.");
+            throw new CheckerException("Неверный формат команды.", "ConfirmSoftCheckProducts: wrong command format.");
 
         if(checker.isNull(commandDTO.getUserIdentifier(), commandDTO.getCardCode(), commandDTO.getData()))
-            throw new CheckerException("Неверный формат команды.", "ConfirmSoftCheckProducts: unknown client.");
+            throw new CheckerException("Неверный формат команды.", "ConfirmSoftCheckProducts: wrong command format.");
 
         if(products.size() == 0)
             throw new CheckerException("Товары для проверки отсутствуют!", "ConfirmSoftCheckProducts: data is null.");

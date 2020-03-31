@@ -45,17 +45,17 @@ public class CommandCheckerAdminChangeDatabaseImpl implements Checker<AdminComma
             AdminCommandDatabaseImpl admCmdDb = (AdminCommandDatabaseImpl) admCmd;
 
             if (checker.isNull(admCmdDb.dbName()))
-                throw new CheckerException("Wrong command format. Database name is null!", "ChangeDatabase: dbName is null!");
+                throw new CheckerException("Wrong command format. Database name is null!", "ChangeDatabase: dbName is null.");
             if (checker.isEmpty(admCmdDb.dbName()))
-                throw new CheckerException("Wrong command format. Database name is empty!", "ChangeDatabase: dbName is empty!");
+                throw new CheckerException("Wrong command format. Database name is empty!", "ChangeDatabase: dbName is empty.");
             if (checker.isNull(admCmdDb.password()))
-                throw new CheckerException("Wrong command format. Database password is null!", "ChangeDatabase: password is null!");
+                throw new CheckerException("Wrong command format. Database password is null!", "ChangeDatabase: password is null.");
             if (checker.isNull(admCmdDb.ip()))
-                throw new CheckerException("Wrong command format. Database IP is null!", "ChangeDatabase: ip is null!");
+                throw new CheckerException("Wrong command format. Database IP is null!", "ChangeDatabase: ip is null.");
             if (checker.isEmpty(admCmdDb.ip()))
-                throw new CheckerException("Wrong command format. Database IP is empty!", "ChangeDatabase: ip is empty!");
+                throw new CheckerException("Wrong command format. Database IP is empty!", "ChangeDatabase: ip is empty.");
             if (checker.isNull(admCmdDb.dbUsername()))
-                throw new CheckerException("Wrong command format. Username is null!", "ChangeDatabase: username is null!");
+                throw new CheckerException("Wrong command format. Username is null!", "ChangeDatabase: username is null.");
 
             try {
                 ipValidator.validate(admCmdDb.ip());
@@ -64,7 +64,7 @@ public class CommandCheckerAdminChangeDatabaseImpl implements Checker<AdminComma
                 throw new CheckerException(ex.getMessage(), ex.getLogMessage());
             }
         } else throw new CheckerException(
-                "Expected AdminCommand instanceof AdminCommandDatabaseImpl",
-                "Expected AdminCommand instanceof AdminCommandDatabaseImpl");
+                "Expected AdminCommand instanceof AdminCommandDatabaseImpl.",
+                "Expected AdminCommand instanceof AdminCommandDatabaseImpl.");
     }
 }

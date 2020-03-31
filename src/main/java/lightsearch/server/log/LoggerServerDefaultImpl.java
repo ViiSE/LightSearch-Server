@@ -42,10 +42,14 @@ public class LoggerServerDefaultImpl implements LoggerServer {
     }
 
     private void log(Class<?> clazz, LogMessageTypeEnum type, String message) {
-        loggerFile.writeLogFile(type.stringValue(), currentDateTime,
-                String.format("{%s} : %s", clazz.getSimpleName(), message));
-        loggerWindow.printLog(type.stringValue(), currentDateTime,
-                String.format("{%s} : %s", clazz.getSimpleName(), message));
+        if(message != null) {
+            if (!message.isEmpty()) {
+                loggerFile.writeLogFile(type.stringValue(), currentDateTime,
+                        String.format("{%s} : %s", clazz.getSimpleName(), message));
+                loggerWindow.printLog(type.stringValue(), currentDateTime,
+                        String.format("{%s} : %s", clazz.getSimpleName(), message));
+            }
+        }
     }
 
     @Override

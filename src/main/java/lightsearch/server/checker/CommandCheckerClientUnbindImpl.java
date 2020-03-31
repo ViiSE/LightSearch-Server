@@ -35,9 +35,9 @@ public class CommandCheckerClientUnbindImpl implements Checker<ClientCommand> {
         ClientCommandDTO commandDTO = (ClientCommandDTO) command.formForSend();
 
         if(checker.isEmpty(commandDTO.getFactoryBarcode(), commandDTO.getUserIdentifier()))
-            throw new CheckerException("Неверный формат команды.", "Unbind: wrong command.");
+            throw new CheckerException("Неверный формат команды.", "Unbind: wrong command format.");
 
         if(checker.isNull(commandDTO.getFactoryBarcode(), commandDTO.getUserIdentifier()))
-            throw new CheckerException("Неверный формат команды.", "Unbind: wrong command.");
+            throw new CheckerException("Неверный формат команды.", "Unbind: wrong command format.");
     }
 }

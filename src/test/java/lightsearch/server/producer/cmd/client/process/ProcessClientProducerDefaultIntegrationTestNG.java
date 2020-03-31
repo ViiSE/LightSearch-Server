@@ -49,7 +49,7 @@ public class ProcessClientProducerDefaultIntegrationTestNG extends AbstractTestN
 
         ClientProcess<ClientCommandResult> process = producer.getBindCheckProcessInstance();
         System.out.println("instance: " + process);
-        assertTrue(process instanceof BindCheckProcess);
+        assertTrue(process instanceof BindCheckProcessWithLoggerImpl);
     }
 
     @Test
@@ -58,7 +58,7 @@ public class ProcessClientProducerDefaultIntegrationTestNG extends AbstractTestN
 
         ClientProcess<ClientCommandResult> process = producer.getBindProcessInstance();
         System.out.println("instance: " + process);
-        assertTrue(process instanceof BindProcess);
+        assertTrue(process instanceof BindProcessWithLoggerImpl);
     }
 
     @Test
@@ -67,7 +67,7 @@ public class ProcessClientProducerDefaultIntegrationTestNG extends AbstractTestN
 
         ClientProcess<ClientCommandResult> process = producer.getCancelSoftCheckProcessInstance();
         System.out.println("instance: " + process);
-        assertTrue(process instanceof CancelSoftCheckProcess);
+        assertTrue(process instanceof CancelSoftCheckProcessWithLoggerImpl);
     }
 
     @Test
@@ -85,7 +85,7 @@ public class ProcessClientProducerDefaultIntegrationTestNG extends AbstractTestN
 
         ClientProcess<ClientCommandResult> process = producer.getConfirmSoftCheckProductsProcessInstance();
         System.out.println("instance: " + process);
-        assertTrue(process instanceof ConfirmSoftCheckProductsProcess);
+        assertTrue(process instanceof ConfirmSoftCheckProductsProcessWithLoggerImpl);
     }
 
     @Test
@@ -112,7 +112,7 @@ public class ProcessClientProducerDefaultIntegrationTestNG extends AbstractTestN
 
         ClientProcess<ClientCommandResult> process = producer.getSearchProcessInstance();
         System.out.println("instance: " + process);
-        assertTrue(process instanceof SearchProcess);
+        assertTrue(process instanceof SearchProcessWithLoggerImpl);
     }
 
     @Test
@@ -121,7 +121,7 @@ public class ProcessClientProducerDefaultIntegrationTestNG extends AbstractTestN
 
         ClientProcess<ClientCommandResult> process = producer.getUnbindProcessInstance();
         System.out.println("instance: " + process);
-        assertTrue(process instanceof UnbindProcess);
+        assertTrue(process instanceof UnbindProcessWithLoggerImpl);
     }
 
     @Test
@@ -130,7 +130,7 @@ public class ProcessClientProducerDefaultIntegrationTestNG extends AbstractTestN
 
         ClientProcess<ClientCommandResult> process = producer.getUnbindCheckProcessInstance();
         System.out.println("instance: " + process);
-        assertTrue(process instanceof UnbindCheckProcess);
+        assertTrue(process instanceof UnbindCheckProcessWithLoggerImpl);
     }
 
     @Test
@@ -139,7 +139,7 @@ public class ProcessClientProducerDefaultIntegrationTestNG extends AbstractTestN
 
         ClientProcess<ClientCommandResult> process = producer.getSearchSoftCheckProcessInstance();
         System.out.println("instance: " + process);
-        assertTrue(process instanceof SearchSoftCheckProcess);
+        assertTrue(process instanceof SearchSoftCheckProcessWithLoggerImpl);
     }
 
     @Test
@@ -148,7 +148,7 @@ public class ProcessClientProducerDefaultIntegrationTestNG extends AbstractTestN
 
         ClientProcess<ClientCommandResult> process = producer.getSkladListProcessInstance();
         System.out.println("instance: " + process);
-        assertTrue(process instanceof SkladListProcess);
+        assertTrue(process instanceof SkladListProcessWithLoggerImpl);
     }
 
     @Test
@@ -157,7 +157,7 @@ public class ProcessClientProducerDefaultIntegrationTestNG extends AbstractTestN
 
         ClientProcess<ClientCommandResult> process = producer.getTKListProcessInstance();
         System.out.println("instance: " + process);
-        assertTrue(process instanceof TKListProcess);
+        assertTrue(process instanceof TKListProcessWithLoggerImpl);
     }
 
     @Test

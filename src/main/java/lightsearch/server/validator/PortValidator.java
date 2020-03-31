@@ -25,8 +25,10 @@ public class PortValidator implements Validator<Integer> {
     @Override
     public void validate(Integer port) throws ValidatorException {
         if(port > 65535)
-            throw new ValidatorException("The port value exceeds the maximum allowed value (65535)!", "Wrong port number");
+            throw new ValidatorException("Значение порта не должно превышать 65535!",
+                    "The port value exceeds the maximum allowed value (65535).");
         if(port < 1024)
-            throw new ValidatorException("The port value is less than the minimum value (1024)!", "Wrong port number");
+            throw new ValidatorException("Значение порта не должно быть меньше 1024!",
+                    "The port value is less than the minimum value (1024)!");
     }
 }

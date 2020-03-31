@@ -40,7 +40,7 @@ public class ClientCommandResultSimpleTestNG {
     public void formForSend(boolean isDone, String message, String cause) throws IOException {
         testMethod("formForSend() " + cause);
 
-        ClientCommandResult clientCommandResult = new ClientCommandResultSimpleImpl(isDone, message);
+        ClientCommandResult clientCommandResult = new ClientCommandResultSimpleImpl(isDone, message, message);
         ClientCommandResultDTO cmdResDTO = (ClientCommandResultDTO) clientCommandResult.formForSend();
         boolean isD = cmdResDTO.getIsDone();
         String msg = cmdResDTO.getMessage();

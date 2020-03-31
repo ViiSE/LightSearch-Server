@@ -19,6 +19,7 @@ package lightsearch.server.entity;
 
 public interface ClientCommandResult {
     String message();
+    String logMessage();
     boolean isDone();
     Object formForSend();
 }

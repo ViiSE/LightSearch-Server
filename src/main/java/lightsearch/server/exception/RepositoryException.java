@@ -16,9 +16,9 @@
 
 package lightsearch.server.exception;
 
-public class RepositoryException extends Exception {
+public class RepositoryException extends ExceptionWithLogMessage {
 
-    public RepositoryException(String message) {
-        super(message);
+    public RepositoryException(String message, String logMessage) {
+        super(message, logMessage);
     }
 }

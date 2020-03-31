@@ -38,6 +38,11 @@ public class ClientCommandResultConfirmSoftCheckProductsImpl implements ClientCo
     }
 
     @Override
+    public String logMessage() {
+        return clientCommandResult.logMessage();
+    }
+
+    @Override
     public boolean isDone() {
         return clientCommandResult.isDone();
     }

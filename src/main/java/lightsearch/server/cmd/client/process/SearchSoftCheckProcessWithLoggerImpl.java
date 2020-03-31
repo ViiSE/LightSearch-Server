@@ -17,22 +17,21 @@
 
 package lightsearch.server.cmd.client.process;
 
-import lightsearch.server.data.ClientCommandDTO;
 import lightsearch.server.entity.ClientCommand;
 import lightsearch.server.entity.ClientCommandResult;
 import lightsearch.server.log.LoggerServer;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-@Component("closeSoftCheckProcessWithLogger")
-public class CloseSoftCheckProcessWithLoggerImpl implements ClientProcess<ClientCommandResult> {
+@Component("searchSoftCheckProcessWithLogger")
+public class SearchSoftCheckProcessWithLoggerImpl implements ClientProcess<ClientCommandResult> {
 
     private final LoggerServer logger;
     private final ClientProcess<ClientCommandResult> clientProcess;
 
-    public CloseSoftCheckProcessWithLoggerImpl(
+    public SearchSoftCheckProcessWithLoggerImpl(
             LoggerServer logger,
-            @Qualifier("closeSoftCheckProcess") ClientProcess<ClientCommandResult> clientProcess) {
+            @Qualifier("searchSoftCheckProcess") ClientProcess<ClientCommandResult> clientProcess) {
         this.logger = logger;
         this.clientProcess = clientProcess;
     }
@@ -41,15 +40,8 @@ public class CloseSoftCheckProcessWithLoggerImpl implements ClientProcess<Client
     public ClientCommandResult apply(ClientCommand command) {
         ClientCommandResult result = clientProcess.apply(command);
 
-        if(result.isDone()) {
-            ClientCommandDTO commandDTO = (ClientCommandDTO) command.formForSend();
-            logger.info(CloseSoftCheckProcess.class,
-                    "Client close soft check: " +
-                            "user identifier - " + commandDTO.getUserIdentifier() +
-                            ", card code - " + commandDTO.getCardCode() +
-                            ", delivery type - " + commandDTO.getDelivery());
-        } else
-            logger.error(CloseSoftCheckProcess.class, result.logMessage());
+        if (!result.isDone())
+            logger.error(SearchSoftCheckProcess.class, result.logMessage());
 
         return result;
     }

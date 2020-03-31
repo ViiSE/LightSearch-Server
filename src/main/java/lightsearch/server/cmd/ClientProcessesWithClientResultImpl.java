@@ -26,7 +26,7 @@ import org.springframework.stereotype.Component;
 import java.util.HashMap;
 import java.util.Map;
 
-@Component("clientProcessesHolderWithClientResult")
+@Component("clientProcessesWithClientResult")
 public class ClientProcessesWithClientResultImpl implements Processes<ClientCommand, ClientCommandResult> {
 
     private final Map<String, ClientProcess<ClientCommandResult>> processes = new HashMap<>();

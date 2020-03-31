@@ -35,9 +35,9 @@ public class CommandCheckerClientSearchImpl implements Checker<ClientCommand> {
         ClientCommandDTO commandDTO = (ClientCommandDTO) command.formForSend();
 
         if(checker.isEmpty(commandDTO.getBarcode(), commandDTO.getSklad(), commandDTO.getTK()))
-            throw new CheckerException("Неверный формат команды.", "Search: wrong command.");
+            throw new CheckerException("Неверный формат команды.", "Search: wrong command format.");
 
         if(checker.isNull(commandDTO.getBarcode(), commandDTO.getSklad(), commandDTO.getTK()))
-            throw new CheckerException("Неверный формат команды.", "Search: unknown client.");
+            throw new CheckerException("Неверный формат команды.", "Search: wrong command format.");
     }
 }

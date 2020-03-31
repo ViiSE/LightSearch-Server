@@ -19,9 +19,9 @@ package lightsearch.server.exception;
  *
  * @author ViiSE
  */
-public class IdentifierException extends Exception {
-    
-    public IdentifierException(String message) {
-        super(message);
+public class IdentifierException extends ExceptionWithLogMessage {
+
+    public IdentifierException(String message, String logMessage) {
+        super(message, logMessage);
     }
 }

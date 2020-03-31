@@ -23,7 +23,7 @@ import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
 @Configuration
-public class ThymeleafConfig {
+public class ThymeleafConfiguration {
 
     @Bean
     public SpringResourceTemplateResolver templateResolver() {

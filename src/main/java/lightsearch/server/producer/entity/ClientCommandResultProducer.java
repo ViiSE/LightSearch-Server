@@ -22,7 +22,7 @@ import lightsearch.server.entity.ClientCommandResult;
 
 public interface ClientCommandResultProducer {
     ClientCommandResult getClientCommandResultFromDatabaseInstance(ClientCommandResultDTO clientCommandResultDTO);
-    ClientCommandResult getClientCommandResultSimpleInstance(boolean isDone, String message);
+    ClientCommandResult getClientCommandResultSimpleInstance(boolean isDone, String message, String logMessage);
     ClientCommandResult getClientCommandResultWithTokenInstance(ClientCommandResult clientCommandResult, String token);
     ClientCommandResult getClientCommandResultCheckAuthInstance(boolean isOk);
     ClientCommandResult getClientCommandResultLoginInstance(ClientCommandResult clientCommandResult);

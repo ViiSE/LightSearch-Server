@@ -35,9 +35,9 @@ public class CommandCheckerClientOpenSoftCheckImpl implements Checker<ClientComm
         ClientCommandDTO commandDTO = (ClientCommandDTO) command.formForSend();
 
         if(checker.isEmpty(commandDTO.getUserIdentifier(), commandDTO.getCardCode()))
-            throw new CheckerException("Неверный формат команды.", "OpenSoftCheck: wrong command.");
+            throw new CheckerException("Неверный формат команды.", "OpenSoftCheck: wrong command format.");
 
         if(checker.isNull(commandDTO.getUserIdentifier(), commandDTO.getCardCode()))
-            throw new CheckerException("Неверный формат команды.", "OpenSoftCheck: unknown client.");
+            throw new CheckerException("Неверный формат команды.", "OpenSoftCheck: wrong command format.");
     }
 }

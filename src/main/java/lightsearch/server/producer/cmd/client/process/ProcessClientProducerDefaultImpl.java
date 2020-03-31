@@ -37,12 +37,12 @@ public class ProcessClientProducerDefaultImpl implements ProcessClientProducer<C
 
     @Override
     public ClientProcess<ClientCommandResult> getSearchProcessInstance() {
-        return ctx.getBean("searchProcess", SearchProcess.class);
+        return ctx.getBean("searchProcessWithLogger", SearchProcessWithLoggerImpl.class);
     }
 
     @Override
     public ClientProcess<ClientCommandResult> getCancelSoftCheckProcessInstance() {
-        return ctx.getBean("cancelSoftCheckProcess", CancelSoftCheckProcess.class);
+        return ctx.getBean("cancelSoftCheckProcessWithLogger", CancelSoftCheckProcessWithLoggerImpl.class);
     }
 
     @Override
@@ -52,7 +52,7 @@ public class ProcessClientProducerDefaultImpl implements ProcessClientProducer<C
 
     @Override
     public ClientProcess<ClientCommandResult> getConfirmSoftCheckProductsProcessInstance() {
-        return ctx.getBean("confirmSoftCheckProductsProcess", ConfirmSoftCheckProductsProcess.class);
+        return ctx.getBean("confirmSoftCheckProductsProcessWithLogger", ConfirmSoftCheckProductsProcessWithLoggerImpl.class);
     }
 
     @Override
@@ -62,37 +62,37 @@ public class ProcessClientProducerDefaultImpl implements ProcessClientProducer<C
 
     @Override
     public ClientProcess<ClientCommandResult> getBindProcessInstance() {
-        return ctx.getBean("bindProcess", BindProcess.class);
+        return ctx.getBean("bindProcessWithLogger", BindProcessWithLoggerImpl.class);
     }
 
     @Override
     public ClientProcess<ClientCommandResult> getBindCheckProcessInstance() {
-        return ctx.getBean("bindCheckProcess", BindCheckProcess.class);
+        return ctx.getBean("bindCheckProcessWithLogger", BindCheckProcessWithLoggerImpl.class);
     }
 
     @Override
     public ClientProcess<ClientCommandResult> getUnbindCheckProcessInstance() {
-        return ctx.getBean("unbindCheckProcess", UnbindCheckProcess.class);
+        return ctx.getBean("unbindCheckProcessWithLogger", UnbindCheckProcessWithLoggerImpl.class);
     }
 
     @Override
     public ClientProcess<ClientCommandResult> getUnbindProcessInstance() {
-        return ctx.getBean("unbindProcess", UnbindProcess.class);
+        return ctx.getBean("unbindProcessWithLogger", UnbindProcessWithLoggerImpl.class);
     }
 
     @Override
     public ClientProcess<ClientCommandResult> getSearchSoftCheckProcessInstance() {
-        return ctx.getBean("searchSoftCheckProcess", SearchSoftCheckProcess.class);
+        return ctx.getBean("searchSoftCheckProcessWithLogger", SearchSoftCheckProcessWithLoggerImpl.class);
     }
 
     @Override
     public ClientProcess<ClientCommandResult> getSkladListProcessInstance() {
-        return ctx.getBean("skladListProcess", SkladListProcess.class);
+        return ctx.getBean("skladListProcessWithLogger", SkladListProcessWithLoggerImpl.class);
     }
 
     @Override
     public ClientProcess<ClientCommandResult> getTKListProcessInstance() {
-        return ctx.getBean("tkListProcess", TKListProcess.class);
+        return ctx.getBean("tkListProcessWithLogger", TKListProcessWithLoggerImpl.class);
     }
 
     @Override

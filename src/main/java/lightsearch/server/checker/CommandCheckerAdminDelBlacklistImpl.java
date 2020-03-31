@@ -38,10 +38,10 @@ public class CommandCheckerAdminDelBlacklistImpl implements Checker<AdminCommand
         AdminCommandDelBlacklistImpl command = (AdminCommandDelBlacklistImpl) cmd;
 
         if(checker.isNull(command.IMEI()))
-            throw new CheckerException("Wrong command format. IMEI is null!", "AddBlacklist: unknown client: IMEI is null!");
+            throw new CheckerException("Wrong command format. IMEI is null!", "AddBlacklist: unknown client: IMEI is null.");
 
         if(checker.isEmpty(command.IMEI()))
-            throw new CheckerException("Wrong command format. IMEI is empty!", "AddBlacklist: unknown client: IMEI is empty!");
+            throw new CheckerException("Wrong command format. IMEI is empty!", "AddBlacklist: unknown client: IMEI is empty.");
 
         if(!blacklistService.contains(command.IMEI()))
             throw new CheckerException("This client is not in the blacklist!", "Client " + command.IMEI() + " already in the blacklist.");

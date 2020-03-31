@@ -26,7 +26,7 @@ public class ClientTimeoutValidator implements Validator<Integer> {
     public void validate(Integer clientTimeout) throws ValidatorException {
         if(clientTimeout <= 0)
             throw new ValidatorException(
-                    "Invalid client timeout value! The timeout value may be greater than zero!",
-                    "Wrong clientTimeout value");
+                    "Значение времени жизни токена должно быть больше нуля!",
+                    "Invalid client timeout value. The timeout value may be greater than zero.");
     }
 }

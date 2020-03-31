@@ -35,9 +35,9 @@ public class CommandCheckerClientCancelSoftCheckImpl implements Checker<ClientCo
         ClientCommandDTO cmdDTO = (ClientCommandDTO) command.formForSend();
 
         if(checker.isEmpty(cmdDTO.getUserIdentifier(), cmdDTO.getCardCode()))
-            throw new CheckerException("Неверный формат команды.", "CancelSoftCheck: wrong command.");
+            throw new CheckerException("Неверный формат команды.", "CancelSoftCheck: wrong command format.");
 
         if(checker.isNull(cmdDTO.getUserIdentifier(), cmdDTO.getCardCode()))
-            throw new CheckerException("Неверный формат команды.", "CancelSoftCheck: unknown client.");
+            throw new CheckerException("Неверный формат команды.", "CancelSoftCheck: wrong command format.");
     }
 }

@@ -43,7 +43,7 @@ public class CommandCheckerClientAuthorizationImpl implements Checker<ClientComm
                 commandDTO.getUsername(),
                 commandDTO.getPassword(),
                 commandDTO.getIMEI()))
-            throw new CheckerException("Неверный формат команды.", "Authentication: unknown client.");
+            throw new CheckerException("Неверный формат команды.", "Authentication: wrong command format.");
 
         if(checker.isNull(
                 commandDTO.getUsername(),
@@ -53,7 +53,7 @@ public class CommandCheckerClientAuthorizationImpl implements Checker<ClientComm
                 commandDTO.getOs(),
                 commandDTO.getModel(),
                 commandDTO.getUserIdentifier()))
-            throw new CheckerException("Неверный формат команды.", "Authentication: unknown client.");
+            throw new CheckerException("Неверный формат команды.", "Authentication: wrong command format.");
 
         commandChecker.check(commandDTO.getIMEI());
     }

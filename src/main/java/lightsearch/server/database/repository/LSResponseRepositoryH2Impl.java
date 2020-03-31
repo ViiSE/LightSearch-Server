@@ -77,14 +77,16 @@ public class LSResponseRepositoryH2Impl implements LSResponseRepository<String> 
                 } catch(DataAccessException ex) {
                     if(ex.getMessage() != null)
                         if(!ex.getMessage().contains("Incorrect result size"))
-                            throw new RepositoryException("Произошла ошибка на сервере. Сообщение: " + ex.getLocalizedMessage());
+                            throw new RepositoryException(
+                                    "Произошла ошибка на сервере. Попробуйте позже.", ex.getMessage());
                 }
             }
-            throw new RepositoryException("Request timed out");
+            throw new RepositoryException("Время ожидания запроса истекло.", "Request timeout.");
         } catch (QueryTimeoutException ex) {
-            throw new RepositoryException("Время ожидания запроса истекло");
+            throw new RepositoryException("Время ожидания запроса истекло.", "Request timeout");
         } catch (DataAccessException ex) {
-            throw new RepositoryException("Произошла ошибка на сервере. Сообщение: " + ex.getLocalizedMessage());
+            throw new RepositoryException(
+                    "Произошла ошибка на сервере. Попробуйте позже.", ex.getMessage());
         }
     }
 
@@ -94,7 +96,7 @@ public class LSResponseRepositoryH2Impl implements LSResponseRepository<String> 
             jdbcTemplate.setQueryTimeout(30);
             jdbcTemplate.update("UPDATE LS_RESPONSE SET STATE = ? WHERE LSCODE = ?", true, lsCode);
         } catch (QueryTimeoutException ex) {
-            throw new RepositoryException("Время ожидания запроса истекло");
+            throw new RepositoryException("Время ожидания запроса истекло.", "Request timeout.");
         }
     }
 }

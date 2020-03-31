@@ -51,7 +51,7 @@ public class LoginProcessWithLogger implements ClientProcess<ClientCommandResult
                             ", username - " + commandDTO.getUsername() +
                             ", user_ident - " + commandDTO.getUserIdentifier());
         } else
-            logger.error(LoginProcess.class, result.message());
+            logger.error(LoginProcess.class, result.logMessage());
 
         return result;
     }

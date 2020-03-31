@@ -49,9 +49,13 @@ public class LSRequestRepositoryH2Impl implements LSRequestRepository<Long> {
                 jdbcTemplate.update("INSERT INTO LS_REQUEST (LSCODE, DDOC, CMDIN, STATE) VALUES (?,?,?,?)",
                         lsCode, ddoc, cmdin, true);
             } else
-                throw new RepositoryException("Строка с данным LSCODE уже существует!");
+                throw new RepositoryException(
+                        "Запись с данным LSCODE уже существует!",
+                        "Record with LSCODE = " + lsCode + " already exist.");
         } catch (QueryTimeoutException ex) {
-            throw new RepositoryException("Время ожидания запроса истекло");
+            throw new RepositoryException(
+                    "Время ожидания запроса истекло.",
+                    "Request timeout.");
         }
     }
 }

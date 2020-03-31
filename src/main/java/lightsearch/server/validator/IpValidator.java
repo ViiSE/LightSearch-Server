@@ -32,6 +32,6 @@ public class IpValidator implements Validator<String> {
     public void validate(String ip) throws ValidatorException {
         Matcher matcher = pattern.matcher(ip);
         if(!matcher.matches())
-            throw new ValidatorException("IP is not valid!", "IP is not valid!");
+            throw new ValidatorException("Неверное значение IP!", "IP is not valid.");
     }
 }

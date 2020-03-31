@@ -19,21 +19,9 @@ package lightsearch.server.exception;
  *
  * @author ViiSE
  */
-public class CommandExecutorException extends Exception {
+public class CommandExecutorException extends ExceptionWithLogMessage {
     
-    private final String messageRU;
-    
-    public CommandExecutorException(String message, String messageRU) {
-        super(message);
-        this.messageRU = messageRU;
-    }
-
-    public CommandExecutorException(Exception ex) {
-        super(ex);
-        this.messageRU = ex.getMessage();
-    }
-    
-    public String getMessageRU() {
-        return messageRU;
+    public CommandExecutorException(String message, String logMessage) {
+        super(message, logMessage);
     }
 }

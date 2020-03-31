@@ -132,7 +132,6 @@ public class ClientsCommandsController {
                                 TK),
                         sklad),
                 barcode);
-
         return (ClientSearchCommandResultDTO) getCommandResult(ClientCommands.SEARCH, cmd);
     }
 
@@ -166,7 +165,6 @@ public class ClientsCommandsController {
                                 ClientCommands.BIND_CHECK),
                         cmdDTO.getCheckEan13()),
                 cmdDTO.getBarcode());
-
         return (ClientBindCheckCommandResultDTO) getCommandResult(ClientCommands.BIND_CHECK, cmd);
     }
 
@@ -197,7 +195,6 @@ public class ClientsCommandsController {
                                 cmdDTO.getUserIdentifier()),
                         cmdDTO.getBarcode()),
                 cmdDTO.getFactoryBarcode());
-
         return (ClientBindCommandResultDTO) getCommandResult(ClientCommands.BIND, cmd);
     }
 
@@ -220,7 +217,6 @@ public class ClientsCommandsController {
                 cmdProducer.getClientCommandSimpleInstance(
                         ClientCommands.UNBIND_CHECK),
                 cmdDTO.getBarcode());
-
         return (ClientUnbindCheckCommandResultDTO) getCommandResult(ClientCommands.UNBIND_CHECK, cmd);
     }
 
@@ -246,7 +242,6 @@ public class ClientsCommandsController {
                                 ClientCommands.UNBIND),
                         cmdDTO.getUserIdentifier()),
                 cmdDTO.getFactoryBarcode());
-
         return (ClientUnbindCommandResultDTO) getCommandResult(ClientCommands.UNBIND, cmd);
     }
 
@@ -273,7 +268,6 @@ public class ClientsCommandsController {
                         cmdProducer.getClientCommandSimpleInstance(ClientCommands.OPEN_SOFT_CHECK),
                         cmdDTO.getCardCode()),
                 cmdDTO.getUserIdentifier());
-
         return (ClientOpenSoftCheckCommandResultDTO) getCommandResult(ClientCommands.OPEN_SOFT_CHECK, cmd);
     }
 
@@ -300,7 +294,6 @@ public class ClientsCommandsController {
                         cmdProducer.getClientCommandSimpleInstance(ClientCommands.CANCEL_SOFT_CHECK),
                         cmdDTO.getCardCode()),
                 cmdDTO.getUserIdentifier());
-
         return (ClientCancelSoftCheckCommandResultDTO) getCommandResult(ClientCommands.CANCEL_SOFT_CHECK, cmd);
     }
 
@@ -339,7 +332,6 @@ public class ClientsCommandsController {
                                 cmdDTO.getCardCode()),
                         cmdDTO.getUserIdentifier()),
                 products);
-
         return (ClientConfirmSoftCheckProductsCommandResultDTO) getCommandResult(ClientCommands.CONFIRM_SOFT_CHECK_PRODUCTS, cmd);
     }
 
@@ -368,7 +360,6 @@ public class ClientsCommandsController {
                                 cmdDTO.getDelivery()),
                         cmdDTO.getCardCode()),
                 cmdDTO.getUserIdentifier());
-
         return (ClientCloseSoftCheckCommandResultDTO) getCommandResult(ClientCommands.CLOSE_SOFT_CHECK, cmd);
     }
 
@@ -395,7 +386,6 @@ public class ClientsCommandsController {
                                 ClientCommands.SEARCH_SOFT_CHECK),
                         username),
                 barcode);
-
         return (ClientSearchCommandResultDTO) getCommandResult(ClientCommands.SEARCH_SOFT_CHECK, cmd);
     }
 
@@ -411,7 +401,6 @@ public class ClientsCommandsController {
     @GetMapping("/clients/skladList")
     public ClientSkladListCommandResultDTO requestSkladList() throws ClientErrorException {
         ClientCommand cmd = cmdProducer.getClientCommandSimpleInstance(ClientCommands.SKLAD_LIST);
-
         return (ClientSkladListCommandResultDTO) getCommandResult(ClientCommands.SKLAD_LIST, cmd);
     }
 
@@ -427,12 +416,11 @@ public class ClientsCommandsController {
     @GetMapping("/clients/tkList")
     public ClientTKListCommandResultDTO requestTKList() throws ClientErrorException {
         ClientCommand cmd = cmdProducer.getClientCommandSimpleInstance(ClientCommands.TK_LIST);
-
         return (ClientTKListCommandResultDTO) getCommandResult(ClientCommands.TK_LIST, cmd);
     }
 
     private Object getCommandResult(String cmdName, ClientCommand cmd) throws ClientErrorException {
-        ClientCommandResult cmdRes =  processes.get(cmdName).apply(cmd);
+        ClientCommandResult cmdRes = processes.get(cmdName).apply(cmd);
         if(!cmdRes.isDone())
             throw new ClientErrorException(HttpStatus.UNAUTHORIZED, cmdRes.message());
         else
