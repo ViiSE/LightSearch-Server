@@ -67,7 +67,7 @@ public class ProcessAdminProducerDefaultIntegrationTestNG extends AbstractTestNG
 
         AdminProcess<AdminCommandResult> process = producer.getBlacklistRequestProcessInstance();
         System.out.println("instance: " + process);
-        assertTrue(process instanceof BlacklistRequestProcess);
+        assertTrue(process instanceof BlacklistRequestProcessWithLoggerImpl);
     }
 
     @Test
@@ -94,7 +94,7 @@ public class ProcessAdminProducerDefaultIntegrationTestNG extends AbstractTestNG
 
         AdminProcess<AdminCommandResult> process = producer.getClientListRequestProcessInstance();
         System.out.println("instance: " + process);
-        assertTrue(process instanceof ClientListRequestProcess);
+        assertTrue(process instanceof ClientListRequestProcessWithLoggerImpl);
     }
 
     @Test
@@ -112,7 +112,7 @@ public class ProcessAdminProducerDefaultIntegrationTestNG extends AbstractTestNG
 
         AdminProcess<AdminCommandResult> process = producer.getRestartProcessInstance();
         System.out.println("instance: " + process);
-        assertTrue(process instanceof RestartProcess);
+        assertTrue(process instanceof RestartProcessWithLoggerImpl);
     }
 
     @AfterClass

@@ -44,7 +44,7 @@ public class OpenSoftCheckProcessWithLoggerImpl implements ClientProcess<ClientC
         if(result.isDone()) {
             ClientCommandDTO commandDTO = (ClientCommandDTO) command.formForSend();
             logger.info(OpenSoftCheckProcess.class,
-                    "Client " + commandDTO.getIMEI() + " open soft check: " +
+                    "Client open soft check: " +
                             "user identifier - " + commandDTO.getUserIdentifier());
         } else
             logger.error(OpenSoftCheckProcess.class, result.logMessage());

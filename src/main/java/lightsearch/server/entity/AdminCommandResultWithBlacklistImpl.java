@@ -1,6 +1,7 @@
 package lightsearch.server.entity;
 
-import lightsearch.server.data.AdminCommandResultDTO;
+import lightsearch.server.data.AdminCommandResultWithBlacklistDTO;
+import lightsearch.server.data.AdminCommandSimpleResultDTO;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -20,9 +21,13 @@ public class AdminCommandResultWithBlacklistImpl implements AdminCommandResult {
 
     @Override
     public Object formForSend() {
-        AdminCommandResultDTO admCmdResDTO = (AdminCommandResultDTO) admCmdRes.formForSend();
-        admCmdResDTO.setBlacklist(blacklist);
+        AdminCommandSimpleResultDTO admCmdResDTO = (AdminCommandSimpleResultDTO) admCmdRes.formForSend();
 
-        return admCmdResDTO;
+        AdminCommandResultWithBlacklistDTO resDTO = new AdminCommandResultWithBlacklistDTO(
+                admCmdResDTO.getIsDone(),
+                admCmdResDTO.getMessage());
+        resDTO.setBlacklist(blacklist);
+
+        return resDTO;
     }
 }

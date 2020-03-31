@@ -17,7 +17,8 @@
 
 package lightsearch.server.entity;
 
-import lightsearch.server.data.AdminCommandResultDTO;
+import lightsearch.server.data.AdminCommandResultWithClientsDTO;
+import lightsearch.server.data.AdminCommandSimpleResultDTO;
 import lightsearch.server.data.ClientDTO;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -39,11 +40,15 @@ public class AdminCommandResultWithClientsImpl implements AdminCommandResult {
 
     @Override
     public Object formForSend() {
-        AdminCommandResultDTO admCmdResDTO = (AdminCommandResultDTO) admCmdRes.formForSend();
+        AdminCommandSimpleResultDTO admCmdResDTO = (AdminCommandSimpleResultDTO) admCmdRes.formForSend();
         List<ClientDTO> clientsDTOs = new ArrayList<>();
         clients.forEach(client -> clientsDTOs.add((ClientDTO) client.formForSend()));
-        admCmdResDTO.setClients(clientsDTOs);
 
-        return admCmdResDTO;
+        AdminCommandResultWithClientsDTO resDTO = new AdminCommandResultWithClientsDTO(
+                admCmdResDTO.getIsDone(),
+                admCmdResDTO.getMessage());
+        resDTO.setClients(clientsDTOs);
+
+        return resDTO;
     }
 }

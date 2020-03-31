@@ -42,12 +42,12 @@ public class ProcessAdminProducerDefaultImpl implements ProcessAdminProducer<Adm
 
     @Override
     public AdminProcess<AdminCommandResult> getBlacklistRequestProcessInstance() {
-        return ctx.getBean(BlacklistRequestProcess.class);
+        return ctx.getBean(BlacklistRequestProcessWithLoggerImpl.class);
     }
 
     @Override
     public AdminProcess<AdminCommandResult> getClientListRequestProcessInstance() {
-        return ctx.getBean(ClientListRequestProcess.class);
+        return ctx.getBean(ClientListRequestProcessWithLoggerImpl.class);
     }
 
     @Override
@@ -67,6 +67,6 @@ public class ProcessAdminProducerDefaultImpl implements ProcessAdminProducer<Adm
 
     @Override
     public AdminProcess<AdminCommandResult> getRestartProcessInstance() {
-        return ctx.getBean(RestartProcess.class);
+        return ctx.getBean(RestartProcessWithLoggerImpl.class);
     }
 }

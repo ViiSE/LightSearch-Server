@@ -1,6 +1,6 @@
 package lightsearch.server.entity;
 
-import lightsearch.server.data.AdminCommandResultDTO;
+import lightsearch.server.data.AdminCommandSimpleResultDTO;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -18,6 +18,6 @@ public class AdminCommandResultSimpleImpl implements AdminCommandResult {
 
     @Override
     public Object formForSend() {
-        return new AdminCommandResultDTO(isDone, message);
+        return new AdminCommandSimpleResultDTO(isDone, message);
     }
 }
