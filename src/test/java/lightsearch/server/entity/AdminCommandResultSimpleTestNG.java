@@ -18,6 +18,7 @@
 package lightsearch.server.entity;
 
 import lightsearch.server.data.AdminCommandResultDTO;
+import lightsearch.server.data.AdminCommandSimpleResultDTO;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
@@ -41,7 +42,7 @@ public class AdminCommandResultSimpleTestNG {
 
         AdminCommandResult admCmdRes = new AdminCommandResultSimpleImpl(isDone, message);
 
-        AdminCommandResultDTO admCmdResDTO = (AdminCommandResultDTO) admCmdRes.formForSend();
+        AdminCommandSimpleResultDTO admCmdResDTO = (AdminCommandSimpleResultDTO) admCmdRes.formForSend();
 
         System.out.println(TestUtils
                 .objectMapperWithJavaTimeModule()

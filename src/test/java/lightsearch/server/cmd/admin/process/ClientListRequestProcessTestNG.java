@@ -19,6 +19,8 @@ package lightsearch.server.cmd.admin.process;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lightsearch.server.data.AdminCommandResultDTO;
+import lightsearch.server.data.AdminCommandResultWithClientsDTO;
+import lightsearch.server.data.AdminCommandSimpleResultDTO;
 import lightsearch.server.entity.AdminCommandResult;
 import lightsearch.server.entity.Client;
 import lightsearch.server.producer.entity.AdminCommandResultProducer;
@@ -51,7 +53,7 @@ public class ClientListRequestProcessTestNG {
         testMethod("apply()");
 
         AdminCommandResult cmdRes = clReqProc.apply(null);
-        AdminCommandResultDTO cmdResDTO = (AdminCommandResultDTO) cmdRes.formForSend();
+        AdminCommandResultWithClientsDTO cmdResDTO = (AdminCommandResultWithClientsDTO) cmdRes.formForSend();
 
         System.out.println("Response: ");
         System.out.println(TestUtils

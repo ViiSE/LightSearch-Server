@@ -23,6 +23,7 @@ import lightsearch.server.checker.CommandCheckerAdminDelBlacklistImpl;
 import lightsearch.server.checker.LightSearchChecker;
 import lightsearch.server.checker.LightSearchCheckerDefaultImpl;
 import lightsearch.server.data.AdminCommandResultDTO;
+import lightsearch.server.data.AdminCommandSimpleResultDTO;
 import lightsearch.server.entity.AdminCommand;
 import lightsearch.server.entity.AdminCommandDelBlacklistImpl;
 import lightsearch.server.entity.AdminCommandResult;
@@ -79,7 +80,7 @@ public class DelBlacklistProcessTestNG {
     public void apply(String IMEI) throws JsonProcessingException {
         testMethod("apply() [IMEI in blacklist]");
 
-        AdminCommandResultDTO resDTO = test(IMEI);
+        AdminCommandSimpleResultDTO resDTO = (AdminCommandSimpleResultDTO) test(IMEI);
         assertFalse(blacklistService.contains(IMEI));
         printResult(resDTO);
     }
@@ -89,19 +90,19 @@ public class DelBlacklistProcessTestNG {
     public void apply_IMEINotInTheBlacklist(String IMEI) throws JsonProcessingException {
         testMethod("apply() [IMEI not in the blacklist]");
 
-        AdminCommandResultDTO resDTO = test(IMEI);
+        AdminCommandSimpleResultDTO resDTO = (AdminCommandSimpleResultDTO) test(IMEI);
         String message = resDTO.getMessage().toLowerCase();
         assertTrue(message.contains("not in the blacklist"));
         printResult(resDTO);
     }
 
-    private AdminCommandResultDTO test(String IMEI) {
+    private Object test(String IMEI) {
         AdminCommand admCmd = new AdminCommandDelBlacklistImpl(IMEI);
         AdminCommandResult admCmdRes = delBlProc.apply(admCmd);
-        return (AdminCommandResultDTO) admCmdRes.formForSend();
+        return admCmdRes.formForSend();
     }
 
-    private void printResult(AdminCommandResultDTO resDTO) throws JsonProcessingException {
+    private void printResult(Object resDTO) throws JsonProcessingException {
         System.out.println("Result: ");
         System.out.println(TestUtils
                 .objectMapperWithJavaTimeModule()

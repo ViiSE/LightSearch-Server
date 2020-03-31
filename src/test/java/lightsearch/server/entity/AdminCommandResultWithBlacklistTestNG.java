@@ -17,7 +17,7 @@
 
 package lightsearch.server.entity;
 
-import lightsearch.server.data.AdminCommandResultDTO;
+import lightsearch.server.data.AdminCommandResultWithBlacklistDTO;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
@@ -45,7 +45,7 @@ public class AdminCommandResultWithBlacklistTestNG {
                 new AdminCommandResultSimpleImpl(isDone, message),
                 blacklist);
 
-        AdminCommandResultDTO admCmdResDTO = (AdminCommandResultDTO) admCmdRes.formForSend();
+        AdminCommandResultWithBlacklistDTO admCmdResDTO = (AdminCommandResultWithBlacklistDTO) admCmdRes.formForSend();
 
         System.out.println(TestUtils
                 .objectMapperWithJavaTimeModule()

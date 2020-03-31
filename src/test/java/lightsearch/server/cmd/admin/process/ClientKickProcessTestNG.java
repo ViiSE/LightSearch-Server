@@ -22,6 +22,7 @@ import lightsearch.server.checker.Checker;
 import lightsearch.server.checker.CommandCheckerAdminKickClientImpl;
 import lightsearch.server.checker.LightSearchCheckerDefaultImpl;
 import lightsearch.server.data.AdminCommandResultDTO;
+import lightsearch.server.data.AdminCommandSimpleResultDTO;
 import lightsearch.server.entity.AdminCommand;
 import lightsearch.server.entity.AdminCommandKickImpl;
 import lightsearch.server.entity.AdminCommandResult;
@@ -66,7 +67,7 @@ public class ClientKickProcessTestNG {
 
         AdminCommand admCmd = new AdminCommandKickImpl("id1");
         AdminCommandResult cmdRes = clKickProc.apply(admCmd);
-        AdminCommandResultDTO cmdResDTO = (AdminCommandResultDTO) cmdRes.formForSend();
+        AdminCommandSimpleResultDTO cmdResDTO = (AdminCommandSimpleResultDTO) cmdRes.formForSend();
 
         System.out.println("Response: ");
         System.out.println(TestUtils
@@ -85,7 +86,7 @@ public class ClientKickProcessTestNG {
 
         AdminCommand admCmd = new AdminCommandKickImpl("id2");
         AdminCommandResult cmdRes = clKickProc.apply(admCmd);
-        AdminCommandResultDTO cmdResDTO = (AdminCommandResultDTO) cmdRes.formForSend();
+        AdminCommandSimpleResultDTO cmdResDTO = (AdminCommandSimpleResultDTO) cmdRes.formForSend();
 
         System.out.println("Response: ");
         System.out.println(TestUtils

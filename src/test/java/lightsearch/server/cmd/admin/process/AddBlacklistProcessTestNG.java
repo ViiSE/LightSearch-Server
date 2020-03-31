@@ -22,7 +22,7 @@ import lightsearch.server.checker.Checker;
 import lightsearch.server.checker.CommandCheckerAdminAddBlacklistImpl;
 import lightsearch.server.checker.LightSearchChecker;
 import lightsearch.server.checker.LightSearchCheckerDefaultImpl;
-import lightsearch.server.data.AdminCommandResultDTO;
+import lightsearch.server.data.AdminCommandSimpleResultDTO;
 import lightsearch.server.entity.*;
 import lightsearch.server.initialization.BlacklistDirectory;
 import lightsearch.server.initialization.BlacklistFileDirectoryImpl;
@@ -82,7 +82,7 @@ public class AddBlacklistProcessTestNG {
     public void apply(String IMEI) throws JsonProcessingException {
         testMethod("apply() [IMEI is not client]");
 
-        AdminCommandResultDTO resDTO = test(IMEI);
+        AdminCommandSimpleResultDTO resDTO = (AdminCommandSimpleResultDTO) test(IMEI);
         assertTrue(blacklistService.contains(IMEI));
         printResult(resDTO);
     }
@@ -92,7 +92,7 @@ public class AddBlacklistProcessTestNG {
     public void apply_IMEIInClients(String IMEIInClient) throws JsonProcessingException {
         testMethod("apply() [IMEI is client]");
 
-        AdminCommandResultDTO resDTO = test(IMEIInClient);
+        AdminCommandSimpleResultDTO resDTO = (AdminCommandSimpleResultDTO) test(IMEIInClient);
         assertTrue(blacklistService.contains(IMEIInClient));
         assertFalse(clientsService.contains(IMEIInClient));
         printResult(resDTO);
@@ -103,20 +103,19 @@ public class AddBlacklistProcessTestNG {
     public void apply_IMEIAlreadyInTheBlacklist(String IMEI) throws JsonProcessingException {
         testMethod("apply() [IMEI already in the blacklist]");
 
-        AdminCommandResultDTO resDTO = test(IMEI);
+        AdminCommandSimpleResultDTO resDTO = (AdminCommandSimpleResultDTO) test(IMEI);
         assertFalse(resDTO.getIsDone());
         String message = resDTO.getMessage().toLowerCase();
         assertTrue(message.contains("already in the blacklist"));
         printResult(resDTO);
     }
 
-    private AdminCommandResultDTO test(String IMEI) {
+    private Object test(String IMEI) {
         AdminCommand admCmd = new AdminCommandAddBlacklistImpl(IMEI);
-        AdminCommandResult admCmdRes = addBlProc.apply(admCmd);
-        return (AdminCommandResultDTO) admCmdRes.formForSend();
+        return addBlProc.apply(admCmd).formForSend();
     }
 
-    private void printResult(AdminCommandResultDTO resDTO) throws JsonProcessingException {
+    private void printResult(Object resDTO) throws JsonProcessingException {
         System.out.println("Result: ");
         System.out.println(TestUtils
                 .objectMapperWithJavaTimeModule()

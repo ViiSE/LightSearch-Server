@@ -19,6 +19,7 @@ package lightsearch.server.cmd.admin.process;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lightsearch.server.data.AdminCommandResultDTO;
+import lightsearch.server.data.AdminCommandResultWithBlacklistDTO;
 import lightsearch.server.entity.AdminCommandResult;
 import lightsearch.server.producer.entity.AdminCommandResultProducer;
 import lightsearch.server.producer.entity.AdminCommandResultProducerTestImpl;
@@ -53,7 +54,7 @@ public class BlacklistRequestProcessTestNG {
         testMethod("apply()");
 
         AdminCommandResult cmdRes = blReqProc.apply(null);
-        AdminCommandResultDTO cmdResDTO = (AdminCommandResultDTO) cmdRes.formForSend();
+        AdminCommandResultWithBlacklistDTO cmdResDTO = (AdminCommandResultWithBlacklistDTO) cmdRes.formForSend();
 
         Collections.sort(blacklistService.blacklist());
         Collections.sort(cmdResDTO.getBlacklist());

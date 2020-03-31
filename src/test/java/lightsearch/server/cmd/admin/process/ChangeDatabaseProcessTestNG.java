@@ -23,6 +23,7 @@ import lightsearch.server.checker.CommandCheckerAdminChangeDatabaseImpl;
 import lightsearch.server.checker.LightSearchCheckerDefaultImpl;
 import lightsearch.server.data.AdminCommandDTO;
 import lightsearch.server.data.AdminCommandResultDTO;
+import lightsearch.server.data.AdminCommandSimpleResultDTO;
 import lightsearch.server.entity.AdminCommand;
 import lightsearch.server.entity.AdminCommandDatabaseImpl;
 import lightsearch.server.entity.AdminCommandResult;
@@ -97,7 +98,7 @@ public class ChangeDatabaseProcessTestNG {
             setPassword("5tRONGP455!");
         }});
         AdminCommandResult cmdRes = chDbProc.apply(admCmd);
-        AdminCommandResultDTO cmdResDTO = (AdminCommandResultDTO) cmdRes.formForSend();
+        AdminCommandSimpleResultDTO cmdResDTO = (AdminCommandSimpleResultDTO) cmdRes.formForSend();
 
         System.out.println("Response: ");
         System.out.println(TestUtils

@@ -21,6 +21,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import lightsearch.server.checker.Checker;
 import lightsearch.server.checker.CommandCheckerAdminClientTimeoutImpl;
 import lightsearch.server.data.AdminCommandResultDTO;
+import lightsearch.server.data.AdminCommandSimpleResultDTO;
 import lightsearch.server.entity.AdminCommand;
 import lightsearch.server.entity.AdminCommandClientTimeoutImpl;
 import lightsearch.server.entity.AdminCommandResult;
@@ -79,7 +80,7 @@ public class ClientTimeoutProcessTestNG {
 
         AdminCommand amdCmd = new AdminCommandClientTimeoutImpl(10);
         AdminCommandResult cmdRes = clToutProc.apply(amdCmd);
-        AdminCommandResultDTO cmdResDTO = (AdminCommandResultDTO) cmdRes.formForSend();
+        AdminCommandSimpleResultDTO cmdResDTO = (AdminCommandSimpleResultDTO) cmdRes.formForSend();
 
         System.out.println("Before props: ");
         oldProps.forEach(System.out::println);
