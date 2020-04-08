@@ -101,7 +101,7 @@ public class ClientsCommandsController {
                                 cmdDTO.getIp()),
                         cmdDTO.getUsername(),
                         cmdDTO.getPassword());
-        return (ClientLoginCommandResultDTO) getCommandResult(ClientCommands.LOGIN, cmd);
+        return (ClientLoginCommandResultDTO) getCommandResult(ClientCommands.LOGIN, cmd, HttpStatus.UNAUTHORIZED);
     }
 
     @ApiOperation(value = "Поиск товаров", authorizations = {@Authorization(value = "Bearer")})
@@ -132,7 +132,7 @@ public class ClientsCommandsController {
                                 TK),
                         sklad),
                 barcode);
-        return (ClientSearchCommandResultDTO) getCommandResult(ClientCommands.SEARCH, cmd);
+        return (ClientSearchCommandResultDTO) getCommandResult(ClientCommands.SEARCH, cmd, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ApiOperation(value = "Проверка привязки товара к заводскому штрих-коду", authorizations = {@Authorization(value = "Bearer")})
@@ -165,7 +165,7 @@ public class ClientsCommandsController {
                                 ClientCommands.BIND_CHECK),
                         cmdDTO.getCheckEan13()),
                 cmdDTO.getBarcode());
-        return (ClientBindCheckCommandResultDTO) getCommandResult(ClientCommands.BIND_CHECK, cmd);
+        return (ClientBindCheckCommandResultDTO) getCommandResult(ClientCommands.BIND_CHECK, cmd, HttpStatus.BAD_REQUEST);
     }
 
     @ApiOperation(value = "Привязка товара к заводскому штрих-коду", authorizations = {@Authorization(value = "Bearer")})
@@ -195,7 +195,7 @@ public class ClientsCommandsController {
                                 cmdDTO.getUserIdentifier()),
                         cmdDTO.getBarcode()),
                 cmdDTO.getFactoryBarcode());
-        return (ClientBindCommandResultDTO) getCommandResult(ClientCommands.BIND, cmd);
+        return (ClientBindCommandResultDTO) getCommandResult(ClientCommands.BIND, cmd, HttpStatus.BAD_REQUEST);
     }
 
     @ApiOperation(value = "Проверка отвязки товара от заводского штрих-кода", authorizations = {@Authorization(value = "Bearer")})
@@ -217,7 +217,7 @@ public class ClientsCommandsController {
                 cmdProducer.getClientCommandSimpleInstance(
                         ClientCommands.UNBIND_CHECK),
                 cmdDTO.getBarcode());
-        return (ClientUnbindCheckCommandResultDTO) getCommandResult(ClientCommands.UNBIND_CHECK, cmd);
+        return (ClientUnbindCheckCommandResultDTO) getCommandResult(ClientCommands.UNBIND_CHECK, cmd, HttpStatus.UNAUTHORIZED);
     }
 
     @ApiOperation(value = "Отвязка товара от заводского штрих-кода", authorizations = {@Authorization(value = "Bearer")})
@@ -242,7 +242,7 @@ public class ClientsCommandsController {
                                 ClientCommands.UNBIND),
                         cmdDTO.getUserIdentifier()),
                 cmdDTO.getFactoryBarcode());
-        return (ClientUnbindCommandResultDTO) getCommandResult(ClientCommands.UNBIND, cmd);
+        return (ClientUnbindCommandResultDTO) getCommandResult(ClientCommands.UNBIND, cmd, HttpStatus.BAD_REQUEST);
     }
 
     @ApiOperation(value = "Открытие мягкого чека", authorizations = {@Authorization(value = "Bearer")})
@@ -268,7 +268,7 @@ public class ClientsCommandsController {
                         cmdProducer.getClientCommandSimpleInstance(ClientCommands.OPEN_SOFT_CHECK),
                         cmdDTO.getCardCode()),
                 cmdDTO.getUserIdentifier());
-        return (ClientOpenSoftCheckCommandResultDTO) getCommandResult(ClientCommands.OPEN_SOFT_CHECK, cmd);
+        return (ClientOpenSoftCheckCommandResultDTO) getCommandResult(ClientCommands.OPEN_SOFT_CHECK, cmd, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ApiOperation(value = "Отмена мягкого чека", authorizations = {@Authorization(value = "Bearer")})
@@ -294,7 +294,7 @@ public class ClientsCommandsController {
                         cmdProducer.getClientCommandSimpleInstance(ClientCommands.CANCEL_SOFT_CHECK),
                         cmdDTO.getCardCode()),
                 cmdDTO.getUserIdentifier());
-        return (ClientCancelSoftCheckCommandResultDTO) getCommandResult(ClientCommands.CANCEL_SOFT_CHECK, cmd);
+        return (ClientCancelSoftCheckCommandResultDTO) getCommandResult(ClientCommands.CANCEL_SOFT_CHECK, cmd, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ApiOperation(value = "Подтвердить товары мягкого чека", authorizations = {@Authorization(value = "Bearer")})
@@ -332,7 +332,7 @@ public class ClientsCommandsController {
                                 cmdDTO.getCardCode()),
                         cmdDTO.getUserIdentifier()),
                 products);
-        return (ClientConfirmSoftCheckProductsCommandResultDTO) getCommandResult(ClientCommands.CONFIRM_SOFT_CHECK_PRODUCTS, cmd);
+        return (ClientConfirmSoftCheckProductsCommandResultDTO) getCommandResult(ClientCommands.CONFIRM_SOFT_CHECK_PRODUCTS, cmd, HttpStatus.UNAUTHORIZED);
     }
 
     @ApiOperation(value = "Закрытие мягкого чека", authorizations = {@Authorization(value = "Bearer")})
@@ -360,7 +360,7 @@ public class ClientsCommandsController {
                                 cmdDTO.getDelivery()),
                         cmdDTO.getCardCode()),
                 cmdDTO.getUserIdentifier());
-        return (ClientCloseSoftCheckCommandResultDTO) getCommandResult(ClientCommands.CLOSE_SOFT_CHECK, cmd);
+        return (ClientCloseSoftCheckCommandResultDTO) getCommandResult(ClientCommands.CLOSE_SOFT_CHECK, cmd, HttpStatus.UNAUTHORIZED);
     }
 
     @ApiOperation(value = "Поиск товаров для мягкого чека", authorizations = {@Authorization(value = "Bearer")})
@@ -386,7 +386,7 @@ public class ClientsCommandsController {
                                 ClientCommands.SEARCH_SOFT_CHECK),
                         username),
                 barcode);
-        return (ClientSearchCommandResultDTO) getCommandResult(ClientCommands.SEARCH_SOFT_CHECK, cmd);
+        return (ClientSearchCommandResultDTO) getCommandResult(ClientCommands.SEARCH_SOFT_CHECK, cmd, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ApiOperation(value = "Выгружает список всех складов предприятия", authorizations = {@Authorization(value = "Bearer")})
@@ -401,7 +401,7 @@ public class ClientsCommandsController {
     @GetMapping("/clients/skladList")
     public ClientSkladListCommandResultDTO requestSkladList() throws ClientErrorException {
         ClientCommand cmd = cmdProducer.getClientCommandSimpleInstance(ClientCommands.SKLAD_LIST);
-        return (ClientSkladListCommandResultDTO) getCommandResult(ClientCommands.SKLAD_LIST, cmd);
+        return (ClientSkladListCommandResultDTO) getCommandResult(ClientCommands.SKLAD_LIST, cmd, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ApiOperation(value = "Выгружает список всех ТК предприятия", authorizations = {@Authorization(value = "Bearer")})
@@ -416,13 +416,13 @@ public class ClientsCommandsController {
     @GetMapping("/clients/tkList")
     public ClientTKListCommandResultDTO requestTKList() throws ClientErrorException {
         ClientCommand cmd = cmdProducer.getClientCommandSimpleInstance(ClientCommands.TK_LIST);
-        return (ClientTKListCommandResultDTO) getCommandResult(ClientCommands.TK_LIST, cmd);
+        return (ClientTKListCommandResultDTO) getCommandResult(ClientCommands.TK_LIST, cmd, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    private Object getCommandResult(String cmdName, ClientCommand cmd) throws ClientErrorException {
+    private Object getCommandResult(String cmdName, ClientCommand cmd, HttpStatus status) throws ClientErrorException {
         ClientCommandResult cmdRes = processes.get(cmdName).apply(cmd);
         if(!cmdRes.isDone())
-            throw new ClientErrorException(HttpStatus.UNAUTHORIZED, cmdRes.message());
+            throw new ClientErrorException(status, cmdRes.message());
         else
             return cmdRes.formForSend();
     }
