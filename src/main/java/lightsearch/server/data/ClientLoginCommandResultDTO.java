@@ -16,6 +16,7 @@
 
 package lightsearch.server.data;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
@@ -29,6 +30,9 @@ import java.util.List;
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ClientLoginCommandResultDTO {
+
+    @JsonIgnore
+    private String hashIMEI;
 
     @ApiModelProperty(notes = "Статус выполненной команды", position = 1)
     private boolean isDone;
@@ -95,5 +99,13 @@ public class ClientLoginCommandResultDTO {
 
     public String getToken() {
         return token;
+    }
+
+    public void setHashIMEI(String hashIMEI) {
+        this.hashIMEI = hashIMEI;
+    }
+
+    public String getHashIMEI() {
+        return hashIMEI;
     }
 }

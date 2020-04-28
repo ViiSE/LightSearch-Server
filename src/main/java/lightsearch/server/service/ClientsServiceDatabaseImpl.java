@@ -94,6 +94,11 @@ public class ClientsServiceDatabaseImpl implements ClientsService<String, Client
     }
 
     @Override
+    public Client client(String IMEI) {
+        return clientsService.client(IMEI);
+    }
+
+    @Override
     public Client remove(String IMEIHash) {
         return clientsService.remove(IMEIHash);
     }

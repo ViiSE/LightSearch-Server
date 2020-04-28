@@ -25,6 +25,7 @@ public interface ClientsService<K,V> {
     Map<K,V> clients();
     Object addClient(K key, V value);
     Object addClient(K key, String username);
+    V client(K key);
     V remove(K key);
     boolean contains(K key);
 }

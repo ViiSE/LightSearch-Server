@@ -44,7 +44,8 @@ public class ClientCommandResultLoginTestNG {
         resDTO.setUserIdentifier("ident");
 
         commandResult = new ClientCommandResultLoginImpl(
-                new ClientCommandResultFromDatabaseImpl(resDTO));
+                new ClientCommandResultFromDatabaseImpl(resDTO),
+                "Some hash IMEI");
 
         testBegin(ClientCommandResultLoginImpl.class);
     }

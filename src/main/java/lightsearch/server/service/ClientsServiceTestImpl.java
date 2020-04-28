@@ -65,6 +65,11 @@ public class ClientsServiceTestImpl implements ClientsService<String, Client> {
     }
 
     @Override
+    public Client client(String IMEI) {
+        return clientsMap.get(IMEI);
+    }
+
+    @Override
     public Client remove(String key) {
         return clientsMap.remove(key);
     }

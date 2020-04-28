@@ -52,8 +52,8 @@ public class ClientCommandResultProducerDefaultImpl implements ClientCommandResu
     }
 
     @Override
-    public ClientCommandResult getClientCommandResultLoginInstance(ClientCommandResult clientCommandResult) {
-        return (ClientCommandResult) ctx.getBean("clientCommandResultLogin", clientCommandResult);
+    public ClientCommandResult getClientCommandResultLoginInstance(ClientCommandResult clientCommandResult, String hashIMEI) {
+        return (ClientCommandResult) ctx.getBean("clientCommandResultLogin", clientCommandResult, hashIMEI);
     }
 
     @Override

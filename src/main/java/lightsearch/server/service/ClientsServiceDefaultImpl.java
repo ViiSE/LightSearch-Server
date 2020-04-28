@@ -89,6 +89,13 @@ public class ClientsServiceDefaultImpl implements ClientsService<String, Client>
     }
 
     @Override
+    public Client client(String IMEI) {
+        return hashAlgorithm.isDigest(IMEI)
+                ? clients.get(IMEI)
+                : clients.get(hashAlgorithm.digest(IMEI));
+    }
+
+    @Override
     public Client remove(String IMEIHash) {
         return hashAlgorithm.isDigest(IMEIHash)
                 ? clients.remove(IMEIHash)

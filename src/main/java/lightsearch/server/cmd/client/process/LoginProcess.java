@@ -18,6 +18,7 @@ package lightsearch.server.cmd.client.process;
 
 import lightsearch.server.checker.Checker;
 import lightsearch.server.data.ClientCommandDTO;
+import lightsearch.server.data.ClientDTO;
 import lightsearch.server.database.CommandExecutor;
 import lightsearch.server.database.cmd.message.DatabaseCommandMessage;
 import lightsearch.server.entity.Client;
@@ -68,7 +69,12 @@ public class LoginProcess implements ClientProcess<ClientCommandResult> {
 
             String jwtToken = clientsService.addClient(cmdDTO.getIMEI(), cmdDTO.getUsername()).toString();
             return resultProducer.getClientCommandResultLoginInstance(
-                    resultProducer.getClientCommandResultWithTokenInstance(result, jwtToken));
+                    resultProducer.getClientCommandResultWithTokenInstance(result, jwtToken),
+                    ((ClientDTO)
+                            clientsService
+                                    .client(cmdDTO.getIMEI())
+                                    .formForSend())
+                            .getIMEI());
         } catch (CheckerException | CommandExecutorException | ClientNotFoundException ex) {
             return resultProducer.getClientCommandResultSimpleInstance(
                     false,

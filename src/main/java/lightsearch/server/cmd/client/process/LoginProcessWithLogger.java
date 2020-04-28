@@ -18,6 +18,7 @@
 package lightsearch.server.cmd.client.process;
 
 import lightsearch.server.data.ClientCommandDTO;
+import lightsearch.server.data.ClientLoginCommandResultDTO;
 import lightsearch.server.entity.ClientCommand;
 import lightsearch.server.entity.ClientCommandResult;
 import lightsearch.server.log.LoggerServer;
@@ -44,7 +45,8 @@ public class LoginProcessWithLogger implements ClientProcess<ClientCommandResult
         if(result.isDone()) {
             ClientCommandDTO commandDTO = (ClientCommandDTO) command.formForSend();
             logger.info(LoginProcess.class,
-                    "Client connected: " + "IMEI - " + commandDTO.getIMEI() +
+                    "Client connected: " +
+                            "IMEI - " + ((ClientLoginCommandResultDTO) result.formForSend()).getHashIMEI() +
                             ", ip - " + commandDTO.getIp() +
                             ", os - " + commandDTO.getOs() +
                             ", model - " + commandDTO.getModel() +

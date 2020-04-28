@@ -25,7 +25,7 @@ public interface ClientCommandResultProducer {
     ClientCommandResult getClientCommandResultSimpleInstance(boolean isDone, String message, String logMessage);
     ClientCommandResult getClientCommandResultWithTokenInstance(ClientCommandResult clientCommandResult, String token);
     ClientCommandResult getClientCommandResultCheckAuthInstance(boolean isOk);
-    ClientCommandResult getClientCommandResultLoginInstance(ClientCommandResult clientCommandResult);
+    ClientCommandResult getClientCommandResultLoginInstance(ClientCommandResult clientCommandResult, String hashIMEI);
     ClientCommandResult getClientCommandResultSearchInstance(ClientCommandResult clientCommandResult);
     ClientCommandResult getClientCommandResultOpenSoftCheckInstance(ClientCommandResult clientCommandResult);
     ClientCommandResult getClientCommandResultCloseSoftCheckInstance(ClientCommandResult clientCommandResult);

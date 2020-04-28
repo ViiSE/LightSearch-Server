@@ -27,9 +27,11 @@ import org.springframework.stereotype.Component;
 public class ClientCommandResultLoginImpl implements ClientCommandResult {
 
     private final ClientCommandResult clientCommandResult;
+    private final String hashIMEI;
 
-    public ClientCommandResultLoginImpl(ClientCommandResult clientCommandResult) {
+    public ClientCommandResultLoginImpl(ClientCommandResult clientCommandResult, String hashIMEI) {
         this.clientCommandResult = clientCommandResult;
+        this.hashIMEI = hashIMEI;
     }
 
     @Override
@@ -58,6 +60,7 @@ public class ClientCommandResultLoginImpl implements ClientCommandResult {
         result.setTKList(resDTO.getTKList());
         result.setToken(resDTO.getToken());
         result.setUserIdentifier(resDTO.getUserIdentifier());
+        result.setHashIMEI(hashIMEI);
 
         return result;
     }
