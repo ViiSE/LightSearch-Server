@@ -29,10 +29,10 @@ public class LightSearchServer {
     public static void main(String[] args) {
         ApplicationContext ctx = SpringApplication.run(LightSearchServer.class, args);
 
-        System.out.println(ctx.getBean("appGreetingsDefault", AppGreetings.class).greetings());
-        ServerInitializer serverInitializer = ctx.getBean("serverInitializerDefault", ServerInitializer.class);
+        System.out.println(ctx.getBean("appGreetings", AppGreetings.class).greetings());
+        ServerInitializer serverInitializer = ctx.getBean("serverInitializer", ServerInitializer.class);
         serverInitializer.initialize();
 
-        System.out.println(ctx.getBean("endStartupMessageDefault", EndStartupMessage.class).message());
+        System.out.println(ctx.getBean("endStartupMessage", EndStartupMessage.class).message());
     }
 }

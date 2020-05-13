@@ -26,6 +26,7 @@
     <parameter name="name" value="Item1"/>
     <parameter name="amount" value="5"/>
     <parameter name="subdiv" value="sb1"/>
+    <parameter name="encData" value="encrypted data"/>
 
     <test name="ProducerEntityTest">
         <packages>

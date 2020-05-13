@@ -22,7 +22,7 @@ import lightsearch.server.exception.CheckerException;
 import lightsearch.server.security.HashAlgorithm;
 import lightsearch.server.security.HashAlgorithmSHA512Impl;
 import lightsearch.server.service.BlacklistService;
-import lightsearch.server.service.BlacklistServiceDefaultImpl;
+import lightsearch.server.service.BlacklistServiceImpl;
 import lightsearch.server.service.ClientsService;
 import lightsearch.server.service.ClientsServiceTestImpl;
 import org.testng.annotations.AfterClass;
@@ -40,7 +40,7 @@ public class CheckerClientContainsTestNG {
     @Parameters({"blacklistIMEI", "validIMEI"})
     public void setUpClass(String blIMEI, String vIMEI) {
         HashAlgorithm ha = new HashAlgorithmSHA512Impl();
-        BlacklistService<String> blacklistService = new BlacklistServiceDefaultImpl(ha);
+        BlacklistService<String> blacklistService = new BlacklistServiceImpl(ha);
         blacklistService.blacklist().add(blIMEI);
         ClientsService<String, Client> clientsService = new ClientsServiceTestImpl();
         clientsService.addClient(vIMEI, "user1");

@@ -46,8 +46,9 @@ public class ClientCommandDTO {
     @JsonProperty("user_ident") private String userIdentifier;
     private String delivery;
     private String cardCode;
-    private boolean checkEan13;
+    private Boolean checkEan13;
     private String factoryBarcode;
+    private String encryptedData;
 
     @JsonIgnore
     public void setLsCode(String lsCode) {
@@ -176,11 +177,11 @@ public class ClientCommandDTO {
         return cardCode;
     }
 
-    public void setCheckEan13(boolean checkEan13) {
+    public void setCheckEan13(Boolean checkEan13) {
         this.checkEan13 = checkEan13;
     }
 
-    public boolean getCheckEan13() {
+    public Boolean getCheckEan13() {
         return checkEan13;
     }
 
@@ -190,5 +191,13 @@ public class ClientCommandDTO {
 
     public String getFactoryBarcode() {
         return factoryBarcode;
+    }
+
+    public void setEncryptedData(String encryptedData) {
+        this.encryptedData = encryptedData;
+    }
+
+    public String getEncryptedData() {
+        return encryptedData;
     }
 }

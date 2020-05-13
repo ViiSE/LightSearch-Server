@@ -21,7 +21,7 @@ import lightsearch.server.entity.ClientCommandResult;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
-@Service("processorClientProducerDefault")
+@Service("processorClientProducer")
 public class ProcessClientProducerDefaultImpl implements ProcessClientProducer<ClientCommandResult> {
 
     private final ApplicationContext ctx;
@@ -98,5 +98,15 @@ public class ProcessClientProducerDefaultImpl implements ProcessClientProducer<C
     @Override
     public ClientProcess<ClientCommandResult> getCheckAuthProcessInstance() {
         return ctx.getBean("checkAuthProcess", CheckAuthProcess.class);
+    }
+
+    @Override
+    public ClientProcess<ClientCommandResult> getKeyProcessInstance() {
+        return ctx.getBean("keyProcessWithLogger", KeyProcessWithLoggerImpl.class);
+    }
+
+    @Override
+    public ClientProcess<ClientCommandResult> getLoginProcessEncryptedInstance() {
+        return ctx.getBean("loginProcessEncryptedWithLogger", LoginProcessEncryptedWithLogger.class);
     }
 }

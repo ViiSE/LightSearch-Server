@@ -32,12 +32,12 @@ import static test.message.TestMessage.*;
 public class DateTimeComparatorTestNG {
 
     private DateTimeComparator dateTimeComparator;
-    private CurrentDateTime curDateTime = new CurrentDateTimeDefaultImpl();
+    private CurrentDateTime curDateTime = new CurrentDateTimeImpl();
 
     @BeforeClass
     public void setUpClass() {
         String pattern = CurrentDateTimePattern.dateTimeInStandardForm();
-        dateTimeComparator = new DateTimeComparatorDefaultImpl(pattern);
+        dateTimeComparator = new DateTimeComparatorImpl(pattern);
 
         testBegin(DateTimeComparator.class);
     }

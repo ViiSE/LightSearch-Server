@@ -22,7 +22,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lightsearch.server.LightSearchServer;
 import lightsearch.server.constants.ClientCommands;
 import lightsearch.server.database.cmd.message.DatabaseCommandMessage;
-import lightsearch.server.database.cmd.message.DatabaseCommandMessageSearchDefaultWindowsJSONImpl;
+import lightsearch.server.database.cmd.message.DatabaseCommandMessageSearchWindowsJSONImpl;
 import lightsearch.server.entity.*;
 import lightsearch.server.exception.CommandExecutorException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +45,7 @@ public class DatabaseCommandExecutorIntegrationTestNG extends AbstractTestNGSpri
 
     @Test
     public void exec() {
-        DatabaseCommandMessage dbCmdMsg = new DatabaseCommandMessageSearchDefaultWindowsJSONImpl(
+        DatabaseCommandMessage dbCmdMsg = new DatabaseCommandMessageSearchWindowsJSONImpl(
                 new ClientCommandWithBarcodeImpl(
                         new ClientCommandWithTKImpl(
                                 new ClientCommandWithSkladImpl(

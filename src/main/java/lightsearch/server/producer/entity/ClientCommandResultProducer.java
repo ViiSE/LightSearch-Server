@@ -37,4 +37,5 @@ public interface ClientCommandResultProducer {
     ClientCommandResult getClientCommandResultUnbindInstance(ClientCommandResult clientCommandResult);
     ClientCommandResult getClientCommandResultSkladListInstance(ClientCommandResult clientCommandResult);
     ClientCommandResult getClientCommandResultTKListInstance(ClientCommandResult clientCommandResult);
+    ClientCommandResult getClientCommandResultKeyInstance(String key, String type, String alg);
 }

@@ -32,7 +32,7 @@ public class CheckAuthProcess implements ClientProcess<ClientCommandResult> {
     }
 
     @Override
-    public ClientCommandResult apply(ClientCommand command) {
+    public ClientCommandResult apply(ClientCommand ignore) {
         return resultProducer.getClientCommandResultCheckAuthInstance(true);
     }
 }

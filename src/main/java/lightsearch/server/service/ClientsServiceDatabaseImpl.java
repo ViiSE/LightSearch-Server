@@ -45,7 +45,7 @@ public class ClientsServiceDatabaseImpl implements ClientsService<String, Client
     private final Checker<ClientCommand> clientChecker;
 
     public ClientsServiceDatabaseImpl(
-            @Qualifier("clientsServiceDefault") ClientsService<String, Client> clientsService,
+            @Qualifier("clientsService") ClientsService<String, Client> clientsService,
             @Qualifier("hashAlgorithmsSHA512") HashAlgorithm hashAlgorithm,
             ClientCommandProducer clientCommandProducer,
             @Qualifier("clientCheckerDatabaseConnection") Checker<ClientCommand> clientChecker) {

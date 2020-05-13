@@ -46,6 +46,8 @@ public class ClientProcessesWithClientResultImpl implements Processes<ClientComm
         processes.put(ClientCommands.SKLAD_LIST, prcProducer.getSkladListProcessInstance());
         processes.put(ClientCommands.TK_LIST, prcProducer.getTKListProcessInstance());
         processes.put(ClientCommands.CHECK_AUTH, prcProducer.getCheckAuthProcessInstance());
+        processes.put(ClientCommands.KEY, prcProducer.getKeyProcessInstance());
+        processes.put(ClientCommands.LOGIN_ENCRYPTED, prcProducer.getLoginProcessEncryptedInstance());
     }
 
     @Override

@@ -39,4 +39,5 @@ public interface ClientCommandProducer {
     ClientCommand getClientCommandWithFactoryBarcodeInstance(ClientCommand command, String factoryBarcode);
     ClientCommand getClientCommandWithCheckEAN13Instance(ClientCommand command, boolean checkEan13);
     ClientCommand getClientCommandWithUsernameInstance(ClientCommand command, String username);
+    ClientCommand getClientCommandWithEncryptedDataInstance(ClientCommand command, String encData);
 }

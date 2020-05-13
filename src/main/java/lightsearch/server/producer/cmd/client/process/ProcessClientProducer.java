@@ -33,4 +33,6 @@ public interface ProcessClientProducer<R> {
     ClientProcess<R> getSkladListProcessInstance();
     ClientProcess<R> getTKListProcessInstance();
     ClientProcess<R> getCheckAuthProcessInstance();
+    ClientProcess<R> getKeyProcessInstance();
+    ClientProcess<R> getLoginProcessEncryptedInstance();
 }

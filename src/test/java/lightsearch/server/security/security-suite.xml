@@ -12,6 +12,9 @@
             <class name="lightsearch.server.security.HashAlgorithmSHA512TestNG"/>
             <class name="lightsearch.server.security.JWTFromIMEITestNG"/>
             <class name="lightsearch.server.security.JWTExpirationDateTestNG"/>
+            <class name="lightsearch.server.security.KeysRSATestNG"/>
+            <class name="lightsearch.server.security.EncryptedInformationTestNG"/>
+            <class name="lightsearch.server.security.DecryptedInformationTestNG"/>
         </classes>
     </test>
 

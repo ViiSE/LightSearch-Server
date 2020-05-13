@@ -9,7 +9,7 @@
         <parameter name="jwtValidDayCount" value="1"/>
 
         <classes>
-            <class name="lightsearch.server.entity.JWTTokenHeaderDefaultTestNG"/>
+            <class name="lightsearch.server.entity.JWTTokenHeaderTestNG"/>
         </classes>
     </test>
 

@@ -47,7 +47,7 @@ public class ClientWithJWTTokenTestNG {
                 hashAlgorithm,
                 new JWTExpirationDateImpl(jwtValidDayCount));
 
-        tokenHeader = new JWTTokenHeaderDefaultImpl(
+        tokenHeader = new JWTTokenHeaderImpl(
                 TestUtils.objectMapperWithJavaTimeModule(),
                 jwt.generate(IMEI));
     }

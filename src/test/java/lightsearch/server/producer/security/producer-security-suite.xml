@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="ProducerSecuritySuite">
+
+    <parameter name="rawData" value="Encrypted data"/>
+
+    <test name="ProducerSecurityTest">
+        <packages>
+            <package name="lightsearch.server.producer.security"/>
+        </packages>
+    </test>
+
+</suite>

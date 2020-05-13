@@ -19,12 +19,12 @@ package lightsearch.server.producer.entity;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lightsearch.server.entity.JWTTokenHeader;
-import lightsearch.server.entity.JWTTokenHeaderDefaultImpl;
+import lightsearch.server.entity.JWTTokenHeaderImpl;
 
 public class JWTTokenHeaderProducerTestImpl implements JWTTokenHeaderProducer {
 
     @Override
     public JWTTokenHeader getJWTTokenHeaderDefaultInstance(ObjectMapper mapper, String token) {
-        return new JWTTokenHeaderDefaultImpl(mapper, token);
+        return new JWTTokenHeaderImpl(mapper, token);
     }
 }

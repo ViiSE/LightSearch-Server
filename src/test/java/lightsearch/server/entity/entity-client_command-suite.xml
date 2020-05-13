@@ -18,6 +18,7 @@
         <parameter name="password" value="pa55!"/>
         <parameter name="factoryBarcode" value="22505303"/>
         <parameter name="checkEan13" value="true"/>
+        <parameter name="encryptedData" value="I am encrypted data!"/>
 
         <classes>
             <class name="lightsearch.server.entity.ClientCommandSimpleTestNG"/>
@@ -33,6 +34,7 @@
             <class name="lightsearch.server.entity.ClientCommandWithUsernameAndPasswordTestNG"/>
             <class name="lightsearch.server.entity.ClientCommandWithCheckEAN13TestNG"/>
             <class name="lightsearch.server.entity.ClientCommandWithFactoryBarcodeTestNG"/>
+            <class name="lightsearch.server.entity.ClientCommandWithEncryptedDataTestNG"/>
         </classes>
     </test>
 

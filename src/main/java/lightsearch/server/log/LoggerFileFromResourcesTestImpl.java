@@ -33,7 +33,7 @@ public class LoggerFileFromResourcesTestImpl implements LoggerFile {
     private final LightSearchChecker checker;
 
     public LoggerFileFromResourcesTestImpl(
-            @Qualifier("logDirectoryDefault") LogDirectory logDirectory,
+            @Qualifier("logDirectory") LogDirectory logDirectory,
             LightSearchChecker checker) {
         this.logDirectory = logDirectory;
         this.checker = checker;

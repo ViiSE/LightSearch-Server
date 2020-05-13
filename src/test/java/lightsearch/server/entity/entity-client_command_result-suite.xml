@@ -21,6 +21,7 @@
             <class name="lightsearch.server.entity.ClientCommandResultTKListTestNG"/>
             <class name="lightsearch.server.entity.ClientCommandResultUnbindCheckTestNG"/>
             <class name="lightsearch.server.entity.ClientCommandResultUnbindTestNG"/>
+            <class name="lightsearch.server.entity.ClientCommandResultKeyTestNG"/>
         </classes>
     </test>
 

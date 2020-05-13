@@ -62,6 +62,15 @@ public class ClientsCommandsController {
         return ((ClientCheckAuthCommandResultDTO)
                 processes.get(ClientCommands.CHECK_AUTH).apply(null).formForSend());
     }
+    @ApiOperation(value = "Запрос ключа для авторизации в LightSearch (для точки clients/login/encrypted)",
+            notes = "При вызове данной точки токен в HTTP заголовке указывать не нужно!")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Ключ был передан")})
+    @GetMapping("clients/login/key")
+    public ClientCommandResultKeyDTO keyCommand() {
+        return ((ClientCommandResultKeyDTO)
+                processes.get(ClientCommands.KEY).apply(null).formForSend());
+    }
 
     @ApiOperation(value = "Авторизация пользователей LightSearch")
     @ApiResponses(value = {
@@ -102,6 +111,34 @@ public class ClientsCommandsController {
                         cmdDTO.getUsername(),
                         cmdDTO.getPassword());
         return (ClientLoginCommandResultDTO) getCommandResult(ClientCommands.LOGIN, cmd, HttpStatus.UNAUTHORIZED);
+    }
+
+    @ApiOperation(value = "Авторизация пользователей LightSearch (зашифрованная)",
+            notes = "Для использования этой точки необходимо запросить открытый ключ для шифрования через " +
+                    "/clients/login/key.")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200,
+                    message = "При успешной авторизации LightSearch выдает токен пользователю, с помощью которого он " +
+                            "может вызывать другие команды, передавая его в HTTP заголовок, а также списки текущих " +
+                            "складов и торговых комплексов (ТК)."),
+            @ApiResponse(code = 401,
+                    message = "Регистрационные данные, указанные клиентом, недействительны.")})
+    @PostMapping("clients/login/encrypted")
+    public ClientLoginCommandResultDTO loginEncryptedCommand(
+            @ApiParam(required = true, value =
+                    "В поле <code><b>clientCommand{data}</b></code> необходимо поместить зашифрованную " +
+                            "информацию о клиенте. Это поле должно содержать те же поля, что и в " +
+                            "<code>clients/login</code>, зашифрованные при помощи ключа, который можно получить в " +
+                            "<code>clients/login/key</code>." +
+                            "\n___" +
+                            "\n<i>Примечание: при вызове данной точки токен в HTTP заголовке указывать не нужно!</i>")
+            @RequestBody ClientLoginEncryptedCommandDTO cmdDTO) throws ClientErrorException {
+        ClientCommand cmd = cmdProducer
+                .getClientCommandWithEncryptedDataInstance(
+                        cmdProducer.getClientCommandSimpleInstance(
+                                ClientCommands.LOGIN_ENCRYPTED),
+                        cmdDTO.getData());
+        return (ClientLoginCommandResultDTO) getCommandResult(ClientCommands.LOGIN_ENCRYPTED, cmd, HttpStatus.UNAUTHORIZED);
     }
 
     @ApiOperation(value = "Поиск товаров", authorizations = {@Authorization(value = "Bearer")})
