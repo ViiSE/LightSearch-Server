@@ -18,12 +18,12 @@ package lightsearch.server.about;
 
 import org.springframework.stereotype.Component;
 
-@Component("endStartupMessageDefault")
-public class EndStartupMessageDefaultImpl implements EndStartupMessage {
+@Component("endStartupMessage")
+public class EndStartupMessageImpl implements EndStartupMessage {
 
     @Override
     public String message() {
-        return "Now Logging is in the folder logs and this window. For administration use LightSearch Admin Panel. " +
+        return "Now Logging is in the folder logs and this window. For administration use LightSearch Admin Panel " +
                 "(/login).";
     }
 }

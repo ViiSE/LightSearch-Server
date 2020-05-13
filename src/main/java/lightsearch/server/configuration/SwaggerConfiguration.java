@@ -17,6 +17,7 @@
 
 package lightsearch.server.configuration;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -39,7 +40,11 @@ import java.util.List;
 @EnableSwagger2
 @EnableWebMvc
 @PropertySource("classpath:swagger.properties")
+@PropertySource("classpath:application.properties")
 public class SwaggerConfiguration {
+
+    @Value("${lightsearch.server.version}")
+    private String appVersion;
 
     @Bean
     public Docket adminsAPI() {
@@ -97,7 +102,7 @@ public class SwaggerConfiguration {
                         "авторизоваться в LightSearch как администратор.")
                 .license("Apache License v2.0")
                 .licenseUrl("https://www.apache.org/licenses/LICENSE-2.0.txt")
-                .version("3.0.0")
+                .version(appVersion)
                 .build();
     }
 
@@ -107,7 +112,7 @@ public class SwaggerConfiguration {
                 .description("Добро пожаловать в документацию LightSearch!")
                 .license("Apache License v2.0")
                 .licenseUrl("https://www.apache.org/licenses/LICENSE-2.0.txt")
-                .version("3.0.0")
+                .version(appVersion)
                 .build();
     }
 }

@@ -7,7 +7,7 @@
     <groupId>lightsearch.server</groupId>
     <artifactId>LightSearch_Server_Spring</artifactId>
     <name>LightSearch Server</name>
-    <version>3.5.3</version>
+    <version>3.6.0</version>
     <packaging>jar</packaging>
 
     <parent>

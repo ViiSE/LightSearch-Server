@@ -16,17 +16,22 @@
 
 package lightsearch.server.about;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-@Component("appGreetingsDefault")
-public class AppGreetingsDefaultImpl implements AppGreetings {
+@Component("appGreetings")
+public class AppGreetingsImpl implements AppGreetings {
 
-    private final static String APP_VERSION = "3.6.0";
+    private final String appVersion;
+
+    public AppGreetingsImpl(@Value("${lightsearch.server.version}") String appVersion) {
+        this.appVersion = appVersion;
+    }
 
     @Override
     public String greetings() {
         return "------------------------------------------------\n" +
-                "LightSearch Server, version " + APP_VERSION + "\nWelcome!\n" +
+                "LightSearch Server, version " + appVersion + "\nWelcome!\n" +
                 "------------------------------------------------";
     }
 }
