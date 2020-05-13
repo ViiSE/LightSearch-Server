@@ -58,6 +58,20 @@ LightSearch Server имеет три роли пользователей - admin
 - Изменение параметров подключения к базе данных (PUT /admins/commands/datasource)
 - Перезагрузка LightSearch Server (GET /admins/commands/restart)
 
+Файл application.properties
+---------------------------
+Поместите файл application.properties в папку /config в той же директории, что и jar файл LightSearch Server. Настройки
+типичные для любого приложения Spring Boot. Но есть некоторые особенности:
+1) LightSearch Server не использует ORM. Поэтому включать его в настройках не нужно;
+2) В файле application.properties определены некоторые уникальные свойства:
+ - lightsearch.server.admin.username - имя администратора (для входа через точку /login);
+ - lightsearch.server.dev.username - имя разработчика (для входа через точку /login);
+ - lightsearch.server.admin.password - пароль администратора в формате bcrypt (для входа через точку /login);
+ - lightsearch.server.dev.password - пароль разработчика в формате bcrypt (для входа через точку /login);
+ - lightsearch.server.jwt-valid-day-count - время жизни JWT-токена, в днях;
+ - lightsearch.server.jwt-secret - приватный ключ для JWT-токена (например, RSA);
+ - lightsearch.server.version - версия LightSearch Server.
+
 Ссылки
 ------
 История проекта LightSearch доступна в [документах](https://github.com/ViiSE/LightSearch/tree/master/Documents/Project%20history)
