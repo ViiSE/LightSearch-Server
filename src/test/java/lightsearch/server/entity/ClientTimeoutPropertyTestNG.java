@@ -44,7 +44,7 @@ public class ClientTimeoutPropertyTestNG {
         testBegin(SimplePropertyImpl.class, "name()");
 
         Property<String> property = new ClientTimeoutPropertyImpl(value);
-        assertEquals(property.name(), "lightsearch.server.settings.timeout.client-timeout");
+        assertEquals(property.name(), "lightsearch.server.jwt-valid-day-count");
         System.out.println("name: " + property.name());
 
         testEnd(SimplePropertyImpl.class, "name()");

@@ -11,7 +11,7 @@ public class ClientTimeoutPropertyImpl implements Property<String> {
     private final int value;
 
     public ClientTimeoutPropertyImpl(int value) {
-        this.name = "lightsearch.server.settings.timeout.client-timeout";
+        this.name = "lightsearch.server.jwt-valid-day-count";
         this.value = value;
     }
 

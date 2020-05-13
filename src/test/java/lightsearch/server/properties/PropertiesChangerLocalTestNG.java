@@ -77,7 +77,7 @@ public class PropertiesChangerLocalTestNG {
             props.forEach(System.out::println);
             boolean isCheck = false;
             for(String pr : props) {
-                if (pr.contains("lightsearch.server.settings.timeout.client-timeout=" + tout)) {
+                if (pr.contains("lightsearch.server.jwt-valid-day-count=" + tout)) {
                     isCheck = true;
                     break;
                 }
