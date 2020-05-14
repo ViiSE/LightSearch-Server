@@ -184,7 +184,7 @@ public class ProcessClientProducerIntegrationTestNG extends AbstractTestNGSpring
 
         ClientProcess<ClientCommandResult> process = producer.getLoginProcessEncryptedInstance();
         System.out.println("instance: " + process);
-        assertTrue(process instanceof LoginProcessEncryptedWithLogger);
+        assertTrue(process instanceof LoginProcessEncrypted);
     }
 
     @AfterClass

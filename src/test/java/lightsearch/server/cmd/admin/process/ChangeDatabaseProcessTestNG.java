@@ -22,7 +22,6 @@ import lightsearch.server.checker.Checker;
 import lightsearch.server.checker.CommandCheckerAdminChangeDatabaseImpl;
 import lightsearch.server.checker.LightSearchCheckerDefaultImpl;
 import lightsearch.server.data.AdminCommandDTO;
-import lightsearch.server.data.AdminCommandResultDTO;
 import lightsearch.server.data.AdminCommandSimpleResultDTO;
 import lightsearch.server.entity.AdminCommand;
 import lightsearch.server.entity.AdminCommandDatabaseImpl;

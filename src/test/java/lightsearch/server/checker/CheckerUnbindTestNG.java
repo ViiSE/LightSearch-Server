@@ -18,7 +18,10 @@
 package lightsearch.server.checker;
 
 import lightsearch.server.constants.ClientCommands;
-import lightsearch.server.entity.*;
+import lightsearch.server.entity.ClientCommand;
+import lightsearch.server.entity.ClientCommandSimpleImpl;
+import lightsearch.server.entity.ClientCommandWithFactoryBarcodeImpl;
+import lightsearch.server.entity.ClientCommandWithUserIdentifierImpl;
 import lightsearch.server.exception.CheckerException;
 import org.testng.annotations.*;
 

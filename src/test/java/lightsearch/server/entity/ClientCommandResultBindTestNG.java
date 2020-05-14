@@ -25,7 +25,6 @@ import org.testng.annotations.Test;
 import test.TestUtils;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import static test.message.TestMessage.*;
 

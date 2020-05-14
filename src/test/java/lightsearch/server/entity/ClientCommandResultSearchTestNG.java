@@ -18,7 +18,6 @@
 package lightsearch.server.entity;
 
 import lightsearch.server.data.ClientCommandResultDTO;
-import lightsearch.server.data.ClientLoginCommandResultDTO;
 import lightsearch.server.data.ClientSearchCommandResultDTO;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;

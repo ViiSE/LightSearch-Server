@@ -18,7 +18,10 @@
 package lightsearch.server.database.cmd.message;
 
 import lightsearch.server.constants.ClientCommands;
-import lightsearch.server.entity.*;
+import lightsearch.server.entity.ClientCommand;
+import lightsearch.server.entity.ClientCommandSimpleImpl;
+import lightsearch.server.entity.ClientCommandWithBarcodeImpl;
+import lightsearch.server.entity.ClientCommandWithUsernameImpl;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;

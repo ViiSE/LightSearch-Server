@@ -21,7 +21,6 @@ import lightsearch.server.constants.ClientCommands;
 import lightsearch.server.entity.ClientCommand;
 import lightsearch.server.entity.ClientCommandSimpleImpl;
 import lightsearch.server.entity.ClientCommandWithBarcodeImpl;
-import lightsearch.server.entity.ClientCommandWithCheckEAN13Impl;
 import lightsearch.server.exception.CheckerException;
 import org.testng.annotations.*;
 

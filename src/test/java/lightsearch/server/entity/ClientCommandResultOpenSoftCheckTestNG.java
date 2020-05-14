@@ -19,14 +19,12 @@ package lightsearch.server.entity;
 
 import lightsearch.server.data.ClientCommandResultDTO;
 import lightsearch.server.data.ClientOpenSoftCheckCommandResultDTO;
-import lightsearch.server.data.ClientSearchCommandResultDTO;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import test.TestUtils;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import static test.message.TestMessage.*;
 

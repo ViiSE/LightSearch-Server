@@ -17,7 +17,6 @@
 
 package lightsearch.server.entity;
 
-import lightsearch.server.data.ClientBindCommandResultDTO;
 import lightsearch.server.data.ClientCommandResultDTO;
 import lightsearch.server.data.ClientUnbindCommandResultDTO;
 import org.testng.annotations.AfterClass;

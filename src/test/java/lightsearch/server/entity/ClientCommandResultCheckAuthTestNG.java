@@ -18,7 +18,6 @@
 package lightsearch.server.entity;
 
 import lightsearch.server.data.ClientCheckAuthCommandResultDTO;
-import lightsearch.server.data.ClientCommandResultDTO;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;

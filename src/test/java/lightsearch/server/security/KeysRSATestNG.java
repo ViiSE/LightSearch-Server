@@ -23,7 +23,6 @@ import org.testng.annotations.Test;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 
-
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
 import static test.message.TestMessage.*;

@@ -18,7 +18,6 @@
 package lightsearch.server.cmd.admin.process;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import lightsearch.server.data.AdminCommandResultDTO;
 import lightsearch.server.data.AdminCommandResultWithBlacklistDTO;
 import lightsearch.server.entity.AdminCommandResult;
 import lightsearch.server.producer.entity.AdminCommandResultProducer;

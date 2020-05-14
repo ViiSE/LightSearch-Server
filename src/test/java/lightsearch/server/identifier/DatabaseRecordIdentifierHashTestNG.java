@@ -20,10 +20,9 @@ package lightsearch.server.identifier;
 import lightsearch.server.security.HashAlgorithmsSHA256Impl;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertNotEquals;
 import static test.message.TestMessage.*;
 
 public class DatabaseRecordIdentifierHashTestNG {

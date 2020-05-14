@@ -20,7 +20,6 @@ package lightsearch.server.cmd.admin.process;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lightsearch.server.checker.Checker;
 import lightsearch.server.checker.CommandCheckerAdminClientTimeoutImpl;
-import lightsearch.server.data.AdminCommandResultDTO;
 import lightsearch.server.data.AdminCommandSimpleResultDTO;
 import lightsearch.server.entity.AdminCommand;
 import lightsearch.server.entity.AdminCommandClientTimeoutImpl;

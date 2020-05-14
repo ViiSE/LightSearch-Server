@@ -17,7 +17,6 @@
 
 package lightsearch.server.entity;
 
-import lightsearch.server.data.AdminCommandResultDTO;
 import lightsearch.server.data.AdminCommandSimpleResultDTO;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;

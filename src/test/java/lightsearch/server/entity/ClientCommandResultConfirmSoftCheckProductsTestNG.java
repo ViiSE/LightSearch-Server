@@ -17,7 +17,6 @@
 
 package lightsearch.server.entity;
 
-import lightsearch.server.data.ClientCloseSoftCheckCommandResultDTO;
 import lightsearch.server.data.ClientCommandResultDTO;
 import lightsearch.server.data.ClientConfirmSoftCheckProductsCommandResultDTO;
 import org.testng.annotations.AfterClass;
