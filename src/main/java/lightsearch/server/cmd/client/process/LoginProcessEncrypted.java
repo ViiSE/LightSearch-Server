@@ -46,7 +46,7 @@ public class LoginProcessEncrypted implements ClientProcess<ClientCommandResult>
     private final ObjectMapper mapper;
 
     public LoginProcessEncrypted(
-            @Qualifier("loginProcess") ClientProcess<ClientCommandResult> loginProcess,
+            @Qualifier("loginProcessWithLogger") ClientProcess<ClientCommandResult> loginProcess,
             Keys<PublicKey, PrivateKey> keys,
             InformationProducer infoProducer,
             ClientCommandProducer cmdProducer,
