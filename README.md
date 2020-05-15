@@ -46,8 +46,7 @@ LightSearch Server имеет три роли пользователей - admin
 - Подтверждение товаров мягкого чека (POST /clients/softChecks/actions/confirm-products)
 - Закрытие мягкого чека (POST /clients/softChecks/actions/close)
 
-Зашифрованная авторизация
--------------------------
+## Зашифрованная авторизация
 Зашифрованная авторизация доступна через точку POST /clients/login/encrypted. Для ее использования необходимо запросить
 через точку GET /clients/login/key ключ шифрования. Эта точка выгружает ключ, тип алгоритма и сам алгоритм. На данный 
 момент сделана реализация алгоритма RSA (RSA/ECB/OAEPWithSHA1AndMGF1Padding).
