@@ -350,7 +350,7 @@ public class ClientsCommandsController {
             @RequestParam(name = "user_ident") String userIdent,
             @ApiParam(required = true, value = "Код карточки, за которым закреплен мягкий чек.")
             @RequestParam(name = "card_code") String cardCode,
-            @ApiParam(required = true, value = "Список с id товаров, остатки которых нужно обновить")
+            @ApiParam(required = true, value = "Список с id товаров, остатки которых нужно обновить.")
             @RequestParam(name = "products_id") List<String> productsId) throws ClientErrorException {
         List<Product> products = new ArrayList<>();
         productsId.forEach(id -> {
