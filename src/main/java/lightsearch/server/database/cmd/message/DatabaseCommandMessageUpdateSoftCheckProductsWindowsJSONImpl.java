@@ -1,5 +1,5 @@
 /*
- *  Copyright 2019 ViiSE.
+ *  Copyright 2020 ViiSE.
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -14,15 +14,6 @@
  *  limitations under the License.
  */
 
-/*
- * ViiSE (C). 2019. All rights reserved.
- * 
- *
- * This program is owned by ViiSE.
- * Modification and use of this source code for its own purposes is allowed only
- * with the consent of the author of this source code.
- * If you want to contact the author, please, send an email to: viise@outlook.com
- */
 package lightsearch.server.database.cmd.message;
 
 import lightsearch.server.constants.DatabaseCommandMessages;
