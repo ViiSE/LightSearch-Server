@@ -53,7 +53,7 @@ public class ConfirmSoftCheckProductsProcess implements ClientProcess<ClientComm
             checker.check(command);
 
             DatabaseCommandMessage dbCmdMessage =
-                    dbCmdMsgProducer.getDatabaseCommandMessageConfirmSoftCheckProductsDefaultWindowsJSONInstance(command);
+                    dbCmdMsgProducer.getDatabaseCommandMessageConfirmSoftCheckProductsWindowsJSONInstance(command);
 
             ClientCommandResult cmdRes = cmdExec.exec(dbCmdMessage);
 

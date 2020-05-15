@@ -26,6 +26,7 @@ public class ClientCommands {
     public static final String CLOSE_SOFT_CHECK = "close_soft_check";
     public static final String CANCEL_SOFT_CHECK = "cancel_soft_check";
     public static final String CONFIRM_SOFT_CHECK_PRODUCTS = "confirm_prod_sf";
+    public static final String UPDATE_SOFT_CHECK_PRODUCTS = "update_prod_sf";
     public static final String SEARCH = "search";
     public static final String SEARCH_SOFT_CHECK = "search_soft_check";
     public static final String BIND_CHECK = "bind_check";

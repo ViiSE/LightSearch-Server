@@ -1,5 +1,5 @@
 /*
- *  Copyright 2020 ViiSE.
+ *  Copyright 2019 ViiSE.
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -332,6 +332,39 @@ public class ClientsCommandsController {
                         cmdDTO.getCardCode()),
                 cmdDTO.getUserIdentifier());
         return (ClientCancelSoftCheckCommandResultDTO) getCommandResult(ClientCommands.CANCEL_SOFT_CHECK, cmd, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ApiOperation(value = "Обновление остатков товаров мягкого чека", authorizations = {@Authorization(value = "Bearer")},
+            notes = "Запрашивает остатки указанных товаров мягкого чека. Мягкий чек должен быть открыт!")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200,
+                    message = "Выгружает новые остатки товаров мягкого чека."),
+            @ApiResponse(code = 401,
+                    message = "Для использования данной точки необходимо авторизоваться в LightSearch через точку " +
+                            "<b>/clients/login</b>."),
+            @ApiResponse(code = 500,
+                    message = "Произошла внутренняя ошибка в LightSearch.")})
+    @GetMapping("/clients/softChecks/actions/update-products")
+    public ClientSoftCheckUpdateProductsCommandResultDTO updateProducts(
+            @ApiParam(required = true, value = "Уникальный идентификатор пользователя, за которым закреплен мягкий чек.")
+            @RequestParam(name = "user_ident") String userIdent,
+            @ApiParam(required = true, value = "Код карточки, за которым закреплен мягкий чек.")
+            @RequestParam(name = "card_code") String cardCode,
+            @ApiParam(required = true, value = "Список с id товаров, остатки которых нужно обновить")
+            @RequestParam(name = "products_id") List<String> productsId) throws ClientErrorException {
+        List<Product> products = new ArrayList<>();
+        productsId.forEach(id -> {
+            Product pr = productProducer.getProductSimpleInstance(id);
+            products.add(pr);
+        });
+        ClientCommand cmd = cmdProducer.getClientCommandWithProductsInstance(
+                cmdProducer.getClientCommandWithUserIdentifierInstance(
+                        cmdProducer.getClientCommandWithCardCodeInstance(
+                                cmdProducer.getClientCommandSimpleInstance(ClientCommands.UPDATE_SOFT_CHECK_PRODUCTS),
+                                cardCode),
+                        userIdent),
+                products);
+        return (ClientSoftCheckUpdateProductsCommandResultDTO) getCommandResult(ClientCommands.UPDATE_SOFT_CHECK_PRODUCTS, cmd, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ApiOperation(value = "Подтвердить товары мягкого чека", authorizations = {@Authorization(value = "Bearer")})

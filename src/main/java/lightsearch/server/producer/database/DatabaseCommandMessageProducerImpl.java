@@ -31,67 +31,72 @@ public class DatabaseCommandMessageProducerImpl implements DatabaseCommandMessag
     }
 
     @Override
-    public DatabaseCommandMessage getDatabaseCommandMessageConnectionDefaultWindowsJSONInstance(ClientCommand command) {
+    public DatabaseCommandMessage getDatabaseCommandMessageConnectionWindowsJSONInstance(ClientCommand command) {
         return (DatabaseCommandMessage) ctx.getBean("databaseCommandMessageConnectionWindowsJSON", command);
     }
 
     @Override
-    public DatabaseCommandMessage getDatabaseCommandMessageSearchDefaultWindowsJSONInstance(ClientCommand command) {
+    public DatabaseCommandMessage getDatabaseCommandMessageSearchWindowsJSONInstance(ClientCommand command) {
         return (DatabaseCommandMessage) ctx.getBean("databaseCommandMessageSearchWindowsJSON", command);
     }
 
     @Override
-    public DatabaseCommandMessage getDatabaseCommandMessageOpenSoftCheckDefaultWindowsJSONInstance(ClientCommand command) {
+    public DatabaseCommandMessage getDatabaseCommandMessageOpenSoftCheckWindowsJSONInstance(ClientCommand command) {
         return (DatabaseCommandMessage) ctx.getBean("databaseCommandMessageOpenSoftCheckWindowsJSON", command);
     }
 
     @Override
-    public DatabaseCommandMessage getDatabaseCommandMessageCancelSoftCheckDefaultWindowsJSONInstance(ClientCommand command) {
+    public DatabaseCommandMessage getDatabaseCommandMessageCancelSoftCheckWindowsJSONInstance(ClientCommand command) {
         return (DatabaseCommandMessage) ctx.getBean("databaseCommandMessageCancelSoftCheckWindowsJSON", command);
     }
 
     @Override
-    public DatabaseCommandMessage getDatabaseCommandMessageCloseSoftCheckDefaultWindowsJSONInstance(ClientCommand command) {
+    public DatabaseCommandMessage getDatabaseCommandMessageCloseSoftCheckWindowsJSONInstance(ClientCommand command) {
         return (DatabaseCommandMessage) ctx.getBean("databaseCommandMessageCloseSoftCheckWindowsJSON", command);
     }
 
     @Override
-    public DatabaseCommandMessage getDatabaseCommandMessageConfirmSoftCheckProductsDefaultWindowsJSONInstance(ClientCommand command) {
+    public DatabaseCommandMessage getDatabaseCommandMessageConfirmSoftCheckProductsWindowsJSONInstance(ClientCommand command) {
         return (DatabaseCommandMessage) ctx.getBean("databaseCommandMessageConfirmSoftCheckProductsWindowsJSON", command);
     }
 
     @Override
-    public DatabaseCommandMessage getDatabaseCommandMessageBindCheckDefaultWindowsJSONInstance(ClientCommand command) {
+    public DatabaseCommandMessage getDatabaseCommandMessageBindCheckWindowsJSONInstance(ClientCommand command) {
         return (DatabaseCommandMessage) ctx.getBean("databaseCommandMessageBindCheckWindowsJSON", command);
     }
 
     @Override
-    public DatabaseCommandMessage getDatabaseCommandMessageBindDefaultWindowsJSONInstance(ClientCommand command) {
+    public DatabaseCommandMessage getDatabaseCommandMessageBindWindowsJSONInstance(ClientCommand command) {
         return (DatabaseCommandMessage) ctx.getBean("databaseCommandMessageBindWindowsJSON", command);
     }
 
     @Override
-    public DatabaseCommandMessage getDatabaseCommandMessageUnbindCheckDefaultWindowsJSONInstance(ClientCommand command) {
+    public DatabaseCommandMessage getDatabaseCommandMessageUnbindCheckWindowsJSONInstance(ClientCommand command) {
         return (DatabaseCommandMessage) ctx.getBean("databaseCommandMessageUnbindCheckWindowsJSON", command);
     }
 
     @Override
-    public DatabaseCommandMessage getDatabaseCommandMessageUnbindDefaultWindowsJSONInstance(ClientCommand command) {
+    public DatabaseCommandMessage getDatabaseCommandMessageUnbindWindowsJSONInstance(ClientCommand command) {
         return (DatabaseCommandMessage) ctx.getBean("databaseCommandMessageUnbindWindowsJSON", command);
     }
 
     @Override
-    public DatabaseCommandMessage getDatabaseCommandMessageSearchSoftCheckDefaultWindowsJSONInstance(ClientCommand command) {
+    public DatabaseCommandMessage getDatabaseCommandMessageSearchSoftCheckWindowsJSONInstance(ClientCommand command) {
         return (DatabaseCommandMessage) ctx.getBean("databaseCommandMessageSearchSoftCheckWindowsJSON", command);
     }
 
     @Override
-    public DatabaseCommandMessage getDatabaseCommandMessageTKListDefaultWindowsJSONInstance(ClientCommand command) {
+    public DatabaseCommandMessage getDatabaseCommandMessageTKListWindowsJSONInstance(ClientCommand command) {
         return (DatabaseCommandMessage) ctx.getBean("databaseCommandMessageTKListWindowsJSON", command);
     }
 
     @Override
-    public DatabaseCommandMessage getDatabaseCommandMessageSkladListDefaultWindowsJSONInstance(ClientCommand command) {
+    public DatabaseCommandMessage getDatabaseCommandMessageSkladListWindowsJSONInstance(ClientCommand command) {
         return (DatabaseCommandMessage) ctx.getBean("databaseCommandMessageSkladListWindowsJSON", command);
+    }
+
+    @Override
+    public DatabaseCommandMessage getDatabaseCommandMessageUpdateSoftCheckProductsWindowsJSONInstance(ClientCommand command) {
+        return (DatabaseCommandMessage) ctx.getBean("databaseCommandMessageUpdateSoftCheckProductsWindowsJSON", command);
     }
 }

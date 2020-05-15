@@ -45,7 +45,7 @@ public class TKListProcess implements ClientProcess<ClientCommandResult> {
     public ClientCommandResult apply(ClientCommand command) {
         try {
             DatabaseCommandMessage dbCmdMessage =
-                    dbCmdMsgProducer.getDatabaseCommandMessageTKListDefaultWindowsJSONInstance(command);
+                    dbCmdMsgProducer.getDatabaseCommandMessageTKListWindowsJSONInstance(command);
 
             ClientCommandResult cmdRes = cmdExec.exec(dbCmdMessage);
 

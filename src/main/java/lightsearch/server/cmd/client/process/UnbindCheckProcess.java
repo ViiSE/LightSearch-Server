@@ -54,7 +54,7 @@ public class UnbindCheckProcess implements ClientProcess<ClientCommandResult> {
             checker.check(command);
 
             DatabaseCommandMessage dbCmdMessage =
-                    dbCmdMsgProducer.getDatabaseCommandMessageUnbindCheckDefaultWindowsJSONInstance(command);
+                    dbCmdMsgProducer.getDatabaseCommandMessageUnbindCheckWindowsJSONInstance(command);
 
             ClientCommandResult cmdRes = cmdExec.exec(dbCmdMessage);
 

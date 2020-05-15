@@ -53,7 +53,7 @@ public class SearchSoftCheckProcess implements ClientProcess<ClientCommandResult
             checker.check(command);
 
             DatabaseCommandMessage dbCmdMessage =
-                    dbCmdMsgProducer.getDatabaseCommandMessageSearchSoftCheckDefaultWindowsJSONInstance(command);
+                    dbCmdMsgProducer.getDatabaseCommandMessageSearchSoftCheckWindowsJSONInstance(command);
 
             ClientCommandResult cmdRes = cmdExec.exec(dbCmdMessage);
 

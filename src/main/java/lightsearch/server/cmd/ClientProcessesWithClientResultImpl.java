@@ -48,6 +48,7 @@ public class ClientProcessesWithClientResultImpl implements Processes<ClientComm
         processes.put(ClientCommands.CHECK_AUTH, prcProducer.getCheckAuthProcessInstance());
         processes.put(ClientCommands.KEY, prcProducer.getKeyProcessInstance());
         processes.put(ClientCommands.LOGIN_ENCRYPTED, prcProducer.getLoginProcessEncryptedInstance());
+        processes.put(ClientCommands.UPDATE_SOFT_CHECK_PRODUCTS, prcProducer.getUpdateSoftCheckProductsProcessInstance());
     }
 
     @Override

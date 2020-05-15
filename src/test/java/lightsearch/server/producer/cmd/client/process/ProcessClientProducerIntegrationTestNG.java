@@ -187,6 +187,15 @@ public class ProcessClientProducerIntegrationTestNG extends AbstractTestNGSpring
         assertTrue(process instanceof LoginProcessEncrypted);
     }
 
+    @Test
+    public void getUpdateSoftCheckProductsProcessInstance() {
+        testMethod("getUpdateSoftCheckProductsProcessInstance()");
+
+        ClientProcess<ClientCommandResult> process = producer.getUpdateSoftCheckProductsProcessInstance();
+        System.out.println("instance: " + process);
+        assertTrue(process instanceof UpdateSoftCheckProductsProcess);
+    }
+
     @AfterClass
     public void teardownClass() {
         testEnd(ProcessClientProducerDefaultImpl.class);

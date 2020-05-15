@@ -53,7 +53,7 @@ public class OpenSoftCheckProcess implements ClientProcess<ClientCommandResult> 
             checker.check(command);
 
             DatabaseCommandMessage dbCmdMessage =
-                    dbCmdMsgProducer.getDatabaseCommandMessageOpenSoftCheckDefaultWindowsJSONInstance(command);
+                    dbCmdMsgProducer.getDatabaseCommandMessageOpenSoftCheckWindowsJSONInstance(command);
 
             ClientCommandResult cmdRes = cmdExec.exec(dbCmdMessage);
 

@@ -53,7 +53,7 @@ public class CancelSoftCheckProcess implements ClientProcess<ClientCommandResult
             checker.check(command);
 
             DatabaseCommandMessage dbCmdMessage = dbCmdMsgProducer
-                    .getDatabaseCommandMessageCancelSoftCheckDefaultWindowsJSONInstance(command);
+                    .getDatabaseCommandMessageCancelSoftCheckWindowsJSONInstance(command);
 
             ClientCommandResult cmdRes = cmdExec.exec(dbCmdMessage);
 

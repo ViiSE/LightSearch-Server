@@ -47,8 +47,8 @@ public class DatabaseCommandMessageProducerIntegrationTestNG extends AbstractTes
     }
 
     @Test
-    public void getDatabaseCommandMessageBindCheckDefaultWindowsJSONInstance() {
-        testMethod("getDatabaseCommandMessageBindCheckDefaultWindowsJSONInstance()");
+    public void getDatabaseCommandMessageBindCheckWindowsJSONInstance() {
+        testMethod("getDatabaseCommandMessageBindCheckWindowsJSONInstance()");
 
         ClientCommand cmd = new ClientCommandWithBarcodeImpl(
                 new ClientCommandWithCheckEAN13Impl(
@@ -58,14 +58,14 @@ public class DatabaseCommandMessageProducerIntegrationTestNG extends AbstractTes
                 "22505303");
 
         DatabaseCommandMessage commandMessage = producer
-                .getDatabaseCommandMessageBindCheckDefaultWindowsJSONInstance(cmd);
+                .getDatabaseCommandMessageBindCheckWindowsJSONInstance(cmd);
         System.out.println("instance: " + commandMessage);
         assertTrue(commandMessage instanceof DatabaseCommandMessageBindCheckWindowsJSONImpl);
     }
 
     @Test
-    public void getDatabaseCommandMessageBindDefaultWindowsJSONInstance() {
-        testMethod("getDatabaseCommandMessageBindDefaultWindowsJSONInstance()");
+    public void getDatabaseCommandMessageBindWindowsJSONInstance() {
+        testMethod("getDatabaseCommandMessageBindWindowsJSONInstance()");
 
         ClientCommand cmd = new ClientCommandWithBarcodeImpl(
                 new ClientCommandWithFactoryBarcodeImpl(
@@ -76,14 +76,14 @@ public class DatabaseCommandMessageProducerIntegrationTestNG extends AbstractTes
                 "22505303"),
                 "22505");
 
-        DatabaseCommandMessage commandMessage = producer.getDatabaseCommandMessageBindDefaultWindowsJSONInstance(cmd);
+        DatabaseCommandMessage commandMessage = producer.getDatabaseCommandMessageBindWindowsJSONInstance(cmd);
         System.out.println("instance: " + commandMessage);
         assertTrue(commandMessage instanceof DatabaseCommandMessageBindWindowsJSONImpl);
     }
 
     @Test
-    public void getDatabaseCommandMessageCancelSoftCheckDefaultWindowsJSONInstance() {
-        testMethod("getDatabaseCommandMessageCancelSoftCheckDefaultWindowsJSONInstance()");
+    public void getDatabaseCommandMessageCancelSoftCheckWindowsJSONInstance() {
+        testMethod("getDatabaseCommandMessageCancelSoftCheckWindowsJSONInstance()");
 
         ClientCommand cmd = new ClientCommandWithCardCodeImpl(
                 new ClientCommandWithUserIdentifierImpl(
@@ -93,14 +93,14 @@ public class DatabaseCommandMessageProducerIntegrationTestNG extends AbstractTes
                 "222");
 
         DatabaseCommandMessage commandMessage = producer
-                .getDatabaseCommandMessageCancelSoftCheckDefaultWindowsJSONInstance(cmd);
+                .getDatabaseCommandMessageCancelSoftCheckWindowsJSONInstance(cmd);
         System.out.println("instance: " + commandMessage);
         assertTrue(commandMessage instanceof DatabaseCommandMessageCancelSoftCheckWindowsJSONImpl);
     }
 
     @Test
-    public void getDatabaseCommandMessageCloseSoftCheckDefaultWindowsJSONInstance() {
-        testMethod("getDatabaseCommandMessageCloseSoftCheckDefaultWindowsJSONInstance()");
+    public void getDatabaseCommandMessageCloseSoftCheckWindowsJSONInstance() {
+        testMethod("getDatabaseCommandMessageCloseSoftCheckWindowsJSONInstance()");
 
         ClientCommand cmd = new ClientCommandWithCardCodeImpl(
                 new ClientCommandWithUserIdentifierImpl(
@@ -112,14 +112,14 @@ public class DatabaseCommandMessageProducerIntegrationTestNG extends AbstractTes
                 "222");
 
         DatabaseCommandMessage commandMessage = producer
-                .getDatabaseCommandMessageCloseSoftCheckDefaultWindowsJSONInstance(cmd);
+                .getDatabaseCommandMessageCloseSoftCheckWindowsJSONInstance(cmd);
         System.out.println("instance: " + commandMessage);
         assertTrue(commandMessage instanceof DatabaseCommandMessageCloseSoftCheckWindowsJSONImpl);
     }
 
     @Test
-    public void getDatabaseCommandMessageConfirmSoftCheckProductsDefaultWindowsJSONInstance() {
-        testMethod("getDatabaseCommandMessageConfirmSoftCheckProductsDefaultWindowsJSONInstance()");
+    public void getDatabaseCommandMessageConfirmSoftCheckProductsWindowsJSONInstance() {
+        testMethod("getDatabaseCommandMessageConfirmSoftCheckProductsWindowsJSONInstance()");
 
         ClientCommand cmd = new ClientCommandWithCardCodeImpl(
                 new ClientCommandWithUserIdentifierImpl(
@@ -133,14 +133,14 @@ public class DatabaseCommandMessageProducerIntegrationTestNG extends AbstractTes
                 "222");
 
         DatabaseCommandMessage commandMessage = producer
-                .getDatabaseCommandMessageConfirmSoftCheckProductsDefaultWindowsJSONInstance(cmd);
+                .getDatabaseCommandMessageConfirmSoftCheckProductsWindowsJSONInstance(cmd);
         System.out.println("instance: " + commandMessage);
         assertTrue(commandMessage instanceof DatabaseCommandMessageConfirmSoftCheckProductsWindowsJSONImpl);
     }
 
     @Test
-    public void getDatabaseCommandMessageConnectionDefaultWindowsJSONInstance() {
-        testMethod("getDatabaseCommandMessageConnectionDefaultWindowsJSONInstance()");
+    public void getDatabaseCommandMessageConnectionWindowsJSONInstance() {
+        testMethod("getDatabaseCommandMessageConnectionWindowsJSONInstance()");
 
         ClientCommand cmd = new ClientCommandWithUserIdentifierImpl(
                         new ClientCommandWithUsernameAndPasswordImpl(
@@ -151,14 +151,14 @@ public class DatabaseCommandMessageProducerIntegrationTestNG extends AbstractTes
                         "111");
 
         DatabaseCommandMessage commandMessage = producer
-                .getDatabaseCommandMessageConnectionDefaultWindowsJSONInstance(cmd);
+                .getDatabaseCommandMessageConnectionWindowsJSONInstance(cmd);
         System.out.println("instance: " + commandMessage);
         assertTrue(commandMessage instanceof DatabaseCommandMessageConnectionWindowsJSONImpl);
     }
 
     @Test
-    public void getDatabaseCommandMessageOpenSoftCheckDefaultWindowsJSONInstance() {
-        testMethod("getDatabaseCommandMessageOpenSoftCheckDefaultWindowsJSONInstance()");
+    public void getDatabaseCommandMessageOpenSoftCheckWindowsJSONInstance() {
+        testMethod("getDatabaseCommandMessageOpenSoftCheckWindowsJSONInstance()");
 
         ClientCommand cmd = new ClientCommandWithCardCodeImpl(
                 new ClientCommandWithUserIdentifierImpl(
@@ -168,14 +168,14 @@ public class DatabaseCommandMessageProducerIntegrationTestNG extends AbstractTes
                 "222");
 
         DatabaseCommandMessage commandMessage = producer
-                .getDatabaseCommandMessageOpenSoftCheckDefaultWindowsJSONInstance(cmd);
+                .getDatabaseCommandMessageOpenSoftCheckWindowsJSONInstance(cmd);
         System.out.println("instance: " + commandMessage);
         assertTrue(commandMessage instanceof DatabaseCommandMessageOpenSoftCheckWindowsJSONImpl);
     }
 
     @Test
-    public void getDatabaseCommandMessageSearchDefaultWindowsJSONInstance() {
-        testMethod("getDatabaseCommandMessageSearchDefaultWindowsJSONInstance()");
+    public void getDatabaseCommandMessageSearchWindowsJSONInstance() {
+        testMethod("getDatabaseCommandMessageSearchWindowsJSONInstance()");
 
         ClientCommand cmd = new ClientCommandWithBarcodeImpl(
                 new ClientCommandWithSkladImpl(
@@ -187,14 +187,14 @@ public class DatabaseCommandMessageProducerIntegrationTestNG extends AbstractTes
                 "22505");
 
         DatabaseCommandMessage commandMessage = producer
-                .getDatabaseCommandMessageSearchDefaultWindowsJSONInstance(cmd);
+                .getDatabaseCommandMessageSearchWindowsJSONInstance(cmd);
         System.out.println("instance: " + commandMessage);
         assertTrue(commandMessage instanceof DatabaseCommandMessageSearchWindowsJSONImpl);
     }
 
     @Test
-    public void getDatabaseCommandMessageSearchSoftCheckDefaultWindowsJSONInstance() {
-        testMethod("getDatabaseCommandMessageSearchSoftCheckDefaultWindowsJSONInstance()");
+    public void getDatabaseCommandMessageSearchSoftCheckWindowsJSONInstance() {
+        testMethod("getDatabaseCommandMessageSearchSoftCheckWindowsJSONInstance()");
 
         ClientCommand cmd = new ClientCommandWithBarcodeImpl(
                 new ClientCommandWithUsernameImpl(
@@ -204,33 +204,45 @@ public class DatabaseCommandMessageProducerIntegrationTestNG extends AbstractTes
                 "22505");
 
         DatabaseCommandMessage commandMessage = producer
-                .getDatabaseCommandMessageSearchSoftCheckDefaultWindowsJSONInstance(cmd);
+                .getDatabaseCommandMessageSearchSoftCheckWindowsJSONInstance(cmd);
         System.out.println("instance: " + commandMessage);
         assertTrue(commandMessage instanceof DatabaseCommandMessageSearchSoftCheckWindowsJSONImpl);
     }
 
     @Test
-    public void getDatabaseCommandMessageSkladListDefaultWindowsJSONInstance() {
-        testMethod("getDatabaseCommandMessageSkladListDefaultWindowsJSONInstance()");
+    public void getDatabaseCommandMessageSkladListWindowsJSONInstance() {
+        testMethod("getDatabaseCommandMessageSkladListWindowsJSONInstance()");
 
         ClientCommand cmd = new ClientCommandSimpleImpl(ClientCommands.SKLAD_LIST);
 
         DatabaseCommandMessage commandMessage = producer
-                .getDatabaseCommandMessageSkladListDefaultWindowsJSONInstance(cmd);
+                .getDatabaseCommandMessageSkladListWindowsJSONInstance(cmd);
         System.out.println("instance: " + commandMessage);
         assertTrue(commandMessage instanceof DatabaseCommandMessageSkladListWindowsJSONImpl);
     }
 
     @Test
-    public void getDatabaseCommandMessageTKListDefaultWindowsJSONInstance() {
-        testMethod("getDatabaseCommandMessageTKListDefaultWindowsJSONInstance()");
+    public void getDatabaseCommandMessageTKListWindowsJSONInstance() {
+        testMethod("getDatabaseCommandMessageTKListWindowsJSONInstance()");
 
         ClientCommand cmd = new ClientCommandSimpleImpl(ClientCommands.TK_LIST);
 
         DatabaseCommandMessage commandMessage = producer
-                .getDatabaseCommandMessageTKListDefaultWindowsJSONInstance(cmd);
+                .getDatabaseCommandMessageTKListWindowsJSONInstance(cmd);
         System.out.println("instance: " + commandMessage);
         assertTrue(commandMessage instanceof DatabaseCommandMessageTKListWindowsJSONImpl);
+    }
+
+    @Test
+    public void getDatabaseCommandMessageUpdateSoftCheckProductsWindowsJSONInstance() {
+        testMethod("getDatabaseCommandMessageUpdateSoftCheckProductsWindowsJSONInstance()");
+
+        ClientCommand cmd = new ClientCommandSimpleImpl(ClientCommands.UPDATE_SOFT_CHECK_PRODUCTS);
+
+        DatabaseCommandMessage commandMessage = producer
+                .getDatabaseCommandMessageUpdateSoftCheckProductsWindowsJSONInstance(cmd);
+        System.out.println("instance: " + commandMessage);
+        assertTrue(commandMessage instanceof DatabaseCommandMessageUpdateSoftCheckProductsWindowsJSONImpl);
     }
 
     @AfterClass

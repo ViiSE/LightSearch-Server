@@ -109,4 +109,9 @@ public class ProcessClientProducerDefaultImpl implements ProcessClientProducer<C
     public ClientProcess<ClientCommandResult> getLoginProcessEncryptedInstance() {
         return ctx.getBean("loginProcessEncrypted", LoginProcessEncrypted.class);
     }
+
+    @Override
+    public ClientProcess<ClientCommandResult> getUpdateSoftCheckProductsProcessInstance() {
+        return ctx.getBean("updateSoftCheckProductsProcess", UpdateSoftCheckProductsProcess.class);
+    }
 }

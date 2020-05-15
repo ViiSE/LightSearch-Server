@@ -20,17 +20,18 @@ import lightsearch.server.database.cmd.message.DatabaseCommandMessage;
 import lightsearch.server.entity.ClientCommand;
 
 public interface DatabaseCommandMessageProducer {
-    DatabaseCommandMessage getDatabaseCommandMessageConnectionDefaultWindowsJSONInstance(ClientCommand command);
-    DatabaseCommandMessage getDatabaseCommandMessageSearchDefaultWindowsJSONInstance(ClientCommand command);
-    DatabaseCommandMessage getDatabaseCommandMessageOpenSoftCheckDefaultWindowsJSONInstance(ClientCommand command);
-    DatabaseCommandMessage getDatabaseCommandMessageCancelSoftCheckDefaultWindowsJSONInstance(ClientCommand command);
-    DatabaseCommandMessage getDatabaseCommandMessageCloseSoftCheckDefaultWindowsJSONInstance(ClientCommand command);
-    DatabaseCommandMessage getDatabaseCommandMessageConfirmSoftCheckProductsDefaultWindowsJSONInstance(ClientCommand command);
-    DatabaseCommandMessage getDatabaseCommandMessageBindCheckDefaultWindowsJSONInstance(ClientCommand command);
-    DatabaseCommandMessage getDatabaseCommandMessageBindDefaultWindowsJSONInstance(ClientCommand command);
-    DatabaseCommandMessage getDatabaseCommandMessageUnbindCheckDefaultWindowsJSONInstance(ClientCommand command);
-    DatabaseCommandMessage getDatabaseCommandMessageUnbindDefaultWindowsJSONInstance(ClientCommand command);
-    DatabaseCommandMessage getDatabaseCommandMessageSearchSoftCheckDefaultWindowsJSONInstance(ClientCommand command);
-    DatabaseCommandMessage getDatabaseCommandMessageTKListDefaultWindowsJSONInstance(ClientCommand command);
-    DatabaseCommandMessage getDatabaseCommandMessageSkladListDefaultWindowsJSONInstance(ClientCommand command);
+    DatabaseCommandMessage getDatabaseCommandMessageConnectionWindowsJSONInstance(ClientCommand command);
+    DatabaseCommandMessage getDatabaseCommandMessageSearchWindowsJSONInstance(ClientCommand command);
+    DatabaseCommandMessage getDatabaseCommandMessageOpenSoftCheckWindowsJSONInstance(ClientCommand command);
+    DatabaseCommandMessage getDatabaseCommandMessageCancelSoftCheckWindowsJSONInstance(ClientCommand command);
+    DatabaseCommandMessage getDatabaseCommandMessageCloseSoftCheckWindowsJSONInstance(ClientCommand command);
+    DatabaseCommandMessage getDatabaseCommandMessageConfirmSoftCheckProductsWindowsJSONInstance(ClientCommand command);
+    DatabaseCommandMessage getDatabaseCommandMessageBindCheckWindowsJSONInstance(ClientCommand command);
+    DatabaseCommandMessage getDatabaseCommandMessageBindWindowsJSONInstance(ClientCommand command);
+    DatabaseCommandMessage getDatabaseCommandMessageUnbindCheckWindowsJSONInstance(ClientCommand command);
+    DatabaseCommandMessage getDatabaseCommandMessageUnbindWindowsJSONInstance(ClientCommand command);
+    DatabaseCommandMessage getDatabaseCommandMessageSearchSoftCheckWindowsJSONInstance(ClientCommand command);
+    DatabaseCommandMessage getDatabaseCommandMessageTKListWindowsJSONInstance(ClientCommand command);
+    DatabaseCommandMessage getDatabaseCommandMessageSkladListWindowsJSONInstance(ClientCommand command);
+    DatabaseCommandMessage getDatabaseCommandMessageUpdateSoftCheckProductsWindowsJSONInstance(ClientCommand command);
 }

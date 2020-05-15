@@ -35,4 +35,5 @@ public interface ProcessClientProducer<R> {
     ClientProcess<R> getCheckAuthProcessInstance();
     ClientProcess<R> getKeyProcessInstance();
     ClientProcess<R> getLoginProcessEncryptedInstance();
+    ClientProcess<R> getUpdateSoftCheckProductsProcessInstance();
 }
