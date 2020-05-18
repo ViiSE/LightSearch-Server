@@ -80,7 +80,6 @@ LightSearch Server имеет три роли пользователей - admin
  - lightsearch.server.dev.password - пароль разработчика в формате bcrypt (для входа через точку /login);
  - lightsearch.server.jwt-valid-day-count - время жизни JWT-токена, в днях;
  - lightsearch.server.jwt-secret - приватный ключ для JWT-токена (например, RSA);
- - lightsearch.server.version - версия LightSearch Server.
 
 Ссылки
 ------
