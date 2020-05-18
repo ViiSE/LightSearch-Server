@@ -115,4 +115,9 @@ public class ClientCommandResultProducerImpl implements ClientCommandResultProdu
     public ClientCommandResult getClientCommandResultKeyInstance(String key, String type, String alg) {
         return (ClientCommandResult) ctx.getBean("clientCommandResultKey", key, type, alg);
     }
+
+    @Override
+    public ClientCommandResult getClientCommandResultUpdateSoftCheckProductsInstance(ClientCommandResult clientCommandResult) {
+        return (ClientCommandResult) ctx.getBean("clientCommandResultUpdateSoftCheckProducts", clientCommandResult);
+    }
 }

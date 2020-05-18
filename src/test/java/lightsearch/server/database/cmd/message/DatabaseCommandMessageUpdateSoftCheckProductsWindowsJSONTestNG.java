@@ -34,21 +34,19 @@ public class DatabaseCommandMessageUpdateSoftCheckProductsWindowsJSONTestNG {
     DatabaseCommandMessage dbCmdMessage;
 
     @BeforeClass
-    @Parameters({"userIdent", "cardCode"})
-    public void setUpClass(String userIdent, String cardCode) {
+    @Parameters({"username"})
+    public void setUpClass(String username) {
         String command = ClientCommands.UPDATE_SOFT_CHECK_PRODUCTS;
 
-        ClientCommand clientCommand = new ClientCommandWithUserIdentifierImpl(
-                new ClientCommandWithCardCodeImpl(
-                        new ClientCommandWithProductsImpl(
-                                new ClientCommandSimpleImpl(command),
-                                new ArrayList<>() {{
-                                    add(new ProductSimpleImpl("id1"));
-                                    add(new ProductSimpleImpl("id2"));
-                                    add(new ProductSimpleImpl("id3"));
-                                }}),
-                        cardCode),
-                userIdent);
+        ClientCommand clientCommand = new ClientCommandWithUsernameImpl(
+                new ClientCommandWithProductsImpl(
+                        new ClientCommandSimpleImpl(command),
+                        new ArrayList<>() {{
+                            add(new ProductSimpleImpl("id1"));
+                            add(new ProductSimpleImpl("id2"));
+                            add(new ProductSimpleImpl("id3"));
+                        }}),
+                username);
 
         dbCmdMessage = new DatabaseCommandMessageUpdateSoftCheckProductsWindowsJSONImpl(clientCommand);
 

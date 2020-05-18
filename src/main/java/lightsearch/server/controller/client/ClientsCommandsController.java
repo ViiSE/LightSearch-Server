@@ -346,23 +346,19 @@ public class ClientsCommandsController {
                     message = "Произошла внутренняя ошибка в LightSearch.")})
     @GetMapping("/clients/softChecks/actions/update-products")
     public ClientSoftCheckUpdateProductsCommandResultDTO updateProducts(
-            @ApiParam(required = true, value = "Уникальный идентификатор пользователя, за которым закреплен мягкий чек.")
-            @RequestParam(name = "user_ident") String userIdent,
-            @ApiParam(required = true, value = "Код карточки, за которым закреплен мягкий чек.")
-            @RequestParam(name = "card_code") String cardCode,
-            @ApiParam(required = true, value = "Список с id товаров, остатки которых нужно обновить.")
-            @RequestParam(name = "products_id") List<String> productsId) throws ClientErrorException {
+            @ApiParam(required = true, value = "Имя пользователя, за которым закреплен мягкий чек.")
+            @RequestParam(name = "username") String username,
+            @ApiParam(required = true, value = "Список со штрих-кодами товаров, остатки которых нужно обновить.")
+            @RequestParam(name = "products_barcode") List<String> productsId) throws ClientErrorException {
         List<Product> products = new ArrayList<>();
         productsId.forEach(id -> {
             Product pr = productProducer.getProductSimpleInstance(id);
             products.add(pr);
         });
         ClientCommand cmd = cmdProducer.getClientCommandWithProductsInstance(
-                cmdProducer.getClientCommandWithUserIdentifierInstance(
-                        cmdProducer.getClientCommandWithCardCodeInstance(
-                                cmdProducer.getClientCommandSimpleInstance(ClientCommands.UPDATE_SOFT_CHECK_PRODUCTS),
-                                cardCode),
-                        userIdent),
+                cmdProducer.getClientCommandWithUsernameInstance(
+                        cmdProducer.getClientCommandSimpleInstance(ClientCommands.UPDATE_SOFT_CHECK_PRODUCTS),
+                        username),
                 products);
         return (ClientSoftCheckUpdateProductsCommandResultDTO) getCommandResult(ClientCommands.UPDATE_SOFT_CHECK_PRODUCTS, cmd, HttpStatus.INTERNAL_SERVER_ERROR);
     }

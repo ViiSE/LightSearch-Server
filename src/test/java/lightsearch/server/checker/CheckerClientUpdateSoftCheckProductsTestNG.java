@@ -43,10 +43,10 @@ public class CheckerClientUpdateSoftCheckProductsTestNG {
     }
 
     @Test(dataProvider = "validsData")
-    public void check_valid(String userIdent, String cardCode, List<Product> products) {
+    public void check_valid(String username, List<Product> products) {
         testMethod("check()");
 
-        ClientCommand cmd = createClientCommand(userIdent, cardCode, products);
+        ClientCommand cmd = createClientCommand(username, products);
         try {
             cmdChecker.check(cmd);
         } catch (CheckerException e) {
@@ -56,41 +56,37 @@ public class CheckerClientUpdateSoftCheckProductsTestNG {
     }
 
     @Test(dataProvider = "invalidsData", expectedExceptions = CheckerException.class)
-    public void check_invalid(String userIdent, String cardCode, List<Product> products, String cause) throws CheckerException {
+    public void check_invalid(String username, List<Product> products, String cause) throws CheckerException {
         testMethod("check() " + cause);
 
-        ClientCommand cmd = createClientCommand(userIdent, cardCode, products);
+        ClientCommand cmd = createClientCommand(username, products);
         cmdChecker.check(cmd);
     }
 
     @DataProvider(name = "invalidsData")
     public Object[][] createInvalidsData() {
         return new Object[][] {
-                {"", "222", new ArrayList<>() {{ add(new ProductSimpleImpl("id1")); }}, "[invalid userIdentifier (empty)]"},
-                {null, "222", new ArrayList<>() {{ add(new ProductSimpleImpl("id1")); }}, "[invalid userIdentifier (null)]"},
-                {"111", "", new ArrayList<>() {{ add(new ProductSimpleImpl("id1")); }}, "[invalid cardCode (empty)]"},
-                {"111", null, new ArrayList<>() {{ add(new ProductSimpleImpl("id1")); }}, "[invalid cardCode (null)]"},
-                {"111", "222", new ArrayList<>(), "[invalid products (empty)]"},
-                {"111", "222", new ArrayList<>() {{ add(new ProductSimpleImpl("")); }}, "[invalid products (empty id)]"},
-                {"111", "222", new ArrayList<>() {{ add(new ProductSimpleImpl(null)); }}, "[invalid products (null id)]"},
+                {"", new ArrayList<>() {{ add(new ProductSimpleImpl("id1")); }}, "[invalid username (empty)]"},
+                {null, new ArrayList<>() {{ add(new ProductSimpleImpl("id1")); }}, "[invalid username (null)]"},
+                {"user", new ArrayList<>(), "[invalid products (empty)]"},
+                {"user", new ArrayList<>() {{ add(new ProductSimpleImpl("")); }}, "[invalid products (empty id)]"},
+                {"user", new ArrayList<>() {{ add(new ProductSimpleImpl(null)); }}, "[invalid products (null id)]"},
         };
     }
 
     @DataProvider(name = "validsData")
     public Object[][] createValidsData() {
         return new Object[][] {
-                {"101", "222", new ArrayList<>() {{ add(new ProductSimpleImpl("id1")); }}},
+                {"user", new ArrayList<>() {{ add(new ProductSimpleImpl("id1")); }}},
         };
     }
 
-    private ClientCommand createClientCommand(String userIdentifier, String cardCode, List<Product> products) {
-        return new ClientCommandWithUserIdentifierImpl(
-                new ClientCommandWithCardCodeImpl(
-                        new ClientCommandWithProductsImpl(
-                                new ClientCommandSimpleImpl(ClientCommands.CONFIRM_SOFT_CHECK_PRODUCTS),
-                                products),
-                        cardCode),
-                userIdentifier);
+    private ClientCommand createClientCommand(String username, List<Product> products) {
+        return new ClientCommandWithUsernameImpl(
+                new ClientCommandWithProductsImpl(
+                        new ClientCommandSimpleImpl(ClientCommands.CONFIRM_SOFT_CHECK_PRODUCTS),
+                        products),
+                username);
     }
 
     @AfterClass

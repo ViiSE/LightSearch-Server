@@ -57,7 +57,7 @@ public class UpdateSoftCheckProductsProcess implements ClientProcess<ClientComma
 
             ClientCommandResult cmdRes = cmdExec.exec(dbCmdMessage);
 
-            return resultProducer.getClientCommandResultConfirmSoftCheckProductsInstance(cmdRes);
+            return resultProducer.getClientCommandResultUpdateSoftCheckProductsInstance(cmdRes);
         } catch (CheckerException | CommandExecutorException ex) {
             return resultProducer
                     .getClientCommandResultSimpleInstance(

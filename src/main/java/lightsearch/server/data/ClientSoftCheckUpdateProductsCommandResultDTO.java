@@ -29,8 +29,28 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ClientSoftCheckUpdateProductsCommandResultDTO {
 
-    @ApiModelProperty(notes = "Обновленные товары мягкого чека", position = 1)
+    @ApiModelProperty(notes = "Статус выполненной команды", position = 1)
+    private boolean isDone;
+    @ApiModelProperty(notes = "Сообщение", position = 2)
+    private String message;
+    @ApiModelProperty(notes = "Обновленные товары мягкого чека", position = 3)
     private List<ProductDTO> data;
+
+    public void setIsDone(boolean done) {
+        isDone = done;
+    }
+
+    public boolean getIsDone() {
+        return isDone;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getMessage() {
+        return message;
+    }
 
     public void setData(List<ProductDTO> data) {
         this.data = data;

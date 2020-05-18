@@ -38,4 +38,5 @@ public interface ClientCommandResultProducer {
     ClientCommandResult getClientCommandResultSkladListInstance(ClientCommandResult clientCommandResult);
     ClientCommandResult getClientCommandResultTKListInstance(ClientCommandResult clientCommandResult);
     ClientCommandResult getClientCommandResultKeyInstance(String key, String type, String alg);
+    ClientCommandResult getClientCommandResultUpdateSoftCheckProductsInstance(ClientCommandResult clientCommandResult);
 }

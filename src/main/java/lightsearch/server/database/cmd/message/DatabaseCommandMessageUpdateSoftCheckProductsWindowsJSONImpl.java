@@ -32,17 +32,15 @@ public class DatabaseCommandMessageUpdateSoftCheckProductsWindowsJSONImpl implem
     private final String ID_FIELD = DatabaseCommandMessages.ID;
 
     private final String command;
-    private final String userIdent;
-    private final String cardCode;
+    private final String username;
     private final List<ProductDTO> data;
 
     public DatabaseCommandMessageUpdateSoftCheckProductsWindowsJSONImpl(ClientCommand clientCommand) {
         ClientCommandDTO cmdDTO = (ClientCommandDTO) clientCommand.formForSend();
 
-        this.command   = clientCommand.name();
-        this.userIdent = cmdDTO.getUserIdentifier();
-        this.cardCode  = cmdDTO.getCardCode();
-        this.data      = cmdDTO.getData();
+        this.command  = clientCommand.name();
+        this.username = cmdDTO.getUserIdentifier();
+        this.data     = cmdDTO.getData();
     }
 
     @Override
@@ -59,8 +57,7 @@ public class DatabaseCommandMessageUpdateSoftCheckProductsWindowsJSONImpl implem
 
         return "{\r\n"
                     + "\"" + DatabaseCommandMessages.COMMAND + "\":\""  + command + "\",\r\n"
-                    + "\"" + DatabaseCommandMessages.USER_IDENT + "\":\"" + userIdent + "\",\r\n"
-                    + "\"" + DatabaseCommandMessages.CARD_CODE + "\":\"" + cardCode + "\",\r\n"
+                    + "\"" + DatabaseCommandMessages.USERNAME + "\":\"" + username + "\",\r\n"
                     + "\"" + DatabaseCommandMessages.DATA + "\":" + rawDataStr + "\r\n"
                 + "}";
     }

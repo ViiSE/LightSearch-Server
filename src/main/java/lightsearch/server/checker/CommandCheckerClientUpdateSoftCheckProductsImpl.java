@@ -39,10 +39,10 @@ public class CommandCheckerClientUpdateSoftCheckProductsImpl implements Checker<
 
         List<ProductDTO> products = commandDTO.getData();
 
-        if(checker.isEmpty(commandDTO.getUserIdentifier(), commandDTO.getCardCode()))
+        if(checker.isEmpty(commandDTO.getUsername()))
             throw new CheckerException("Неверный формат команды.", "UpdateSoftCheckProducts: wrong command format.");
 
-        if(checker.isNull(commandDTO.getUserIdentifier(), commandDTO.getCardCode(), commandDTO.getData()))
+        if(checker.isNull(commandDTO.getUsername(), commandDTO.getData()))
             throw new CheckerException("Неверный формат команды.", "UpdateSoftCheckProducts: wrong command format.");
 
         if(products.size() == 0)
