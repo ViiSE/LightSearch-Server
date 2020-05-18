@@ -4,10 +4,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <properties>
+        <app.version>3.7.0</app.version>
+        <java.version>11</java.version>
+    </properties>
+
     <groupId>lightsearch.server</groupId>
     <artifactId>LightSearch_Server_Spring</artifactId>
     <name>LightSearch Server</name>
-    <version>3.6.0</version>
+    <version>${app.version}</version>
     <packaging>jar</packaging>
 
     <parent>
@@ -117,17 +122,10 @@
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
         </dependency>
-
-
-
     </dependencies>
 
-    <properties>
-        <java.version>11</java.version>
-    </properties>
-
     <build>
-        <finalName>LightSearch_Server</finalName>
+        <finalName>LightSearch_Server_${app.version}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

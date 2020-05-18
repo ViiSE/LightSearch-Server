@@ -16,22 +16,22 @@
 
 package lightsearch.server.about;
 
-import org.springframework.beans.factory.annotation.Value;
+import lightsearch.server.initialization.Version;
 import org.springframework.stereotype.Component;
 
 @Component("appGreetings")
 public class AppGreetingsImpl implements AppGreetings {
 
-    private final String appVersion;
+    private final Version version;
 
-    public AppGreetingsImpl(@Value("${lightsearch.server.version}") String appVersion) {
-        this.appVersion = appVersion;
+    public AppGreetingsImpl(Version version) {
+        this.version = version;
     }
 
     @Override
     public String greetings() {
         return "------------------------------------------------\n" +
-                "LightSearch Server, version " + appVersion + "\nWelcome!\n" +
+                "LightSearch Server, version " + version.code() + "\nWelcome!\n" +
                 "------------------------------------------------";
     }
 }
