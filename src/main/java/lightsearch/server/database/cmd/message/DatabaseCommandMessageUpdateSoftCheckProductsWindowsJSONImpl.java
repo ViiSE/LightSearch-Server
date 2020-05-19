@@ -39,7 +39,7 @@ public class DatabaseCommandMessageUpdateSoftCheckProductsWindowsJSONImpl implem
         ClientCommandDTO cmdDTO = (ClientCommandDTO) clientCommand.formForSend();
 
         this.command  = clientCommand.name();
-        this.username = cmdDTO.getUserIdentifier();
+        this.username = cmdDTO.getUsername();
         this.data     = cmdDTO.getData();
     }
 
