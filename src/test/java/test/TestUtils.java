@@ -25,6 +25,10 @@ import io.jsonwebtoken.SignatureAlgorithm;
 
 import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.security.Key;
 import java.util.Date;
 import java.util.regex.Pattern;
@@ -77,5 +81,27 @@ public class TestUtils {
         }
 
         return jwtBuilder.compact();
+    }
+
+    public static String readFile(String path) {
+        String value = "";
+        File file = new File(path);
+        try(BufferedReader br = new BufferedReader(new FileReader(file))) {
+            String st;
+            while ((st = br.readLine()) != null)
+                value = st;
+        } catch (IOException ex) {
+            throw new RuntimeException("Cannot read file: " + ex.getMessage());
+        }
+
+        return value;
+    }
+
+    public static String path(String filename) {
+        return System.getProperty("user.dir") +
+                File.separator + "src" +
+                File.separator + "test" +
+                File.separator + "resources" +
+                File.separator + filename;
     }
 }

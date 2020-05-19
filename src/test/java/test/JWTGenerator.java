@@ -30,6 +30,9 @@ import java.io.IOException;
 import java.security.Key;
 import java.util.Date;
 
+import static test.TestUtils.path;
+import static test.TestUtils.readFile;
+
 public class JWTGenerator {
 
     public static void main(String[] args) {
@@ -60,28 +63,6 @@ public class JWTGenerator {
         }
 
         System.out.println("Generated token: " + jwtBuilder.compact());
-    }
-
-    private static String readFile(String path) {
-        String value = "";
-        File file = new File(path);
-        try(BufferedReader br = new BufferedReader(new FileReader(file))) {
-            String st;
-            while ((st = br.readLine()) != null)
-                value = st;
-        } catch (IOException ex) {
-            throw new RuntimeException("Cannot read file: " + ex.getMessage());
-        }
-
-        return value;
-    }
-
-    private static String path(String filename) {
-        return System.getProperty("user.dir") +
-                File.separator + "src" +
-                File.separator + "test" +
-                File.separator + "resources" +
-                File.separator + filename;
     }
 
     private static String readId() {
