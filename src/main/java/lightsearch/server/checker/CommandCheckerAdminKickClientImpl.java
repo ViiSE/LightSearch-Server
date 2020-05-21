@@ -24,14 +24,16 @@ import lightsearch.server.service.ClientsService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component("commandCheckerAdminKickClient")
 public class CommandCheckerAdminKickClientImpl implements Checker<AdminCommand> {
 
-    private final ClientsService<String, Client> clientsService;
+    private final ClientsService<String, Client, List<Client>> clientsService;
     private final LightSearchChecker checker;
 
     public CommandCheckerAdminKickClientImpl(
-            @Qualifier("clientsServiceDatabase") ClientsService<String, Client> clientsService,
+            @Qualifier("clientsServiceDatabase") ClientsService<String, Client, List<Client>> clientsService,
             LightSearchChecker checker) {
         this.clientsService = clientsService;
         this.checker = checker;
@@ -47,7 +49,7 @@ public class CommandCheckerAdminKickClientImpl implements Checker<AdminCommand> 
         if(checker.isEmpty(command.IMEI()))
             throw new CheckerException("Wrong command format. IMEI is empty!", "AddBlacklist: unknown client: IMEI is empty.");
 
-        if(!clientsService.clients().containsKey(command.IMEI()))
+        if(!clientsService.contains(command.IMEI()))
             throw new CheckerException("Client with current IMEI not found. (Not connected to LightSearch Server)", "Client " + command.IMEI() + " does not exist.");
     }
 }

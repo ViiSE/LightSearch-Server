@@ -32,12 +32,14 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import test.TestUtils;
 
+import java.util.List;
+
 import static org.testng.Assert.*;
 import static test.message.TestMessage.*;
 
 public class ClientsServiceTestNG {
 
-    private ClientsService<String, Client> clientsService;
+    private ClientsService<String, Client, List<Client>> clientsService;
 
     @BeforeClass
     @Parameters({"secret", "jwtValidDayCount"})
@@ -68,7 +70,7 @@ public class ClientsServiceTestNG {
         assertNotNull(jwtToken);
         assertFalse(jwtToken.isEmpty());
 
-        assertTrue(clientsService.clients().size() > 0);
+        assertTrue(clientsService.contains(IMEI));
     }
 
     @Test(priority = 2)
@@ -84,7 +86,7 @@ public class ClientsServiceTestNG {
         assertNotNull(jwtToken);
         assertFalse(jwtToken.isEmpty());
 
-        assertTrue(clientsService.clients().size() > 0);
+        assertTrue(clientsService.contains(hashIMEI));
     }
 
     @Test(priority = 3)

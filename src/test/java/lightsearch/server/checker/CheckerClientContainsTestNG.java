@@ -30,6 +30,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
 import static test.message.TestMessage.*;
 
 public class CheckerClientContainsTestNG {
@@ -42,7 +44,7 @@ public class CheckerClientContainsTestNG {
         HashAlgorithm ha = new HashAlgorithmSHA512Impl();
         BlacklistService<String> blacklistService = new BlacklistServiceImpl(ha);
         blacklistService.blacklist().add(blIMEI);
-        ClientsService<String, Client> clientsService = new ClientsServiceTestImpl();
+        ClientsService<String, Client, List<Client>> clientsService = new ClientsServiceTestImpl();
         clientsService.addClient(vIMEI, "user1");
         cmdChecker = new CommandCheckerClientContainsImpl(
                 new CommandCheckerClientDefaultImpl(blacklistService),

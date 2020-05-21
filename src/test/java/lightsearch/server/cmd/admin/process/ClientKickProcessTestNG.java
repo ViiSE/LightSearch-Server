@@ -35,13 +35,15 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import test.TestUtils;
 
+import java.util.List;
+
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 import static test.message.TestMessage.*;
 
 public class ClientKickProcessTestNG {
 
-    private ClientsService<String, Client> clientsService;
+    private ClientsService<String, Client, List<Client>> clientsService;
     private AdminProcess<AdminCommandResult> clKickProc;
 
     @BeforeClass
@@ -107,7 +109,7 @@ public class ClientKickProcessTestNG {
     @AfterClass
     public void teardownClass() {
         System.out.println("Clear clients...");
-        clientsService.clients().clear();
+        clientsService.remove("111111111111111");
 
         testEnd(ClientKickProcess.class);
     }

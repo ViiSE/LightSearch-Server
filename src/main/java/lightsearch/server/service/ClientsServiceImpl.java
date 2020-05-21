@@ -26,11 +26,13 @@ import lightsearch.server.security.JWT;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service("clientsService")
-public class ClientsServiceImpl implements ClientsService<String, Client> {
+public class ClientsServiceImpl implements ClientsService<String, Client, List<Client>> {
 
     private final static Map<String, Client> clients = new HashMap<>();
     private final HashAlgorithm hashAlgorithm;
@@ -55,11 +57,6 @@ public class ClientsServiceImpl implements ClientsService<String, Client> {
     @Override
     public void checkClientByUsernameAndPassword(String username, String password) throws ClientNotFoundException {
         throw new ClientNotFoundException("Not supported", "Not supported");
-    }
-
-    @Override
-    public Map<String, Client> clients() {
-        return clients;
     }
 
     @Override
@@ -107,5 +104,10 @@ public class ClientsServiceImpl implements ClientsService<String, Client> {
         return hashAlgorithm.isDigest(IMEIHash)
                 ? clients.containsKey(IMEIHash)
                 : clients.containsKey(hashAlgorithm.digest(IMEIHash));
+    }
+
+    @Override
+    public List<Client> formForSend() {
+        return new ArrayList<>(clients.values());
     }
 }

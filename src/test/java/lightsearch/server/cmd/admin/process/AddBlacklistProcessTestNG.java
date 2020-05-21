@@ -43,6 +43,7 @@ import java.io.BufferedWriter;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.util.List;
 
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
@@ -51,7 +52,7 @@ import static test.message.TestMessage.*;
 public class AddBlacklistProcessTestNG {
 
     private BlacklistService<String> blacklistService;
-    private ClientsService<String, Client> clientsService;
+    private ClientsService<String, Client, List<Client>> clientsService;
 
     private AdminProcess<AdminCommandResult> addBlProc;
 

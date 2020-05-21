@@ -30,11 +30,13 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import test.TestUtils;
 
+import java.util.List;
+
 import static test.message.TestMessage.*;
 
 public class ClientListRequestProcessTestNG {
 
-    private ClientsService<String, Client> clientsService;
+    private ClientsService<String, Client, List<Client>> clientsService;
     private AdminProcess<AdminCommandResult> clReqProc;
 
     @BeforeClass
@@ -71,7 +73,9 @@ public class ClientListRequestProcessTestNG {
     @AfterClass
     public void teardownClass() {
         System.out.println("Clear clients...");
-        clientsService.clients().clear();
+        clientsService.remove("111111111111111");
+        clientsService.remove("222222222222222");
+        clientsService.remove("333333333333333");
 
         testEnd(ClientListRequestProcess.class);
     }

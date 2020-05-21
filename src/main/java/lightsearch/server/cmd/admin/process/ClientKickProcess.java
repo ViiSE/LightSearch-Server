@@ -27,6 +27,8 @@ import lightsearch.server.service.ClientsService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 /**
  *
  * @author ViiSE
@@ -34,12 +36,12 @@ import org.springframework.stereotype.Component;
 @Component("clientKickProcess")
 public class ClientKickProcess implements AdminProcess<AdminCommandResult> {
 
-    private final ClientsService<String, Client> clientsService;
+    private final ClientsService<String, Client, List<Client>> clientsService;
     private final Checker<AdminCommand> checker;
     private final AdminCommandResultProducer adminCommandResultProducer;
 
     public ClientKickProcess(
-            @Qualifier("clientsServiceDatabase") ClientsService<String, Client> clientsService,
+            @Qualifier("clientsServiceDatabase") ClientsService<String, Client, List<Client>> clientsService,
             @Qualifier("commandCheckerAdminKickClient") Checker<AdminCommand> checker,
             AdminCommandResultProducer adminCommandResultProducer) {
         this.clientsService = clientsService;

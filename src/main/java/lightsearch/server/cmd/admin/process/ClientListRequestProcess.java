@@ -23,7 +23,7 @@ import lightsearch.server.service.ClientsService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -32,11 +32,11 @@ import java.util.ArrayList;
 @Component("clientListRequestProcess")
 public class ClientListRequestProcess implements AdminProcess<AdminCommandResult> {
 
-    private final ClientsService<String, Client> clientsService;
+    private final ClientsService<String, Client, List<Client>> clientsService;
     private final AdminCommandResultProducer adminCommandResultProducer;
 
     public ClientListRequestProcess(
-            @Qualifier("clientsServiceDatabase") ClientsService<String, Client> clientsService,
+            @Qualifier("clientsServiceDatabase") ClientsService<String, Client, List<Client>> clientsService,
             AdminCommandResultProducer adminCommandResultProducer) {
         this.clientsService = clientsService;
         this.adminCommandResultProducer = adminCommandResultProducer;
@@ -48,6 +48,6 @@ public class ClientListRequestProcess implements AdminProcess<AdminCommandResult
                 adminCommandResultProducer.getAdminCommandResultSimpleInstance(
                         true,
                         "OK"),
-                new ArrayList<>(clientsService.clients().values()));
+                clientsService.formForSend());
     }
 }

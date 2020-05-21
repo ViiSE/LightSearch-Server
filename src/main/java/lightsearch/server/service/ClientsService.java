@@ -16,13 +16,11 @@
 
 package lightsearch.server.service;
 
+import lightsearch.server.entity.Sendable;
 import lightsearch.server.exception.ClientNotFoundException;
 
-import java.util.Map;
-
-public interface ClientsService<K,V> {
+public interface ClientsService<K,V,S> extends Sendable<S> {
     void checkClientByUsernameAndPassword(String username, String password) throws ClientNotFoundException;
-    Map<K,V> clients();
     Object addClient(K key, V value);
     Object addClient(K key, String username);
     V client(K key);

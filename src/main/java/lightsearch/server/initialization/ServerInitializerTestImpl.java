@@ -5,14 +5,16 @@ import lightsearch.server.service.ClientsService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service("serverInitializerTest")
 public class ServerInitializerTestImpl implements ServerInitializer {
 
-    private final ClientsService<String, Client> clientsService;
+    private final ClientsService<String, Client, List<Client>> clientsService;
     private final BlacklistCreator blacklistCreator;
 
     public ServerInitializerTestImpl(
-            @Qualifier("clientsServiceDatabase") ClientsService<String, Client> clientsService,
+            @Qualifier("clientsServiceDatabase") ClientsService<String, Client, List<Client>> clientsService,
             BlacklistCreator blacklistCreator) {
         this.clientsService = clientsService;
         this.blacklistCreator = blacklistCreator;

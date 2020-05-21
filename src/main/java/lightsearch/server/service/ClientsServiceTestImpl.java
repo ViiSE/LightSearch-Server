@@ -20,11 +20,12 @@ import lightsearch.server.entity.Client;
 import lightsearch.server.entity.ClientSimpleImpl;
 import lightsearch.server.exception.ClientNotFoundException;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ClientsServiceTestImpl implements ClientsService<String, Client> {
+public class ClientsServiceTestImpl implements ClientsService<String, Client, List<Client>> {
 
     private int i = 1;
     private static final Map<String, Client> clientsMap = new HashMap<>();
@@ -41,11 +42,6 @@ public class ClientsServiceTestImpl implements ClientsService<String, Client> {
     @Override
     public void checkClientByUsernameAndPassword(String username, String password) throws ClientNotFoundException {
         throw new ClientNotFoundException("Not supported", "Not supported");
-    }
-
-    @Override
-    public Map<String, Client> clients() {
-        return clientsMap;
     }
 
     @Override
@@ -77,5 +73,10 @@ public class ClientsServiceTestImpl implements ClientsService<String, Client> {
     @Override
     public boolean contains(String key) {
         return clientsMap.containsKey(key);
+    }
+
+    @Override
+    public List<Client> formForSend() {
+        return new ArrayList<>(clientsMap.values());
     }
 }

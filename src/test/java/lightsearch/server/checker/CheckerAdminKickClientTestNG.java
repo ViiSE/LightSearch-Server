@@ -26,6 +26,8 @@ import lightsearch.server.service.ClientsService;
 import lightsearch.server.service.ClientsServiceTestImpl;
 import org.testng.annotations.*;
 
+import java.util.List;
+
 import static test.message.TestMessage.*;
 
 public class CheckerAdminKickClientTestNG {
@@ -35,7 +37,7 @@ public class CheckerAdminKickClientTestNG {
     @BeforeClass
     @Parameters({"foundIMEI"})
     public void setUpClass(String vlIMEI) {
-        ClientsService<String, Client> clientsService = new ClientsServiceTestImpl();
+        ClientsService<String, Client, List<Client>> clientsService = new ClientsServiceTestImpl();
         clientsService.addClient(vlIMEI, new ClientSimpleImpl(vlIMEI, "John"));
         LightSearchChecker checker = new LightSearchCheckerDefaultImpl();
         cmdChecker = new CommandCheckerAdminKickClientImpl(clientsService, checker);

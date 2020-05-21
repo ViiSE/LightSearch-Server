@@ -22,15 +22,17 @@ import lightsearch.server.service.ClientsService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component("commandCheckerClientContains")
 public class CommandCheckerClientContainsImpl implements Checker<String> {
 
     private final Checker<String> checker;
-    private final ClientsService<String, Client> clientsService;
+    private final ClientsService<String, Client, List<Client>> clientsService;
 
     public CommandCheckerClientContainsImpl(
             @Qualifier("commandCheckerClientDefault") Checker<String> checker,
-            @Qualifier("clientsServiceDatabase") ClientsService<String, Client> clientsService) {
+            @Qualifier("clientsServiceDatabase") ClientsService<String, Client, List<Client>> clientsService) {
         this.checker = checker;
         this.clientsService = clientsService;
     }

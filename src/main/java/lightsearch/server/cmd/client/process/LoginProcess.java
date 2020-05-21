@@ -33,17 +33,19 @@ import lightsearch.server.service.ClientsService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component("loginProcess")
 public class LoginProcess implements ClientProcess<ClientCommandResult> {
 
-    private final ClientsService<String, Client> clientsService;
+    private final ClientsService<String, Client, List<Client>> clientsService;
     private final Checker<ClientCommand> checker;
     private final DatabaseCommandMessageProducer dbCmdMsgProducer;
     private final CommandExecutor<ClientCommandResult, DatabaseCommandMessage> cmdExec;
     private final ClientCommandResultProducer resultProducer;
 
     public LoginProcess(
-            @Qualifier("clientsServiceDatabase") ClientsService<String, Client> clientsService,
+            @Qualifier("clientsServiceDatabase") ClientsService<String, Client, List<Client>> clientsService,
             @Qualifier("commandCheckerClientAuthorization") Checker<ClientCommand> checker,
             DatabaseCommandMessageProducer dbCmdMsgProducer,
             CommandExecutor<ClientCommandResult, DatabaseCommandMessage> cmdExec,

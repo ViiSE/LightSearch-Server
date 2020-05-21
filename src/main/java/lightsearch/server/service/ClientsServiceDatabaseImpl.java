@@ -31,21 +31,21 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.io.UnsupportedEncodingException;
-import java.util.Map;
+import java.util.List;
 
 @Service("clientsServiceDatabase")
-public class ClientsServiceDatabaseImpl implements ClientsService<String, Client> {
+public class ClientsServiceDatabaseImpl implements ClientsService<String, Client, List<Client>> {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    private final ClientsService<String, Client> clientsService;
+    private final ClientsService<String, Client, List<Client>> clientsService;
     private final HashAlgorithm hashAlgorithm;
     private final ClientCommandProducer clientCommandProducer;
     private final Checker<ClientCommand> clientChecker;
 
     public ClientsServiceDatabaseImpl(
-            @Qualifier("clientsService") ClientsService<String, Client> clientsService,
+            @Qualifier("clientsService") ClientsService<String, Client, List<Client>> clientsService,
             @Qualifier("hashAlgorithmsSHA512") HashAlgorithm hashAlgorithm,
             ClientCommandProducer clientCommandProducer,
             @Qualifier("clientCheckerDatabaseConnection") Checker<ClientCommand> clientChecker) {
@@ -79,11 +79,6 @@ public class ClientsServiceDatabaseImpl implements ClientsService<String, Client
     }
 
     @Override
-    public Map<String, Client> clients() {
-        return clientsService.clients();
-    }
-
-    @Override
     public Object addClient(String IMEI, Client client) {
         return clientsService.addClient(IMEI, client);
     }
@@ -106,5 +101,10 @@ public class ClientsServiceDatabaseImpl implements ClientsService<String, Client
     @Override
     public boolean contains(String IMEIHash) {
         return clientsService.contains(IMEIHash);
+    }
+
+    @Override
+    public List<Client> formForSend() {
+        return clientsService.formForSend();
     }
 }

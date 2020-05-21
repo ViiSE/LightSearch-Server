@@ -32,6 +32,7 @@ import java.io.BufferedWriter;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.util.List;
 
 /**
  *
@@ -40,14 +41,14 @@ import java.io.OutputStreamWriter;
 @Component("addBlacklistProcess")
 public class AddBlacklistProcess implements AdminProcess<AdminCommandResult> {
 
-    private final ClientsService<String, Client> clientsService;
+    private final ClientsService<String, Client, List<Client>> clientsService;
     private final BlacklistService<String> blacklistService;
     private final Checker<AdminCommand> checker;
     private final BlacklistDirectory blacklistDirectory;
     private final AdminCommandResultProducer admCmdResProducer;
 
     public AddBlacklistProcess(
-            @Qualifier("clientsServiceDatabase") ClientsService<String, Client> clientsService,
+            @Qualifier("clientsServiceDatabase") ClientsService<String, Client, List<Client>> clientsService,
             BlacklistService<String> blacklistService,
             @Qualifier("commandCheckerAdminAddBlacklist") Checker<AdminCommand> checker,
             BlacklistDirectory blacklistDirectory,
@@ -67,10 +68,13 @@ public class AddBlacklistProcess implements AdminProcess<AdminCommandResult> {
             AdminCommandAddBlacklistImpl cmd = (AdminCommandAddBlacklistImpl) command;
 
             blacklistService.add(cmd.IMEI());
-            try (FileOutputStream fout = new FileOutputStream(blacklistDirectory.name(), true);
+            try (FileOutputStream fout = new FileOutputStream(blacklistDirectory.name(), false);
                  BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fout))) {
-                bw.write(cmd.IMEI());
-                bw.newLine();
+                List<String> blacklists = blacklistService.blacklist();
+                for(String IMEI: blacklists) {
+                    bw.write(IMEI);
+                    bw.newLine();
+                }
             } catch (IOException ex) {
                 blacklistService.remove(cmd.IMEI());
                 return admCmdResProducer.getAdminCommandResultSimpleInstance(
@@ -78,7 +82,7 @@ public class AddBlacklistProcess implements AdminProcess<AdminCommandResult> {
                         "Cannot add client to the blacklist. Exception: " + ex.getMessage());
             }
 
-            clientsService.clients().remove(cmd.IMEI());
+            clientsService.remove(cmd.IMEI());
             return admCmdResProducer.getAdminCommandResultSimpleInstance(
                     true,
                     "Client " + cmd.IMEI() + " has been added to the blacklist.");
