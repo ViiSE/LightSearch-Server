@@ -24,6 +24,7 @@ import lightsearch.server.exception.ReaderException;
 import lightsearch.server.properties.PropertiesReader;
 import org.springframework.stereotype.Component;
 
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Map;
@@ -50,7 +51,8 @@ public class ClientCheckerDatabaseConnectionImpl implements Checker<ClientComman
             String username = clientCommandDTO.getUsername();
             String password = clientCommandDTO.getPassword();
             Class.forName(driverName);
-            DriverManager.getConnection(url, username, password);
+            Connection connection = DriverManager.getConnection(url, username, password);
+            connection.close();
         } catch (ClassNotFoundException ex) {
             throw new CheckerException(ex.getMessage(), "Ошибка драйвера СУБД (JDBC). Попробуйте позже.");
         } catch (SQLException ex) {
