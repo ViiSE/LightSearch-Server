@@ -1,0 +1,19 @@
+language: java
+jdk:
+- openjdk11
+install: mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+script:
+- mvn package
+before_deploy:
+  - export RELEASE_PKG_FILE=$(ls target/*.jar)
+  - echo "Deploy $RELEASE_PKG_FILE ..."
+deploy:
+  provider: releases
+  api_key:
+    secure: "T/taitxv8wkzhgvh5wlXE+ScR/j1WLs7vCQWzEDOwdXQ4/821ciNBlyKs24NBDU9Bmjtc/WU8i6SrPU6u1BbVSRx3h7wBU1MtfGJLwY9nrqpZGb4Q7hXqkqvC3sR28dSevqUTfSi0uKpHS+EWyJjqOHPTMBRJi0bIlY2uH4tHU5qOIOHyvl4/5cWMmW1/LI7jHgLqgv1PwiYY6AlpPjfJ3ncl9exdcu2uu8wNRM7nxIFDMSVLLhBRWdKy2hwGcAz7rSOFulMUOA386mF1N6N91idMT8PPnqTlBhnj38Q+5tRMigOJXx7ji9OXXZCWAUAslzMg9p2CWstg/OALAqVHQTxHVct2rfhuzfhJjxSz8z9ZjOBTEKzGc1JWej/ROw+JXVjrblmYF+XeJ/2EE84+ztRvgfputXTFi2j1IN+zqDU205fHqWCENxV048I2n8Lv3qhabXgkUxcKWdNCsrOeb3HG4rnxoPq2Hekpn04nEy9c2epm6XECrQ+M+CG61lWZDqGim1+++oww2K1x6VTfZZLp7xXQ2qi46IiPY7yLxyeMLtniXNaMH7AZqQfXa4QwPzrwpdw6DPg6887QwbgUx1DAulu5tYVRNSIyknLkAKy5UrzCGtYlJNOunt01awUC3LwJAD2xwnXuKJ6hYwv5B33NznB6fm/VJFKtb0Sfk4="
+  file_glob: true
+  skip_cleanup: true
+  file: "${RELEASE_PKG_FILE}"
+  on:
+    repo: ViiSE/LightSearch-Server
+    tags: true
