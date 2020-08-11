@@ -1,0 +1,8 @@
+FROM openjdk:11-jre-buster
+
+ARG JAR_FILE=target/LightSearch_Server*.jar
+COPY ${JAR_FILE} lightsearch-server.jar
+COPY VERSION VERSION
+COPY blacklist blacklist
+
+ENTRYPOINT ["java", "-jar", "/lightsearch-server.jar"]

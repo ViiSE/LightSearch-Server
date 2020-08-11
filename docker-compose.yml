@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  nginx:
+    container_name: nginx-ls
+    build:
+      context: .
+      dockerfile: Dockerfile-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx-v/nginx.conf:/etc/nginx.conf
+      - ./nginx-v/log:/var/log/nginx
+    depends_on:
+      - lightsearch-server
+    expose:
+      - 80
+      - 443
+    restart: always
+  lightsearch-server:
+    container_name: lightsearch-server
+    build:
+      context: .
+      dockerfile: Dockerfile-lightsearch
+    volumes:
+      - ./lightsearch-v/logs:/logs
+    expose:
+      - 50000
+#    ports:
+#      - "50005:50000"
