@@ -42,7 +42,7 @@ import java.util.Map;
 import static test.message.TestMessage.*;
 
 @SpringBootTest(classes = LightSearchServer.class)
-@TestPropertySource(locations = "classpath:h2/application.properties")
+@TestPropertySource(locations = "classpath:connect-application.properties")
 public class ClientCheckerDatabaseConnectionTestNG extends AbstractTestNGSpringContextTests {
 
     private Checker<ClientCommand> cmdChecker;
