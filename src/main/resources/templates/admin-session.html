@@ -1,29 +1,36 @@
 <!DOCTYPE html>
-<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-    <head>
-        <meta charset="UTF-8">
-        <title>Admin Panel</title>
-        <link rel="stylesheet" href="/css/containers.css">
-        <link rel="stylesheet" href="/css/tables.css">
-        <link rel="stylesheet" href="/css/select.css">
-        <link rel="stylesheet" href="/css/buttons.css">
-        <link rel="stylesheet" href="/css/notifications.css">
-        <link rel="stylesheet" href="/css/page.css">
-        <link rel="stylesheet" href="/css/screen.css">
-        <link rel="stylesheet" href="/css/inputs.css">
-        <script src="/js/notifications.js" crossorigin></script>
-        <script src="/js/nfc.js" crossorigin></script>
-        <script src="/js/react.development.js" crossorigin></script>
-        <script src="/js/react-dom.development.js" crossorigin></script>
-    </head>
-    <body>
-        <h1 align="center">
-            <img src="/static/logo.png" alt="logo" width="150" height="150">
-        </h1>
+<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<style>
+    .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="/css/containers.css">
+    <link rel="stylesheet" href="/css/tables.css">
+    <link rel="stylesheet" href="/css/select.css">
+    <link rel="stylesheet" href="/css/buttons.css">
+    <link rel="stylesheet" href="/css/notifications.css">
+    <link rel="stylesheet" href="/css/page.css">
+    <link rel="stylesheet" href="/css/screen.css">
+    <link rel="stylesheet" href="/css/inputs.css">
+    <script src="/js/notifications.js" crossorigin></script>
+    <script src="/js/nfc.js" crossorigin></script>
+    <script src="/js/react.development.js" crossorigin></script>
+    <script src="/js/react-dom.development.js" crossorigin></script>
+</head>
+<body>
+    <h1 class="center">
+        <img src="/static/ls_logo_big.png" alt="logo" width="150" height="150">
+    </h1>
 
-        <div sec:authorize="hasRole('ROLE_ADMIN')">
-            <div id="root"></div>
-        </div>
-        <script type="module" src="/js/app.js"></script>
-    </body>
+    <div sec:authorize="hasRole('ROLE_ADMIN')">
+        <div id="root"></div>
+    </div>
+    <script src="built/bundle.js"></script>
+</body>
 </html>
