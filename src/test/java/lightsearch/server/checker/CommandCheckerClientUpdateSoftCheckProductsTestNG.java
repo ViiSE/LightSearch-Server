@@ -30,7 +30,7 @@ import java.util.List;
 
 import static test.message.TestMessage.*;
 
-public class CheckerClientUpdateSoftCheckProductsTestNG {
+public class CommandCheckerClientUpdateSoftCheckProductsTestNG {
 
     private Checker<ClientCommand> cmdChecker;
 

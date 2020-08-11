@@ -28,7 +28,7 @@ import org.testng.annotations.*;
 
 import static test.message.TestMessage.*;
 
-public class CheckerClientAuthorizationDefaultTestNG {
+public class CommandCheckerClientAuthorizationDefaultTestNG {
 
     private Checker<ClientCommand> cmdChecker;
 

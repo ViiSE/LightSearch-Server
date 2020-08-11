@@ -29,7 +29,7 @@ import org.testng.annotations.Test;
 
 import static test.message.TestMessage.*;
 
-public class CheckerAdminClientTimeoutTestNG {
+public class CommandCheckerAdminClientTimeoutTestNG {
 
     private Checker<AdminCommand> cmdChecker;
 

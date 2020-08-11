@@ -29,7 +29,7 @@ import org.testng.annotations.Test;
 
 import static test.message.TestMessage.*;
 
-public class CheckerClientDefaultTestNG {
+public class CommandCheckerClientDefaultTestNG {
 
     private Checker<String> cmdChecker;
 

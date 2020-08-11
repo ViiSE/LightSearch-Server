@@ -28,7 +28,7 @@ import org.testng.annotations.*;
 
 import static test.message.TestMessage.*;
 
-public class CheckerAdminDelBlacklistTestNG {
+public class CommandCheckerAdminDelBlacklistTestNG {
 
     private Checker<AdminCommand> cmdChecker;
     private BlacklistService<String> blacklistService;

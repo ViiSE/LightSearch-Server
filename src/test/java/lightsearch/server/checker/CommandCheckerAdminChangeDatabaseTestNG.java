@@ -31,7 +31,7 @@ import org.testng.annotations.Test;
 
 import static test.message.TestMessage.*;
 
-public class CheckerAdminChangeDatabaseTestNG {
+public class CommandCheckerAdminChangeDatabaseTestNG {
 
     private Checker<AdminCommand> cmdChecker;
 
@@ -76,6 +76,7 @@ public class CheckerAdminChangeDatabaseTestNG {
                 {"192.168.0.1", 8080, "", "dbUsername", "pass", "[invalid dbName(empty)]"},
                 {"192.168.0.1", 8080, null, "dbUsername", "pass", "[invalid dbName(null)]"},
                 {"192.168.0.1", 8080, "dbName", null, "pass", "[invalid dbUsername(null)]"},
+                {"192.168.0.1", 8080, "dbName", "dbUsername", null, "[invalid password(null)]"},
                 {"192.168.0.1", -123, "dbName", "dbUsername", "pass", "[invalid port(less)]"},
                 {"192.168.0.1", 67000, "dbName", "dbUsername", "pass", "[invalid port(more)]"},
 

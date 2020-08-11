@@ -24,7 +24,7 @@ import org.testng.annotations.*;
 
 import static test.message.TestMessage.*;
 
-public class CheckerBindTestNG {
+public class CommandCheckerClientBindTestNG {
 
     private Checker<ClientCommand> cmdChecker;
 

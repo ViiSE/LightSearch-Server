@@ -27,7 +27,7 @@ import org.testng.annotations.*;
 
 import static test.message.TestMessage.*;
 
-public class CheckerClientSearchSoftCheckTestNG {
+public class CommandCheckerClientSearchSoftCheckTestNG {
 
     private Checker<ClientCommand> cmdChecker;
 

@@ -34,7 +34,7 @@ import java.util.List;
 
 import static test.message.TestMessage.*;
 
-public class CheckerClientContainsTestNG {
+public class CommandCheckerClientContainsTestNG {
 
     private Checker<String> cmdChecker;
 

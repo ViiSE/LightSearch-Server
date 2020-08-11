@@ -26,7 +26,7 @@ import org.testng.annotations.*;
 
 import static test.message.TestMessage.*;
 
-public class CheckerUnbindCheckTestNG {
+public class CommandCheckerClientUnbindCheckTestNG {
 
     private Checker<ClientCommand> cmdChecker;
 
