@@ -5,6 +5,7 @@
 
     <suite-files>
         <!--  Unit tests   -->
+        <suite-file path="about/about-suite.xml"/>
         <suite-file path="checker/checker-suite.xml"/>
         <suite-file path="cmd/admin/process/cmd-admin-processor-suite.xml"/>
         <suite-file path="database/cmd/message/database-cmd-message-suite.xml"/>
@@ -18,8 +19,8 @@
         <suite-file path="validator/validator-suite.xml"/>
 
         <!--  Integration tests   -->
-<!--        <suite-file path="cmd/client/processor/cmd-client-processor-suite.xml"/>-->
-        <suite-file path="database/database-suite.xml"/>
+<!--        <suite-file path="cmd/client/process/cmd-client-processor-suite.xml"/>-->
+<!--        <suite-file path="database/database-suite.xml"/>-->
         <suite-file path="producer/producer-suite.xml"/>
 
     </suite-files>
