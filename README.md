@@ -102,7 +102,7 @@ mvn clean package
 
 Для сборки образа введите команду:
 ```bash
-docker build --tag <tag_name>
+docker build --tag <tag_name> --file Dockerfile-lightsearch .
 ``` 
 где `<tag_name>` - тэг образа, например, lightsearch-server:3.7.0.
 
