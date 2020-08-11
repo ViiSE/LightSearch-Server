@@ -1,3 +1,6 @@
+-- From DB connection test
+CREATE USER IF NOT EXISTS ls_test PASSWORD 'test' ADMIN;
+
 -- From Authorization test
 INSERT INTO LS_RESPONSE(LSCODE, DDOC, CMDOUT, STATE)
     VALUES (1, FORMATDATETIME(CURRENT_TIMESTAMP, 'yyyy-MM-dd HH:mm:ss.s'), '{"is_done":"true","message":"Test auth!","user_ident":"777", "tk_list":["TK 1", "TK 2"],"sklad_list":["Sklad 1", "Sklad 2", "Sklad 3"]}', false);

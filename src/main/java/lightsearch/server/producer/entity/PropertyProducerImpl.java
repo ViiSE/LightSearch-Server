@@ -39,6 +39,11 @@ public class PropertyProducerImpl implements PropertyProducer {
     }
 
     @Override
+    public Property<String> getSpringDatasourceURLH2PropertyInstance() {
+        return ctx.getBean(SpringDatasourceURLH2PropertyImpl.class);
+    }
+
+    @Override
     public Property<String> getSpringDatasourceUsernamePropertyInstance(String value) {
         return (SpringDatasourceUsernamePropertyImpl) ctx.getBean("springDatasourceUsernameProperty", value);
     }

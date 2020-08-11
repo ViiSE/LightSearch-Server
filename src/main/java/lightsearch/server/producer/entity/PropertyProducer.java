@@ -9,6 +9,7 @@ public interface PropertyProducer {
     Property<String> getPortPropertyInstance(int value);
     Property<String> getDatabaseNamePropertyInstance(String value);
     Property<String> getSpringDatasourceURLFirebirdWindowsPropertyInstance(Map<String, Property<String>> properties);
+    Property<String> getSpringDatasourceURLH2PropertyInstance();
     Property<String> getSpringDatasourceUsernamePropertyInstance(String value);
     Property<String> getSpringDatasourcePasswordPropertyInstance(String value);
     Property<String> getSpringDatasourcePropertyInstance(Map<String, Property<String>> props);

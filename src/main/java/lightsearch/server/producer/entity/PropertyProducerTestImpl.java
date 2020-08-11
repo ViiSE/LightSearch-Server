@@ -28,6 +28,11 @@ public class PropertyProducerTestImpl implements PropertyProducer {
     }
 
     @Override
+    public Property<String> getSpringDatasourceURLH2PropertyInstance() {
+        return new SpringDatasourceURLH2PropertyImpl();
+    }
+
+    @Override
     public Property<String> getSpringDatasourceUsernamePropertyInstance(String value) {
         return new SpringDatasourceUsernamePropertyImpl(value);
     }
