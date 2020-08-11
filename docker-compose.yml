@@ -26,5 +26,3 @@ services:
       - ./lightsearch-v/logs:/logs
     expose:
       - 50000
-#    ports:
-#      - "50005:50000"
