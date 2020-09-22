@@ -10,9 +10,6 @@ services:
       - "443:443"
     volumes:
       - ${PWD}/nginx-v/log:/var/log/nginx
-      - type: bind
-        source: ${PWD}/nginx-v/nginx.conf
-        target: /etc/nginx.conf
     depends_on:
       - lightsearch-server
     expose:

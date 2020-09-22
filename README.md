@@ -129,11 +129,10 @@ HTTPS.
 
 Все настройки для Nginx лежат в папке `ls-nginx`.
 
-Для запуска Docker Compose необходимо создать папки `lightsearch-v` и `nginx-v`. В папку lightsearch-v необходимо 
-разместить файл `blacklist`, а в папку `nginx-v` - `nginx.conf`. В этом репозитории есть примеры этих папок.
+Для запуска Docker Compose необходимо создать папку `lightsearch-v`, в которую надо разместить файл `blacklist`. 
 
-После запуска Docker Compose в разделах `lightsearch-v` и `nginx-v` создаются директория `logs`, в которой содержатся 
-логи LightSearch Server, и директория `log`, в которой содержатся логи Nginx, соответственно.
+После запуска Docker Compose в разделе `lightsearch-v` создается директория `logs`, в которой содержатся 
+логи LightSearch Server, и создается раздел `nginx-v` с директорией `log`, в которой содержатся логи Nginx.
 
 Для остановки сервисов необходимо ввести следующую команду:
 
