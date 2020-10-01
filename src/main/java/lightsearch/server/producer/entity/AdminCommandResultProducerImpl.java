@@ -40,6 +40,11 @@ public class AdminCommandResultProducerImpl implements AdminCommandResultProduce
     }
 
     @Override
+    public AdminCommandResult getAdminCommandResultAddBlacklistInstance(AdminCommandResult admCmdRes, String hashIMEI) {
+        return (AdminCommandResult) ctx.getBean("adminCommandResultAddBlacklist", admCmdRes, hashIMEI);
+    }
+
+    @Override
     public AdminCommandResult getAdminCommandResultWithBlacklistInstance(AdminCommandResult admCmdRes, List<String> blacklist) {
         return (AdminCommandResult) ctx.getBean("adminCommandResultWithBlacklist", admCmdRes, blacklist);
     }

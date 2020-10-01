@@ -24,6 +24,7 @@ import java.util.List;
 
 public interface AdminCommandResultProducer {
     AdminCommandResult getAdminCommandResultSimpleInstance(boolean isDone, String message);
+    AdminCommandResult getAdminCommandResultAddBlacklistInstance(AdminCommandResult admCmdRes, String hashIMEI);
     AdminCommandResult getAdminCommandResultWithBlacklistInstance(AdminCommandResult admCmdRes, List<String> blacklist);
     AdminCommandResult getAdminCommandResultWithClientInstance(AdminCommandResult admCmdRes, List<Client> clients);
 }

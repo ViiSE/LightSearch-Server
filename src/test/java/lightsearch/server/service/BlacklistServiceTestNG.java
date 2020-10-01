@@ -44,9 +44,8 @@ public class BlacklistServiceTestNG {
     public void add(String IMEI, String cause) {
         testMethod("add() " + cause);
 
-        boolean added = blacklistService.add(IMEI);
-        System.out.println("Added: " + added);
-        assertTrue(added);
+        blacklistService.add(IMEI);
+        System.out.println("Added: " + IMEI);
 
         assertTrue(blacklistService.blacklist().size() > 1);
     }

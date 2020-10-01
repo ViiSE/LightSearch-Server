@@ -23,10 +23,12 @@ import lightsearch.server.constants.AdminCommands;
 import lightsearch.server.data.*;
 import lightsearch.server.entity.AdminCommand;
 import lightsearch.server.entity.AdminCommandResult;
+import lightsearch.server.exception.AdminErrorException;
 import lightsearch.server.producer.entity.AdminCommandProducer;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
+
+import java.util.List;
 
 @Api(tags="Admin Commands Controller", description = "Контроллер точек для работы с командами администратора")
 @RestController
@@ -45,19 +47,19 @@ public class AdminCommandsController {
     @ApiOperation(value = "Выгружает черный список клиентов")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Черный список выгружен.")})
     @GetMapping("/admins/commands/blacklist")
-    public AdminCommandResultWithBlacklistDTO requestBlacklist() {
-        return (AdminCommandResultWithBlacklistDTO) getCommandResult(AdminCommands.BLACKLIST, null);
+    public AdminCommandResultWithBlacklistDTO requestBlacklist() throws AdminErrorException {
+        return (AdminCommandResultWithBlacklistDTO) getCommandResult(AdminCommands.BLACKLIST, null, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ApiOperation(value = "Добавляет клиента в черный список")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Клиент добавлен в черный список.")})
     @PostMapping("/admins/commands/blacklist")
-    public AdminCommandSimpleResultDTO addToBlacklist(
+    public AdminCommandAddBlacklistResultDTO addToBlacklist(
             @ApiParam(required = true, value = "<code><b>adminCommand{imei}</b></code> можно указывать как в чистом " +
                     "виде, так и в виде хэш-строки.")
-            @RequestBody AdminAddBlacklistCommandDTO commandDTO) {
+            @RequestBody AdminAddBlacklistCommandDTO commandDTO) throws AdminErrorException {
         AdminCommand cmd = commandProducer.getAdminCommandAddBlacklistInstance(commandDTO.getIMEI());
-        return (AdminCommandSimpleResultDTO) getCommandResult(AdminCommands.ADD_BLACKLIST, cmd);
+        return (AdminCommandAddBlacklistResultDTO) getCommandResult(AdminCommands.ADD_BLACKLIST, cmd, HttpStatus.BAD_REQUEST);
     }
 
     @ApiOperation(value = "Удаляет клиента из черного списка")
@@ -70,19 +72,20 @@ public class AdminCommandsController {
     public AdminCommandSimpleResultDTO delFromBlacklist(
             @ApiParam(required = true, value = "<code><b>adminCommand{imei}</b></code> можно указывать как в чистом " +
                     "виде, так и в виде хэш-строки.")
-            @RequestBody AdminDelBlacklistCommandDTO commandDTO) {
-        AdminCommand cmd = commandProducer.getAdminCommandDelBlacklistInstance(commandDTO.getIMEI());
-        AdminCommandSimpleResultDTO result = (AdminCommandSimpleResultDTO) getCommandResult(AdminCommands.DEL_BLACKLIST, cmd);
-        if (!result.getIsDone())
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, result.getMessage());
-        return result;
+            @RequestParam(name = "imei", required = false) String IMEI, @RequestParam(required = false, name = "imeiList") List<String> imeiList) throws AdminErrorException {
+        AdminCommand cmd;
+        if(imeiList != null)
+            cmd = commandProducer.getAdminCommandDelBlacklistInstance(imeiList);
+        else
+            cmd = commandProducer.getAdminCommandDelBlacklistInstance(IMEI);
+        return (AdminCommandSimpleResultDTO) getCommandResult(AdminCommands.DEL_BLACKLIST_LIST, cmd, HttpStatus.NOT_FOUND);
     }
 
     @ApiOperation(value = "Выгружает список текущих клиентов")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Список клиентов выгружен.")})
     @GetMapping("/admins/commands/clients")
-    public AdminCommandResultWithClientsDTO requestClient() {
-        return (AdminCommandResultWithClientsDTO) getCommandResult(AdminCommands.CLIENT_LIST, null);
+    public AdminCommandResultWithClientsDTO requestClient() throws AdminErrorException {
+        return (AdminCommandResultWithClientsDTO) getCommandResult(AdminCommands.CLIENT_LIST, null, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ApiOperation(value = "Удаляет клиента из списка текущих клиетов")
@@ -95,13 +98,9 @@ public class AdminCommandsController {
     public AdminCommandSimpleResultDTO delClient(
             @ApiParam(required = true, value = "<code><b>adminCommand{imei}</b></code> можно указывать как в чистом " +
                     "виде, так и в виде хэш-строки.")
-            @RequestBody AdminKickCommandDTO commandDTO) {
+            @RequestBody AdminKickCommandDTO commandDTO) throws AdminErrorException {
         AdminCommand cmd = commandProducer.getAdminCommandClientKickInstance(commandDTO.getIMEI());
-        AdminCommandSimpleResultDTO result = (AdminCommandSimpleResultDTO) getCommandResult(AdminCommands.KICK, cmd);
-
-        if (!result.getIsDone())
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, result.getMessage());
-        return result;
+        return (AdminCommandSimpleResultDTO) getCommandResult(AdminCommands.KICK, cmd, HttpStatus.NOT_FOUND);
     }
 
     @ApiOperation(value = "Изменяет время таймаута клиента")
@@ -114,12 +113,9 @@ public class AdminCommandsController {
     public AdminCommandSimpleResultDTO changeClientsTimeout(
             @ApiParam(required = true, value = "<code><b>adminCommand{client_timeout}</b></code> указывается в " +
                     "количествах днях жизни токена клиента. Изменения вступят в силу только для новых клиентов.")
-            @RequestBody AdminClientTimeoutCommandDTO commandDTO) {
+            @RequestBody AdminClientTimeoutCommandDTO commandDTO) throws AdminErrorException {
         AdminCommand cmd = commandProducer.getAdminCommandClientTimeoutInstance(commandDTO.getClientTimeout());
-        AdminCommandSimpleResultDTO result = (AdminCommandSimpleResultDTO) getCommandResult(AdminCommands.CLIENT_TIMEOUT, cmd);
-        if (!result.getIsDone())
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, result.getMessage());
-        return result;
+        return (AdminCommandSimpleResultDTO) getCommandResult(AdminCommands.CLIENT_TIMEOUT, cmd, HttpStatus.BAD_REQUEST);
     }
 
     @ApiOperation(value = "Изменяет параметры подключения к базе данных")
@@ -135,7 +131,7 @@ public class AdminCommandsController {
     @PutMapping("/admins/commands/datasource")
     public AdminCommandSimpleResultDTO changeDatasource(
             @ApiParam(required = true, value = "Для вступления изменений в силу необходимо перезагрузить сервер")
-            @RequestBody AdminChangeDatabaseCommandDTO commandDTO) {
+            @RequestBody AdminChangeDatabaseCommandDTO commandDTO) throws AdminErrorException {
         AdminCommandDTO cmdDTO = new AdminCommandDTO();
         cmdDTO.setDbName(commandDTO.getDbName());
         cmdDTO.setIp(commandDTO.getIp());
@@ -144,20 +140,21 @@ public class AdminCommandsController {
         cmdDTO.setPassword(commandDTO.getPassword());
 
         AdminCommand cmd = commandProducer.getAdminCommandDatabaseInstance(cmdDTO);
-        AdminCommandSimpleResultDTO result = (AdminCommandSimpleResultDTO) getCommandResult(AdminCommands.CHANGE_DATABASE, cmd);
-        if (!result.getIsDone())
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, result.getMessage());
-        return result;
+        return (AdminCommandSimpleResultDTO) getCommandResult(AdminCommands.CHANGE_DATABASE, cmd, HttpStatus.BAD_REQUEST);
     }
 
     @ApiOperation(value = "Перезагружает LightSearch Server")
     @ApiResponses(value = { @ApiResponse(code = 200, message = "Перезагрузка прошла успешно.")})
     @GetMapping("/admins/commands/restart")
-    public AdminCommandSimpleResultDTO restart() {
-        return (AdminCommandSimpleResultDTO) getCommandResult(AdminCommands.RESTART, null);
+    public AdminCommandSimpleResultDTO restart() throws AdminErrorException {
+        return (AdminCommandSimpleResultDTO) getCommandResult(AdminCommands.RESTART, null, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    private Object getCommandResult(String cmdName, AdminCommand cmd) {
-        return processes.get(cmdName).apply(cmd).formForSend();
+    private Object getCommandResult(String cmdName, AdminCommand cmd, HttpStatus status) throws AdminErrorException {
+        AdminCommandResult cmdRes = processes.get(cmdName).apply(cmd);
+        if(!cmdRes.isDone())
+            throw new AdminErrorException(status, cmdRes.message());
+        else
+            return cmdRes.formForSend();
     }
 }

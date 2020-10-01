@@ -45,9 +45,10 @@ public class BlacklistServiceImpl implements BlacklistService<String> {
     }
 
     @Override
-    public boolean add(String IMEI) {
+    public String add(String IMEI) {
         String hashIMEI = create(IMEI);
-        return blacklist.add(hashIMEI);
+        blacklist.add(hashIMEI);
+        return hashIMEI;
     }
 
     @Override

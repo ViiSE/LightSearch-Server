@@ -34,8 +34,9 @@ public class BlacklistServiceTestImpl implements BlacklistService<String> {
     }
 
     @Override
-    public boolean add(String IMEI) {
-        return blacklist.add(IMEI);
+    public String add(String IMEI) {
+        blacklist.add(IMEI);
+        return IMEI;
     }
 
     @Override

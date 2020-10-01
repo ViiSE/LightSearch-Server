@@ -16,34 +16,33 @@
 
 package lightsearch.server.controller;
 
-import lightsearch.server.data.ClientErrorResponseDTO;
+import lightsearch.server.data.AdminErrorResponseDTO;
+import lightsearch.server.exception.AdminErrorException;
 import lightsearch.server.exception.ClientErrorException;
 import lightsearch.server.log.LoggerServer;
-import org.jboss.logging.LogMessage;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import springfox.documentation.annotations.ApiIgnore;
 
 @ApiIgnore
 @ControllerAdvice
-public class ClientErrorController {
+public class AdminErrorController {
 
     private final LoggerServer logger;
 
-    public ClientErrorController(LoggerServer logger) {
+    public AdminErrorController(LoggerServer logger) {
         this.logger = logger;
     }
 
-    @ExceptionHandler(ClientErrorException.class)
-    public ResponseEntity<ClientErrorResponseDTO> handleException(ClientErrorException ex) {
-        ClientErrorResponseDTO responseDTO = new ClientErrorResponseDTO() {{
+    @ExceptionHandler(AdminErrorException.class)
+    public ResponseEntity<AdminErrorResponseDTO> handleException(AdminErrorException ex) {
+        AdminErrorResponseDTO responseDTO = new AdminErrorResponseDTO() {{
             setCode(ex.getStatus().value());
+            setStatus(ex.getStatus().value());
             setMessage(ex.getMessage()); }};
 
-        logger.error(ClientErrorController.class, ex.getMessage());
+        logger.error(AdminErrorController.class, ex.getMessage());
         return new ResponseEntity<>(responseDTO, ex.getStatus());
     }
 }

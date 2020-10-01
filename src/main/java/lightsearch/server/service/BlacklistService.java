@@ -21,6 +21,6 @@ import java.util.List;
 public interface BlacklistService<V> {
     List<V> blacklist();
     boolean remove(V v);
-    boolean add(V v);
+    V add(V v);
     boolean contains(V v);
 }

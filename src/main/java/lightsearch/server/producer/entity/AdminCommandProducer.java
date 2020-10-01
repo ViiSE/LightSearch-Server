@@ -20,10 +20,13 @@ package lightsearch.server.producer.entity;
 import lightsearch.server.data.AdminCommandDTO;
 import lightsearch.server.entity.AdminCommand;
 
+import java.util.List;
+
 public interface AdminCommandProducer {
     AdminCommand getAdminCommandAddBlacklistInstance(String IMEI);
     AdminCommand getAdminCommandClientTimeoutInstance(int timeout);
     AdminCommand getAdminCommandDatabaseInstance(AdminCommandDTO adminCommandDTO);
     AdminCommand getAdminCommandDelBlacklistInstance(String IMEI);
+    AdminCommand getAdminCommandDelBlacklistInstance(List<String> IMEIList);
     AdminCommand getAdminCommandClientKickInstance(String IMEI);
 }

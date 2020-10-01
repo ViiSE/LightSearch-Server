@@ -30,4 +30,14 @@ public class AdminCommandResultWithBlacklistImpl implements AdminCommandResult {
 
         return resDTO;
     }
+
+    @Override
+    public boolean isDone() {
+        return admCmdRes.isDone();
+    }
+
+    @Override
+    public String message() {
+        return admCmdRes.message();
+    }
 }

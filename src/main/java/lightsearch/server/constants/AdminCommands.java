@@ -29,5 +29,6 @@ public class AdminCommands {
     public final static String BLACKLIST = "blacklist";
     public final static String ADD_BLACKLIST = "add_blacklist";
     public final static String DEL_BLACKLIST = "del_blacklist";
+    public final static String DEL_BLACKLIST_LIST = "del_blacklist_list";
     public final static String CHANGE_DATABASE = "change_database";
 }

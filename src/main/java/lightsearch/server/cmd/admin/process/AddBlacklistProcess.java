@@ -67,30 +67,32 @@ public class AddBlacklistProcess implements AdminProcess<AdminCommandResult> {
 
             AdminCommandAddBlacklistImpl cmd = (AdminCommandAddBlacklistImpl) command;
 
-            blacklistService.add(cmd.IMEI());
-            try (FileOutputStream fout = new FileOutputStream(blacklistDirectory.name(), false);
+            String hashIMEI = blacklistService.add(cmd.IMEI());
+            try (FileOutputStream fout = new FileOutputStream(blacklistDirectory.name(), true);
                  BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fout))) {
-                List<String> blacklists = blacklistService.blacklist();
-                for(String IMEI: blacklists) {
-                    bw.write(IMEI);
-                    bw.newLine();
-                }
+                bw.write(hashIMEI);
+                bw.newLine();
             } catch (IOException ex) {
                 blacklistService.remove(cmd.IMEI());
-                return admCmdResProducer.getAdminCommandResultSimpleInstance(
-                        false,
-                        "Cannot add client to the blacklist. Exception: " + ex.getMessage());
+                return admCmdResProducer.getAdminCommandResultAddBlacklistInstance(
+                        admCmdResProducer.getAdminCommandResultSimpleInstance(
+                                false,
+                                "Cannot add client to the blacklist. Exception: " + ex.getMessage()),
+                        "");
             }
 
             clientsService.remove(cmd.IMEI());
-            return admCmdResProducer.getAdminCommandResultSimpleInstance(
-                    true,
-                    "Client " + cmd.IMEI() + " has been added to the blacklist.");
+            return admCmdResProducer.getAdminCommandResultAddBlacklistInstance(
+                    admCmdResProducer.getAdminCommandResultSimpleInstance(
+                            true,
+                            "Client " + cmd.IMEI() + " has been added to the blacklist."),
+                    hashIMEI);
         } catch (CheckerException ex) {
-            return admCmdResProducer.getAdminCommandResultSimpleInstance(
-                    false,
-                    ex.getMessage());
-
+            return admCmdResProducer.getAdminCommandResultAddBlacklistInstance(
+                    admCmdResProducer.getAdminCommandResultSimpleInstance(
+                            false,
+                            ex.getMessage()),
+                    "");
         }
     }
 }

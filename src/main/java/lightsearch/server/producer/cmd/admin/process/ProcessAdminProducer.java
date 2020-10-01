@@ -21,6 +21,7 @@ import lightsearch.server.cmd.admin.process.AdminProcess;
 public interface ProcessAdminProducer<R> {
     AdminProcess<R> getAddBlacklistProcessInstance();
     AdminProcess<R> getDelBlacklistProcessInstance();
+    AdminProcess<R> getDelBlacklistListProcessInstance();
     AdminProcess<R> getBlacklistRequestProcessInstance();
     AdminProcess<R> getClientListRequestProcessInstance();
     AdminProcess<R> getClientKickProcessInstance();

@@ -41,6 +41,11 @@ public class ProcessAdminProducerImpl implements ProcessAdminProducer<AdminComma
     }
 
     @Override
+    public AdminProcess<AdminCommandResult> getDelBlacklistListProcessInstance() {
+        return ctx.getBean(DelBlacklistListProcess.class);
+    }
+
+    @Override
     public AdminProcess<AdminCommandResult> getBlacklistRequestProcessInstance() {
         return ctx.getBean(BlacklistRequestProcessWithLoggerImpl.class);
     }

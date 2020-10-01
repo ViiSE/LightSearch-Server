@@ -22,6 +22,8 @@ import lightsearch.server.entity.AdminCommand;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service("adminCommandProducer")
 public class AdminCommandProducerImpl implements AdminCommandProducer {
 
@@ -49,6 +51,11 @@ public class AdminCommandProducerImpl implements AdminCommandProducer {
     @Override
     public AdminCommand getAdminCommandDelBlacklistInstance(String IMEI) {
         return (AdminCommand) ctx.getBean("adminCommandDelBlacklist", IMEI);
+    }
+
+    @Override
+    public AdminCommand getAdminCommandDelBlacklistInstance(List<String> IMEIList) {
+        return (AdminCommand) ctx.getBean("adminCommandDelBlacklistList", IMEIList);
     }
 
     @Override

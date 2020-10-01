@@ -20,4 +20,14 @@ public class AdminCommandResultSimpleImpl implements AdminCommandResult {
     public Object formForSend() {
         return new AdminCommandSimpleResultDTO(isDone, message);
     }
+
+    @Override
+    public boolean isDone() {
+        return isDone;
+    }
+
+    @Override
+    public String message() {
+        return message;
+    }
 }

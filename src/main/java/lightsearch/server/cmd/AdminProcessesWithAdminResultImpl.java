@@ -35,6 +35,7 @@ public class AdminProcessesWithAdminResultImpl implements Processes<AdminCommand
         processes.put(AdminCommands.BLACKLIST, prcAdmProducer.getBlacklistRequestProcessInstance());
         processes.put(AdminCommands.ADD_BLACKLIST, prcAdmProducer.getAddBlacklistProcessInstance());
         processes.put(AdminCommands.DEL_BLACKLIST, prcAdmProducer.getDelBlacklistProcessInstance());
+        processes.put(AdminCommands.DEL_BLACKLIST_LIST, prcAdmProducer.getDelBlacklistListProcessInstance());
         processes.put(AdminCommands.CLIENT_LIST, prcAdmProducer.getClientListRequestProcessInstance());
         processes.put(AdminCommands.CLIENT_TIMEOUT, prcAdmProducer.getClientTimeoutProcessInstance());
         processes.put(AdminCommands.KICK, prcAdmProducer.getClientKickProcessInstance());
