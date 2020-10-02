@@ -29,4 +29,5 @@ public interface AdminCommandProducer {
     AdminCommand getAdminCommandDelBlacklistInstance(String IMEI);
     AdminCommand getAdminCommandDelBlacklistInstance(List<String> IMEIList);
     AdminCommand getAdminCommandClientKickInstance(String IMEI);
+    AdminCommand getAdminCommandClientKickInstance(List<String> IMEIList);
 }

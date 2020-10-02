@@ -74,11 +74,13 @@ public class AdminCommandsController {
                     "виде, так и в виде хэш-строки.")
             @RequestParam(name = "imei", required = false) String IMEI, @RequestParam(required = false, name = "imeiList") List<String> imeiList) throws AdminErrorException {
         AdminCommand cmd;
-        if(imeiList != null)
+        if(imeiList != null) {
             cmd = commandProducer.getAdminCommandDelBlacklistInstance(imeiList);
-        else
+            return (AdminCommandSimpleResultDTO) getCommandResult(AdminCommands.DEL_BLACKLIST_LIST, cmd, HttpStatus.NOT_FOUND);
+        } else {
             cmd = commandProducer.getAdminCommandDelBlacklistInstance(IMEI);
-        return (AdminCommandSimpleResultDTO) getCommandResult(AdminCommands.DEL_BLACKLIST_LIST, cmd, HttpStatus.NOT_FOUND);
+            return (AdminCommandSimpleResultDTO) getCommandResult(AdminCommands.DEL_BLACKLIST, cmd, HttpStatus.NOT_FOUND);
+        }
     }
 
     @ApiOperation(value = "Выгружает список текущих клиентов")
@@ -98,9 +100,15 @@ public class AdminCommandsController {
     public AdminCommandSimpleResultDTO delClient(
             @ApiParam(required = true, value = "<code><b>adminCommand{imei}</b></code> можно указывать как в чистом " +
                     "виде, так и в виде хэш-строки.")
-            @RequestBody AdminKickCommandDTO commandDTO) throws AdminErrorException {
-        AdminCommand cmd = commandProducer.getAdminCommandClientKickInstance(commandDTO.getIMEI());
-        return (AdminCommandSimpleResultDTO) getCommandResult(AdminCommands.KICK, cmd, HttpStatus.NOT_FOUND);
+            @RequestParam(name = "imei", required = false) String IMEI, @RequestParam(required = false, name = "imeiList") List<String> imeiList) throws AdminErrorException {
+        AdminCommand cmd;
+        if(imeiList != null) {
+            cmd = commandProducer.getAdminCommandClientKickInstance(imeiList);
+            return (AdminCommandSimpleResultDTO) getCommandResult(AdminCommands.KICK_LIST, cmd, HttpStatus.NOT_FOUND);
+        } else {
+            cmd = commandProducer.getAdminCommandClientKickInstance(IMEI);
+            return (AdminCommandSimpleResultDTO) getCommandResult(AdminCommands.KICK, cmd, HttpStatus.NOT_FOUND);
+        }
     }
 
     @ApiOperation(value = "Изменяет время таймаута клиента")

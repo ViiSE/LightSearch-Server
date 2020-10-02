@@ -39,6 +39,7 @@ public class AdminProcessesWithAdminResultImpl implements Processes<AdminCommand
         processes.put(AdminCommands.CLIENT_LIST, prcAdmProducer.getClientListRequestProcessInstance());
         processes.put(AdminCommands.CLIENT_TIMEOUT, prcAdmProducer.getClientTimeoutProcessInstance());
         processes.put(AdminCommands.KICK, prcAdmProducer.getClientKickProcessInstance());
+        processes.put(AdminCommands.KICK_LIST, prcAdmProducer.getClientKickListProcessInstance());
         processes.put(AdminCommands.CHANGE_DATABASE, prcAdmProducer.getChangeDatabaseProcessInstance());
         processes.put(AdminCommands.RESTART, prcAdmProducer.getRestartProcessInstance());
     }

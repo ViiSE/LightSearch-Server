@@ -26,6 +26,7 @@ public class AdminCommands {
     public final static String CLIENT_TIMEOUT = "client_timeout";
     public final static String CLIENT_LIST = "client_list";
     public final static String KICK = "kick";
+    public final static String KICK_LIST = "kick_list";
     public final static String BLACKLIST = "blacklist";
     public final static String ADD_BLACKLIST = "add_blacklist";
     public final static String DEL_BLACKLIST = "del_blacklist";

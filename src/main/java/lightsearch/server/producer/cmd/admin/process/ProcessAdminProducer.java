@@ -25,6 +25,7 @@ public interface ProcessAdminProducer<R> {
     AdminProcess<R> getBlacklistRequestProcessInstance();
     AdminProcess<R> getClientListRequestProcessInstance();
     AdminProcess<R> getClientKickProcessInstance();
+    AdminProcess<R> getClientKickListProcessInstance();
     AdminProcess<R> getChangeDatabaseProcessInstance();
     AdminProcess<R> getClientTimeoutProcessInstance();
     AdminProcess<R> getRestartProcessInstance();

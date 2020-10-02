@@ -61,6 +61,11 @@ public class ProcessAdminProducerImpl implements ProcessAdminProducer<AdminComma
     }
 
     @Override
+    public AdminProcess<AdminCommandResult> getClientKickListProcessInstance() {
+        return ctx.getBean(ClientKickListProcess.class);
+    }
+
+    @Override
     public AdminProcess<AdminCommandResult> getChangeDatabaseProcessInstance() {
         return ctx.getBean(ChangeDatabaseProcess.class);
     }
