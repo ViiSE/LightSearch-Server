@@ -22,6 +22,7 @@ import lightsearch.server.checker.Checker;
 import lightsearch.server.checker.CommandCheckerAdminAddBlacklistImpl;
 import lightsearch.server.checker.LightSearchChecker;
 import lightsearch.server.checker.LightSearchCheckerDefaultImpl;
+import lightsearch.server.data.AdminCommandAddBlacklistResultDTO;
 import lightsearch.server.data.AdminCommandSimpleResultDTO;
 import lightsearch.server.entity.*;
 import lightsearch.server.initialization.BlacklistDirectory;
@@ -83,7 +84,7 @@ public class AddBlacklistProcessTestNG {
     public void apply(String IMEI) throws JsonProcessingException {
         testMethod("apply() [IMEI is not client]");
 
-        AdminCommandSimpleResultDTO resDTO = (AdminCommandSimpleResultDTO) test(IMEI);
+        AdminCommandAddBlacklistResultDTO resDTO = (AdminCommandAddBlacklistResultDTO) test(IMEI);
         assertTrue(blacklistService.contains(IMEI));
         printResult(resDTO);
     }
@@ -93,7 +94,7 @@ public class AddBlacklistProcessTestNG {
     public void apply_IMEIInClients(String IMEIInClient) throws JsonProcessingException {
         testMethod("apply() [IMEI is client]");
 
-        AdminCommandSimpleResultDTO resDTO = (AdminCommandSimpleResultDTO) test(IMEIInClient);
+        AdminCommandAddBlacklistResultDTO resDTO = (AdminCommandAddBlacklistResultDTO) test(IMEIInClient);
         assertTrue(blacklistService.contains(IMEIInClient));
         assertFalse(clientsService.contains(IMEIInClient));
         printResult(resDTO);
@@ -104,7 +105,7 @@ public class AddBlacklistProcessTestNG {
     public void apply_IMEIAlreadyInTheBlacklist(String IMEI) throws JsonProcessingException {
         testMethod("apply() [IMEI already in the blacklist]");
 
-        AdminCommandSimpleResultDTO resDTO = (AdminCommandSimpleResultDTO) test(IMEI);
+        AdminCommandAddBlacklistResultDTO resDTO = (AdminCommandAddBlacklistResultDTO) test(IMEI);
         assertFalse(resDTO.getIsDone());
         String message = resDTO.getMessage().toLowerCase();
         assertTrue(message.contains("already in the blacklist"));
