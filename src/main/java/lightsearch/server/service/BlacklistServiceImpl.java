@@ -26,7 +26,7 @@ import java.util.List;
 @Service("blacklistService")
 public class BlacklistServiceImpl implements BlacklistService<String> {
 
-    private static final List<String> blacklist = new ArrayList<>();
+    private final List<String> blacklist = new ArrayList<>();
     private final HashAlgorithm hashAlgorithm;
 
     public BlacklistServiceImpl(@Qualifier("hashAlgorithmsSHA512") HashAlgorithm hashAlgorithm) {

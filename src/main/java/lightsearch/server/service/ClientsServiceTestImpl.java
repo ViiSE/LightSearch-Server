@@ -28,7 +28,7 @@ import java.util.Map;
 public class ClientsServiceTestImpl implements ClientsService<String, Client, List<Client>> {
 
     private int i = 1;
-    private static final Map<String, Client> clientsMap = new HashMap<>();
+    private final Map<String, Client> clientsMap = new HashMap<>();
 
     public ClientsServiceTestImpl() {}
 
