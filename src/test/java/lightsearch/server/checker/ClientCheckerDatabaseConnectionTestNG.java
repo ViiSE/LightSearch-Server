@@ -27,6 +27,7 @@ import lightsearch.server.initialization.CurrentServerDirectoryTestImpl;
 import lightsearch.server.producer.entity.PropertyProducerTestImpl;
 import lightsearch.server.properties.ApplicationPropertiesDirectoryImpl;
 import lightsearch.server.properties.DatasourcePropertiesFileReaderMapOfPropertiesImpl;
+import lightsearch.server.properties.PropertiesFileReaderListOfStringImpl;
 import lightsearch.server.properties.PropertiesReader;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
@@ -51,7 +52,7 @@ public class ClientCheckerDatabaseConnectionTestNG extends AbstractTestNGSpringC
     public void setUpClass() {
         PropertiesReader<Map<String, Property<String>>> propRd = new DatasourcePropertiesFileReaderMapOfPropertiesImpl(
                 new PropertyProducerTestImpl(),
-                TestDirectories.applicationPropertiesDirectory()
+                new PropertiesFileReaderListOfStringImpl(TestDirectories.applicationPropertiesDirectory())
         );
         cmdChecker = new ClientCheckerDatabaseConnectionImpl(propRd);
 
@@ -91,12 +92,14 @@ public class ClientCheckerDatabaseConnectionTestNG extends AbstractTestNGSpringC
     public Object[][] createInvalidsDcValues() {
         PropertiesReader<Map<String, Property<String>>> propRd = new DatasourcePropertiesFileReaderMapOfPropertiesImpl(
                 new PropertyProducerTestImpl(),
-                new ApplicationPropertiesDirectoryImpl(new CurrentServerDirectoryTestImpl())
+                new PropertiesFileReaderListOfStringImpl(
+                        new ApplicationPropertiesDirectoryImpl(
+                                new CurrentServerDirectoryTestImpl()))
         );
 
         PropertiesReader<Map<String, Property<String>>> propRdFake = new DatasourcePropertiesFileReaderMapOfPropertiesImpl(
                 new PropertyProducerTestImpl(),
-                TestDirectories.fakePropertiesDirectory()
+                new PropertiesFileReaderListOfStringImpl(TestDirectories.fakePropertiesDirectory())
         );
 
         return new Object[][] {

@@ -17,6 +17,7 @@
 
 package lightsearch.server.entity;
 
+import lightsearch.server.constants.DatasourceConstants;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
@@ -37,19 +38,35 @@ public class SpringDatasourcePropertyTestNG {
         Property<String> ipProp = new IpPropertyImpl(ip);
         Property<String> portProp = new PortPropertyImpl(port);
         Property<String> dbNameProp = new DatabaseNamePropertyImpl(dbName);
+        // TODO: 12.10.2020 CLEANUP THIS
+        Property<String> dbTypeProp = new DbTypePropertyImpl("firebird");
+        Property<String> additionalProp = new DbAdditionalPropertyImpl("?encoding=win1251&amp;useUnicode=true&amp;characterEncoding=win1251");
+        Property<Boolean> autoCommitProp = new PoolAutoCommitPropertyImpl(true);
+        Property<Long> connToutProp = new PoolConnectionTimeoutPropertyImpl(18000);
+        Property<Long> idleToutProp = new PoolIdleTimeoutPropertyImpl(3000);
+        Property<Long> maxLifeTime = new PoolMaxLifeTimePropertyImpl(10000);
+        Property<Long> maxPoolSize = new MaximumPoolSizePropertyImpl(10);
+
         Map<String, Property<String>> urlPropMap = new HashMap<>();
         urlPropMap.put(ipProp.name(), ipProp);
         urlPropMap.put(portProp.name(), portProp);
         urlPropMap.put(dbNameProp.name(), dbNameProp);
-        Property<String> propUrl = new SpringDatasourceURLFirebirdWindowsPropertyImpl(urlPropMap);
+        urlPropMap.put(dbTypeProp.name(), dbTypeProp);
+        urlPropMap.put(additionalProp.name(), additionalProp);
+        Property<String> propUrl = new SpringDatasourceURLPropertyImpl(urlPropMap);
 
         Property<String> unameProp = new SpringDatasourceUsernamePropertyImpl(dbUsernameValue);
         Property<String> passProp = new SpringDatasourcePasswordPropertyImpl(dbPassValue);
 
-        Map<String, Property<String>> propMap = new HashMap<>();
+        Map<String, Property<?>> propMap = new HashMap<>();
         propMap.put(unameProp.name(), unameProp);
         propMap.put(passProp.name(), passProp);
         propMap.put(propUrl.name(), propUrl);
+        propMap.put(autoCommitProp.name(), autoCommitProp);
+        propMap.put(connToutProp.name(), connToutProp);
+        propMap.put(idleToutProp.name(), idleToutProp);
+        propMap.put(maxLifeTime.name(), maxLifeTime);
+        propMap.put(maxPoolSize.name(), maxPoolSize);
 
         Property<String> property = new SpringDatasourcePropertyImpl(propMap);
 

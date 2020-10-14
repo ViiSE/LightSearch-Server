@@ -18,7 +18,7 @@
 package lightsearch.server.producer.entity;
 
 import lightsearch.server.LightSearchServer;
-import lightsearch.server.data.AdminCommandDTO;
+import lightsearch.server.data.AdminChangeDatabaseCommandDTO;
 import lightsearch.server.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -89,8 +89,8 @@ public class AdminCommandProducerIntegrationTestNG extends AbstractTestNGSpringC
     public void getAdminCommandDatabaseInstance(String ip, int port, String dbName, String username, String pass) {
         testMethod("getAdminCommandDatabaseInstance()");
 
-        AdminCommandDTO adminCommandDTO = new AdminCommandDTO();
-        adminCommandDTO.setIp(ip);
+        AdminChangeDatabaseCommandDTO adminCommandDTO = new AdminChangeDatabaseCommandDTO();
+        adminCommandDTO.setHost(ip);
         adminCommandDTO.setPort(port);
         adminCommandDTO.setDbName(dbName);
         adminCommandDTO.setUsername(username);

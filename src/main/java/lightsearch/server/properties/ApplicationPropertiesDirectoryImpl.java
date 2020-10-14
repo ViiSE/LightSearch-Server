@@ -16,6 +16,7 @@ public class ApplicationPropertiesDirectoryImpl implements PropertiesDirectory {
 
     @Override
     public String name() {
+        String t = serverDirectory.name() + "config" + File.separator + "application.properties";
         return serverDirectory.name() + "config" + File.separator + "application.properties";
     }
 }

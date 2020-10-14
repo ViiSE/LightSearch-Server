@@ -16,6 +16,7 @@
 
 package lightsearch.server.properties;
 
+import lightsearch.server.constants.DatasourceConstants;
 import lightsearch.server.entity.Property;
 import lightsearch.server.exception.PropertiesException;
 import lightsearch.server.exception.ReaderException;
@@ -37,18 +38,34 @@ public class PropertiesChangerLocalImpl implements PropertiesChanger<List<String
     @Override
     public List<String> change(Property<String> prop) throws PropertiesException {
         try {
+            // TODO: 13.10.2020 CREATE PROPERTY ADDER
             String propAsStr = prop.as();
             List<String> propsCh = Arrays.asList(propAsStr.split("\n"));
+            List<String> readProps = propertiesReader.read();
+            for(String propCh: propsCh) {
+                String propName = propCh.substring(0, propCh.indexOf("="));
+                boolean found = false;
+                for(String readProp: readProps) {
+                    if(readProp.contains(propName)) {
+                        found = true;
+                        break;
+                    }
+                }
+                if(!found) {
+                    if(containsInAllowedList(propName))
+                        readProps.add(propCh);
+                }
+            }
 
-            return propertiesReader
-                    .read()
+            return readProps
                     .stream()
                     .map(property -> {
                         final StringBuilder res = new StringBuilder();
                         propsCh.forEach(propCh -> {
                             String propName = propCh.substring(0, propCh.indexOf("="));
                             if(property.contains(propName))
-                                res.append(propCh); });
+                                res.append(propCh);
+                        });
                         if(res.toString().isEmpty())
                             return property;
                         else
@@ -57,5 +74,14 @@ public class PropertiesChangerLocalImpl implements PropertiesChanger<List<String
         } catch (ReaderException ex) {
             throw new PropertiesException(ex.getMessage(), ex.getLogMessage());
         }
+    }
+
+    private boolean containsInAllowedList(String property) {
+        for(String allowed: DatasourceConstants.listOf) {
+            if(property.contains(allowed))
+                return true;
+        }
+
+        return false;
     }
 }

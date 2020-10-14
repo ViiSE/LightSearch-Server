@@ -101,9 +101,9 @@ public class ProcessAdminProducerIntegrationTestNG extends AbstractTestNGSpringC
     public void getClientTimeoutProcessInstance() {
         testMethod("getClientTimeoutProcessInstance()");
 
-        AdminProcess<AdminCommandResult> process = producer.getClientTimeoutProcessInstance();
+        AdminProcess<AdminCommandResult> process = producer.getChangeClientTimeoutProcessInstance();
         System.out.println("instance: " + process);
-        assertTrue(process instanceof ClientTimeoutProcess);
+        assertTrue(process instanceof ChangeClientTimeoutProcess);
     }
 
     @Test

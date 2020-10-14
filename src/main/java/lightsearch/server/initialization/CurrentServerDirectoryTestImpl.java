@@ -25,7 +25,7 @@ public class CurrentServerDirectoryTestImpl implements CurrentServerDirectory {
     
     @Override
     public String name() {
-            return System.getProperty("user.dir") + File.separator + ResourcesFilesPath.getResourcesFilesPath();
+        return System.getProperty("user.dir") + File.separator + ResourcesFilesPath.getResourcesFilesPath();
     }
 
     private static class ResourcesFilesPath {

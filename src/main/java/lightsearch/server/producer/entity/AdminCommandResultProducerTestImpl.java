@@ -17,9 +17,11 @@
 
 package lightsearch.server.producer.entity;
 
+import lightsearch.server.data.AdminCommandResultWithDatasourceDTO;
 import lightsearch.server.entity.*;
 
 import java.util.List;
+import java.util.Map;
 
 public class AdminCommandResultProducerTestImpl implements AdminCommandResultProducer {
 
@@ -39,7 +41,22 @@ public class AdminCommandResultProducerTestImpl implements AdminCommandResultPro
     }
 
     @Override
+    public AdminCommandResult getAdminCommandResultWithClientTimeoutInstance(AdminCommandResult admCmdRes, long clientTimeout) {
+        return new AdminCommandResultWithClientTimeoutImpl(admCmdRes, clientTimeout);
+    }
+
+    @Override
     public AdminCommandResult getAdminCommandResultWithClientInstance(AdminCommandResult admCmdRes, List<Client> clients) {
         return new AdminCommandResultWithClientsImpl(admCmdRes, clients);
+    }
+
+    @Override
+    public AdminCommandResult getAdminCommandResultWithDatasourceInstance(AdminCommandResultWithDatasourceDTO dto) {
+        return new AdminCommandResultWithDatasourceImpl(dto);
+    }
+
+    @Override
+    public AdminCommandResult getAdminCommandResultWithLogsInstance(AdminCommandResult admCmdRes, Map<String, List<String>> logMap) {
+        return new AdminCommandResultWithLogsImpl(admCmdRes, logMap);
     }
 }

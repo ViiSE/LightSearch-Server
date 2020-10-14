@@ -71,8 +71,23 @@ public class ProcessAdminProducerImpl implements ProcessAdminProducer<AdminComma
     }
 
     @Override
+    public AdminProcess<AdminCommandResult> getDatasourceProcessInstance() {
+        return ctx.getBean(DatasourceProcess.class);
+    }
+
+    @Override
+    public AdminProcess<AdminCommandResult> getLogProcessInstance() {
+        return ctx.getBean(LogProcess.class);
+    }
+
+    @Override
     public AdminProcess<AdminCommandResult> getClientTimeoutProcessInstance() {
         return ctx.getBean(ClientTimeoutProcess.class);
+    }
+
+    @Override
+    public AdminProcess<AdminCommandResult> getChangeClientTimeoutProcessInstance() {
+        return ctx.getBean(ChangeClientTimeoutProcess.class);
     }
 
     @Override

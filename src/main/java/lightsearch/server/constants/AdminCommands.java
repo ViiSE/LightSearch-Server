@@ -23,6 +23,7 @@ package lightsearch.server.constants;
 public class AdminCommands {
     public final static String LOGIN = "login";
     public final static String RESTART = "restart";
+    public final static String CHANGE_CLIENT_TIMEOUT = "change_client_timeout";
     public final static String CLIENT_TIMEOUT = "client_timeout";
     public final static String CLIENT_LIST = "client_list";
     public final static String KICK = "kick";
@@ -32,4 +33,6 @@ public class AdminCommands {
     public final static String DEL_BLACKLIST = "del_blacklist";
     public final static String DEL_BLACKLIST_LIST = "del_blacklist_list";
     public final static String CHANGE_DATABASE = "change_database";
+    public final static String DATASOURCE = "datasource";
+    public final static String LOG = "logs";
 }

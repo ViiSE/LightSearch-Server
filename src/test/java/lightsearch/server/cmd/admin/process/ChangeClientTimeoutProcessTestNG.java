@@ -43,7 +43,7 @@ import java.util.List;
 
 import static test.message.TestMessage.*;
 
-public class ClientTimeoutProcessTestNG {
+public class ChangeClientTimeoutProcessTestNG {
 
     private AdminProcess<AdminCommandResult> clToutProc;
     private List<String> oldProps;
@@ -64,13 +64,13 @@ public class ClientTimeoutProcessTestNG {
                 new PropertiesChangerLocalImpl(propsReader),
                 new PropertiesWriterProducerTestImpl());
         Checker<AdminCommand> checker = new CommandCheckerAdminClientTimeoutImpl(new ClientTimeoutValidator());
-        clToutProc = new ClientTimeoutProcess(
+        clToutProc = new ChangeClientTimeoutProcess(
                 admCmdResProducer,
                 propCreator,
                 propChanger,
                 checker);
 
-        testBegin(ClientTimeoutProcess.class);
+        testBegin(ChangeClientTimeoutProcess.class);
     }
 
     @Test
@@ -102,6 +102,6 @@ public class ClientTimeoutProcessTestNG {
         propsWriter.write(oldProps);
         System.out.println("Done!");
 
-        testEnd(ClientTimeoutProcess.class);
+        testEnd(ChangeClientTimeoutProcess.class);
     }
 }

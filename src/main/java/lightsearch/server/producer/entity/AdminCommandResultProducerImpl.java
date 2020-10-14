@@ -17,12 +17,14 @@
 
 package lightsearch.server.producer.entity;
 
+import lightsearch.server.data.AdminCommandResultWithDatasourceDTO;
 import lightsearch.server.entity.AdminCommandResult;
 import lightsearch.server.entity.Client;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service("adminCommandResultProducer")
 public class AdminCommandResultProducerImpl implements AdminCommandResultProducer {
@@ -50,7 +52,22 @@ public class AdminCommandResultProducerImpl implements AdminCommandResultProduce
     }
 
     @Override
+    public AdminCommandResult getAdminCommandResultWithClientTimeoutInstance(AdminCommandResult admCmdRes, long clientTimeout) {
+        return (AdminCommandResult) ctx.getBean("adminCommandResultWithClientTimeout", admCmdRes, clientTimeout);
+    }
+
+    @Override
     public AdminCommandResult getAdminCommandResultWithClientInstance(AdminCommandResult admCmdRes, List<Client> clients) {
         return (AdminCommandResult) ctx.getBean("adminCommandResultWithClients", admCmdRes, clients);
+    }
+
+    @Override
+    public AdminCommandResult getAdminCommandResultWithDatasourceInstance(AdminCommandResultWithDatasourceDTO dto) {
+        return (AdminCommandResult) ctx.getBean("adminCommandResultWithDatasource", dto);
+    }
+
+    @Override
+    public AdminCommandResult getAdminCommandResultWithLogsInstance(AdminCommandResult admCmdRes, Map<String, List<String>> logMap) {
+        return (AdminCommandResult) ctx.getBean("adminCommandResultWithLogs", admCmdRes, logMap);
     }
 }

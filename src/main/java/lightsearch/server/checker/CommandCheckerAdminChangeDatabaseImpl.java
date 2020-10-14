@@ -27,15 +27,12 @@ import org.springframework.stereotype.Component;
 public class CommandCheckerAdminChangeDatabaseImpl implements Checker<AdminCommand> {
 
     private final LightSearchChecker checker;
-    private final Validator<String> ipValidator;
     private final Validator<Integer> portValidator;
 
     public CommandCheckerAdminChangeDatabaseImpl(
             LightSearchChecker checker,
-            Validator<String> ipValidator,
             Validator<Integer> portValidator) {
         this.checker = checker;
-        this.ipValidator = ipValidator;
         this.portValidator = portValidator;
     }
 
@@ -50,15 +47,14 @@ public class CommandCheckerAdminChangeDatabaseImpl implements Checker<AdminComma
                 throw new CheckerException("Wrong command format. Database name is empty!", "ChangeDatabase: dbName is empty.");
             if (checker.isNull(admCmdDb.password()))
                 throw new CheckerException("Wrong command format. Database password is null!", "ChangeDatabase: password is null.");
-            if (checker.isNull(admCmdDb.ip()))
+            if (checker.isNull(admCmdDb.host()))
                 throw new CheckerException("Wrong command format. Database IP is null!", "ChangeDatabase: ip is null.");
-            if (checker.isEmpty(admCmdDb.ip()))
+            if (checker.isEmpty(admCmdDb.host()))
                 throw new CheckerException("Wrong command format. Database IP is empty!", "ChangeDatabase: ip is empty.");
             if (checker.isNull(admCmdDb.dbUsername()))
                 throw new CheckerException("Wrong command format. Username is null!", "ChangeDatabase: username is null.");
 
             try {
-                ipValidator.validate(admCmdDb.ip());
                 portValidator.validate(admCmdDb.port());
             } catch (ValidatorException ex) {
                 throw new CheckerException(ex.getMessage(), ex.getLogMessage());

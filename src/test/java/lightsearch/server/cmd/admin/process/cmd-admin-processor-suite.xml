@@ -13,7 +13,7 @@
             <class name="lightsearch.server.cmd.admin.process.ChangeDatabaseProcessTestNG"/>
             <class name="lightsearch.server.cmd.admin.process.ClientKickProcessTestNG"/>
             <class name="lightsearch.server.cmd.admin.process.ClientListRequestProcessTestNG"/>
-            <class name="lightsearch.server.cmd.admin.process.ClientTimeoutProcessTestNG"/>
+            <class name="lightsearch.server.cmd.admin.process.ChangeClientTimeoutProcessTestNG"/>
             <class name="lightsearch.server.cmd.admin.process.DelBlacklistProcessTestNG"/>
         </classes>
     </test>

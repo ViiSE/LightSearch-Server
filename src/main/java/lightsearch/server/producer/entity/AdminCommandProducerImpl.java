@@ -17,6 +17,7 @@
 
 package lightsearch.server.producer.entity;
 
+import lightsearch.server.data.AdminChangeDatabaseCommandDTO;
 import lightsearch.server.data.AdminCommandDTO;
 import lightsearch.server.entity.AdminCommand;
 import org.springframework.context.ApplicationContext;
@@ -44,8 +45,8 @@ public class AdminCommandProducerImpl implements AdminCommandProducer {
     }
 
     @Override
-    public AdminCommand getAdminCommandDatabaseInstance(AdminCommandDTO adminCommandDTO) {
-        return (AdminCommand) ctx.getBean("adminCommandDatabase", adminCommandDTO);
+    public AdminCommand getAdminCommandDatabaseInstance(AdminChangeDatabaseCommandDTO cmdDTO) {
+        return (AdminCommand) ctx.getBean("adminCommandDatabase", cmdDTO);
     }
 
     @Override

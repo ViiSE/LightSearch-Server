@@ -17,10 +17,14 @@ package lightsearch.server.log;
 
 import lightsearch.server.time.CurrentDateTime;
 
+import java.io.File;
+import java.util.List;
+
 /**
  *
  * @author ViiSE
  */
 public interface LoggerFile {
-    void writeLogFile(String type, CurrentDateTime currentDateTime, String message);
+    void write(String type, CurrentDateTime currentDateTime, String message);
+    List<File> readAll();
 }

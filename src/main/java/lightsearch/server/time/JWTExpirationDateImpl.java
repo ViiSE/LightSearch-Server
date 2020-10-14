@@ -17,6 +17,7 @@
 package lightsearch.server.time;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -26,6 +27,7 @@ import java.time.ZoneId;
 import java.util.Date;
 
 @Component("JWTExpirationDate")
+@Scope("prototype")
 public class JWTExpirationDateImpl implements JWTExpiration<Date> {
 
     private final long jwtValidDayCount;

@@ -15,12 +15,18 @@
  */
 package lightsearch.server.log;
 
+import com.github.viise.papka.exception.NotFoundException;
+import com.github.viise.papka.search.Search;
+import com.github.viise.papka.search.SearchByStartWith;
+import com.github.viise.papka.search.SearchFilesInSystem;
 import lightsearch.server.checker.LightSearchChecker;
 import lightsearch.server.time.CurrentDateTime;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -40,7 +46,7 @@ public class LoggerFileFromResourcesTestImpl implements LoggerFile {
     }
 
     @Override
-    public synchronized void writeLogFile(String type, CurrentDateTime currentDateTime, String message) {
+    public synchronized void write(String type, CurrentDateTime currentDateTime, String message) {
         if(!checker.isEmpty(type, message)) {
             try(OutputStream fout = new FileOutputStream(
                     logDirectory.name() + "log_" + currentDateTime.dateLog() + ".txt", true);
@@ -50,6 +56,16 @@ public class LoggerFileFromResourcesTestImpl implements LoggerFile {
             } catch(IOException ex) {
                 System.out.println("[" + currentDateTime.dateTimeWithDot() + "] Log file Error: " + ex.getMessage());
             }
+        }
+    }
+
+    @Override
+    public List<File> readAll() {
+        try {
+            Search<List<File>, String> logSearch = new SearchFilesInSystem(logDirectory.name());
+            return new SearchByStartWith<>(logSearch).answer("log_");
+        } catch (NotFoundException ex) {
+            return new ArrayList<>();
         }
     }
 }

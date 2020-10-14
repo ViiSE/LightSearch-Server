@@ -21,8 +21,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import lightsearch.server.checker.Checker;
 import lightsearch.server.checker.CommandCheckerAdminChangeDatabaseImpl;
 import lightsearch.server.checker.LightSearchCheckerDefaultImpl;
-import lightsearch.server.data.AdminCommandDTO;
+import lightsearch.server.data.AdminChangeDatabaseCommandDTO;
 import lightsearch.server.data.AdminCommandSimpleResultDTO;
+import lightsearch.server.data.DatasourcePoolDTO;
 import lightsearch.server.entity.AdminCommand;
 import lightsearch.server.entity.AdminCommandDatabaseImpl;
 import lightsearch.server.entity.AdminCommandResult;
@@ -36,7 +37,6 @@ import lightsearch.server.producer.entity.PropertyProducerTestImpl;
 import lightsearch.server.producer.properties.PropertiesWriterProducer;
 import lightsearch.server.producer.properties.PropertiesWriterProducerTestImpl;
 import lightsearch.server.properties.*;
-import lightsearch.server.validator.IpValidator;
 import lightsearch.server.validator.PortValidator;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -69,7 +69,6 @@ public class ChangeDatabaseProcessTestNG {
                 propsWriterProducer);
         Checker<AdminCommand> cmdChecker = new CommandCheckerAdminChangeDatabaseImpl(
                 new LightSearchCheckerDefaultImpl(),
-                new IpValidator(),
                 new PortValidator());
 
         chDbProc = new ChangeDatabaseProcess(
@@ -89,12 +88,21 @@ public class ChangeDatabaseProcessTestNG {
     public void apply() throws JsonProcessingException, ReaderException {
         testMethod("apply()");
 
-        AdminCommand admCmd = new AdminCommandDatabaseImpl(new AdminCommandDTO() {{
-            setIp("127.0.0.1");
+        AdminCommand admCmd = new AdminCommandDatabaseImpl(new AdminChangeDatabaseCommandDTO() {{
+            setHost("127.0.0.1");
             setPort(5432);
             setDbName("newDBName");
             setUsername("databaseUser");
             setPassword("5tRONGP455!");
+            setAdditional("encoding=win1251&amp;useUnicode=true&amp;characterEncoding=win1251&amp;defaultResultSetHoldable=true");
+            setDbType("firebirdsql");
+            setPool(new DatasourcePoolDTO() {{
+                setMaxLifeTime(10000L);
+                setMaximumPoolSize(10L);
+                setIdleTimeout(3000L);
+                setConnectionTimeout(5000L);
+                setAutoCommit(true);
+            }});
         }});
         AdminCommandResult cmdRes = chDbProc.apply(admCmd);
         AdminCommandSimpleResultDTO cmdResDTO = (AdminCommandSimpleResultDTO) cmdRes.formForSend();

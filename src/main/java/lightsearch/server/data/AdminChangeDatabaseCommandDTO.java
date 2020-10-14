@@ -31,12 +31,22 @@ public class AdminChangeDatabaseCommandDTO {
     private String username;
     @ApiModelProperty(notes = "Пароль пользователя БД", position = 2)
     private String password;
-    @ApiModelProperty(notes = "IP-адрес БД", position = 3)
-    private String ip;
+    @ApiModelProperty(notes = "Хост БД", position = 3)
+    private String host;
     @ApiModelProperty(notes = "Порт БД", position = 4)
     private int port;
     @ApiModelProperty(notes = "Имя БД", position = 5)
     private String dbName;
+    @ApiModelProperty(notes = "Тип БД (название СУБД)", position = 6)
+    private String dbType;
+    @ApiModelProperty(notes = "Кодировка скриптов SQL", position = 7)
+    private String scriptEncoding;
+    @ApiModelProperty(notes = "Имя JDBC драйвера", position = 8)
+    private String driverClassName;
+    @ApiModelProperty(notes = "Дополнительные параметры", position = 9)
+    private String additional;
+    @ApiModelProperty(notes = "Настройки пула соединений", position = 10)
+    private DatasourcePoolDTO pool;
 
     public void setUsername(String username) {
         this.username = username;
@@ -54,12 +64,12 @@ public class AdminChangeDatabaseCommandDTO {
         return password;
     }
 
-    public void setIp(String ip) {
-        this.ip = ip;
+    public void setHost(String host) {
+        this.host = host;
     }
 
-    public String getIp() {
-        return ip;
+    public String getHost() {
+        return host;
     }
 
     public void setPort(int port) {
@@ -76,5 +86,45 @@ public class AdminChangeDatabaseCommandDTO {
 
     public String getDbName() {
         return dbName;
+    }
+
+    public void setDbType(String dbType) {
+        this.dbType = dbType;
+    }
+
+    public String getDbType() {
+        return dbType;
+    }
+
+    public void setScriptEncoding(String scriptEncoding) {
+        this.scriptEncoding = scriptEncoding;
+    }
+
+    public String getScriptEncoding() {
+        return scriptEncoding;
+    }
+
+    public void setDriverClassName(String driverClassName) {
+        this.driverClassName = driverClassName;
+    }
+
+    public String getDriverClassName() {
+        return driverClassName;
+    }
+
+    public void setAdditional(String additional) {
+        this.additional = additional;
+    }
+
+    public String getAdditional() {
+        return additional;
+    }
+
+    public void setPool(DatasourcePoolDTO pool) {
+        this.pool = pool;
+    }
+
+    public DatasourcePoolDTO getPool() {
+        return pool;
     }
 }

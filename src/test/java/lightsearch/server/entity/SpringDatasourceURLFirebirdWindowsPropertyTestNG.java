@@ -37,13 +37,18 @@ public class SpringDatasourceURLFirebirdWindowsPropertyTestNG {
         Property<String> ipProp = new IpPropertyImpl(ip);
         Property<String> portProp = new PortPropertyImpl(port);
         Property<String> dbNameProp = new DatabaseNamePropertyImpl(dbName);
+        // TODO: 12.10.2020 CLEANUP THIS
+        Property<String> dbTypeProp = new DbTypePropertyImpl("firebirdsql");
+        Property<String> additionalProp = new DbAdditionalPropertyImpl("encoding=win1251&amp;useUnicode=true&amp;characterEncoding=win1251");
 
         Map<String, Property<String>> propMap = new HashMap<>();
         propMap.put(ipProp.name(), ipProp);
         propMap.put(portProp.name(), portProp);
         propMap.put(dbNameProp.name(), dbNameProp);
+        propMap.put(dbTypeProp.name(), dbTypeProp);
+        propMap.put(additionalProp.name(), additionalProp);
 
-        Property<String> property = new SpringDatasourceURLFirebirdWindowsPropertyImpl(propMap);
+        Property<String> property = new SpringDatasourceURLPropertyImpl(propMap);
         assertEquals(
                 property.as(),
                 String.format(
@@ -60,7 +65,7 @@ public class SpringDatasourceURLFirebirdWindowsPropertyTestNG {
     public void name() {
         testBegin(SimplePropertyImpl.class, "name()");
 
-        Property<String> property = new SpringDatasourceURLFirebirdWindowsPropertyImpl(null);
+        Property<String> property = new SpringDatasourceURLPropertyImpl(null);
         assertEquals(property.name(), "spring.datasource.url");
         System.out.println("name: " + property.name());
 

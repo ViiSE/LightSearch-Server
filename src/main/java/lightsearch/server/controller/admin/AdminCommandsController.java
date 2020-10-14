@@ -111,6 +111,15 @@ public class AdminCommandsController {
         }
     }
 
+    @ApiOperation(value = "Выгружает время таймаута клиента")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200,
+                    message = "Время таймаута клиента выгружено.")})
+    @GetMapping("/admins/commands/clients/timeout")
+    public AdminCommandResultWithClientTimeoutDTO getClientsTimeout() throws AdminErrorException {
+        return (AdminCommandResultWithClientTimeoutDTO) getCommandResult(AdminCommands.CLIENT_TIMEOUT, null, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
     @ApiOperation(value = "Изменяет время таймаута клиента")
     @ApiResponses(value = {
             @ApiResponse(code = 200,
@@ -123,7 +132,15 @@ public class AdminCommandsController {
                     "количествах днях жизни токена клиента. Изменения вступят в силу только для новых клиентов.")
             @RequestBody AdminClientTimeoutCommandDTO commandDTO) throws AdminErrorException {
         AdminCommand cmd = commandProducer.getAdminCommandClientTimeoutInstance(commandDTO.getClientTimeout());
-        return (AdminCommandSimpleResultDTO) getCommandResult(AdminCommands.CLIENT_TIMEOUT, cmd, HttpStatus.BAD_REQUEST);
+        return (AdminCommandSimpleResultDTO) getCommandResult(AdminCommands.CHANGE_CLIENT_TIMEOUT, cmd, HttpStatus.BAD_REQUEST);
+    }
+
+    @ApiOperation(value = "Выгружает параметры подключения к базе данных")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Параметры подключения к базе данных выгружены.")})
+    @GetMapping("/admins/commands/datasource")
+    public AdminCommandResultWithDatasourceDTO getDatasource() throws AdminErrorException {
+        return (AdminCommandResultWithDatasourceDTO) getCommandResult(AdminCommands.DATASOURCE, null, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ApiOperation(value = "Изменяет параметры подключения к базе данных")
@@ -140,15 +157,15 @@ public class AdminCommandsController {
     public AdminCommandSimpleResultDTO changeDatasource(
             @ApiParam(required = true, value = "Для вступления изменений в силу необходимо перезагрузить сервер")
             @RequestBody AdminChangeDatabaseCommandDTO commandDTO) throws AdminErrorException {
-        AdminCommandDTO cmdDTO = new AdminCommandDTO();
-        cmdDTO.setDbName(commandDTO.getDbName());
-        cmdDTO.setIp(commandDTO.getIp());
-        cmdDTO.setPort(commandDTO.getPort());
-        cmdDTO.setUsername(commandDTO.getUsername());
-        cmdDTO.setPassword(commandDTO.getPassword());
-
-        AdminCommand cmd = commandProducer.getAdminCommandDatabaseInstance(cmdDTO);
+        AdminCommand cmd = commandProducer.getAdminCommandDatabaseInstance(commandDTO);
         return (AdminCommandSimpleResultDTO) getCommandResult(AdminCommands.CHANGE_DATABASE, cmd, HttpStatus.BAD_REQUEST);
+    }
+
+    @ApiOperation(value = "Выгружает логи сервера")
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "Логи выгружены.")})
+    @GetMapping("/admins/commands/logs")
+    public AdminCommandResultWithLogsDTO requestLogs() throws AdminErrorException {
+        return (AdminCommandResultWithLogsDTO) getCommandResult(AdminCommands.LOG, null, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ApiOperation(value = "Перезагружает LightSearch Server")

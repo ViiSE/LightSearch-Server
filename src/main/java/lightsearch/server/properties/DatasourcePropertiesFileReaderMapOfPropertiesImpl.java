@@ -33,19 +33,19 @@ import java.util.Map;
 public class DatasourcePropertiesFileReaderMapOfPropertiesImpl implements PropertiesReader<Map<String, Property<String>>> {
 
     private final PropertyProducer propertyProducer;
-    private final PropertiesDirectory propertiesDirectory;
+    private final PropertiesReader<List<String>> propertiesReader;
 
     public DatasourcePropertiesFileReaderMapOfPropertiesImpl(
             PropertyProducer propertyProducer,
-            PropertiesDirectory propertiesDirectory) {
+            PropertiesReader<List<String>> propertiesReader) {
         this.propertyProducer = propertyProducer;
-        this.propertiesDirectory = propertiesDirectory;
+        this.propertiesReader = propertiesReader;
     }
 
     @Override
     public Map<String, Property<String>> read() throws ReaderException {
         try {
-            List<String> props = Files.readAllLines(Paths.get(propertiesDirectory.name()), StandardCharsets.UTF_8);
+            List<String> props = propertiesReader.read();
             Map<String, Property<String>> properties = new HashMap<>();
 
             props.forEach(prop -> {
@@ -70,8 +70,8 @@ public class DatasourcePropertiesFileReaderMapOfPropertiesImpl implements Proper
             });
 
             return properties;
-        } catch (IOException ex) {
-            throw new ReaderException("Не удалось считать настройки сервера. Сообщение: " + ex.getMessage(), ex.getMessage());
+        } catch (ReaderException ex) {
+            throw new ReaderException(ex.getMessage(), ex.getLogMessage());
         }
     }
 }

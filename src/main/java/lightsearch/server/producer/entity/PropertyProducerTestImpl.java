@@ -17,14 +17,49 @@ public class PropertyProducerTestImpl implements PropertyProducer {
     }
 
     @Override
+    public Property<String> getDbTypePropertyInstance(String value) {
+        return new DbTypePropertyImpl(value);
+    }
+
+    @Override
+    public Property<String> getDbAdditionalPropertyInstance(String value) {
+        return new DbAdditionalPropertyImpl(value);
+    }
+
+    @Override
     public Property<String> getDatabaseNamePropertyInstance(String value) {
         return new DatabaseNamePropertyImpl(value);
     }
 
     @Override
-    public Property<String> getSpringDatasourceURLFirebirdWindowsPropertyInstance(
+    public Property<String> getSpringDatasourceURLPropertyInstance(
             Map<String, Property<String>> properties) {
-        return new SpringDatasourceURLFirebirdWindowsPropertyImpl(properties);
+        return new SpringDatasourceURLPropertyImpl(properties);
+    }
+
+    @Override
+    public Property<Boolean> getPoolAutoCommitPropertyInstance(boolean value) {
+        return new PoolAutoCommitPropertyImpl(value);
+    }
+
+    @Override
+    public Property<Long> getPoolConnectionTimeoutPropertyInstance(long value) {
+        return new PoolConnectionTimeoutPropertyImpl(value);
+    }
+
+    @Override
+    public Property<Long> getPoolIdleTimeoutPropertyInstance(long value) {
+        return new PoolIdleTimeoutPropertyImpl(value);
+    }
+
+    @Override
+    public Property<Long> getPoolMaxLifeTimePropertyInstance(long value) {
+        return new PoolMaxLifeTimePropertyImpl(value);
+    }
+
+    @Override
+    public Property<Long> getMaximumPoolSizePropertyInstance(long value) {
+        return new MaximumPoolSizePropertyImpl(value);
     }
 
     @Override
@@ -43,7 +78,17 @@ public class PropertyProducerTestImpl implements PropertyProducer {
     }
 
     @Override
-    public Property<String> getSpringDatasourcePropertyInstance(Map<String, Property<String>> props) {
+    public Property<String> getScriptEncodingPropertyInstance(String value) {
+        return new ScriptEncodingPropertyImpl(value);
+    }
+
+    @Override
+    public Property<String> getDriverClassNamePropertyInstance(String value) {
+        return new DriverClassNamePropertyImpl(value);
+    }
+
+    @Override
+    public Property<String> getSpringDatasourcePropertyInstance(Map<String, Property<?>> props) {
         return new SpringDatasourcePropertyImpl(props);
     }
 
@@ -55,6 +100,11 @@ public class PropertyProducerTestImpl implements PropertyProducer {
     @Override
     public Property<String> getClientTimeoutPropertyInstance(int value) {
         return new ClientTimeoutPropertyImpl(value);
+    }
+
+    @Override
+    public Property<Integer> getClientTimeoutPropertyValueInstance(int value) {
+        return new ClientTimeoutPropertyValueImpl(value);
     }
 
     @Override

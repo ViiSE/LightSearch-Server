@@ -16,7 +16,7 @@ public class AdminCommandClientTimeoutImpl implements AdminCommand {
 
     @Override
     public String name() {
-        return AdminCommands.CLIENT_TIMEOUT;
+        return AdminCommands.CHANGE_CLIENT_TIMEOUT;
     }
 
     public int timeout() {

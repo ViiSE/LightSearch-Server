@@ -17,6 +17,7 @@
             <class name="lightsearch.server.properties.PropertiesChangerLocalTestNG"/>
             <class name="lightsearch.server.properties.PropertiesChangerFileTestNG"/>
             <class name="lightsearch.server.properties.DatasourcePropertiesFileReaderMapOfPropertiesTestNG"/>
+            <class name="lightsearch.server.properties.DatasourcePropertiesFileReaderMapOfPropertiesValuesTestNG"/>
         </classes>
     </test>
 

@@ -17,7 +17,8 @@
 
 package lightsearch.server.properties;
 
-import lightsearch.server.data.AdminCommandDTO;
+import lightsearch.server.data.AdminChangeDatabaseCommandDTO;
+import lightsearch.server.data.DatasourcePoolDTO;
 import lightsearch.server.entity.AdminCommand;
 import lightsearch.server.entity.AdminCommandDatabaseImpl;
 import lightsearch.server.entity.Property;
@@ -54,12 +55,22 @@ public class PropertiesChangerFileTestNG {
     @BeforeClass
     @Parameters({"dbName", "dbUsername", "dbPass", "dbIp", "dbPort"})
     public void setUpClass(String dbName, String dbUsername, String dbPass, String ip, int port) throws ReaderException {
-        AdminCommandDTO adminCommandDTO = new AdminCommandDTO();
+        // TODO: 12.10.2020 UPDATED THIS
+        AdminChangeDatabaseCommandDTO adminCommandDTO = new AdminChangeDatabaseCommandDTO();
         adminCommandDTO.setDbName(dbName);
         adminCommandDTO.setUsername(dbUsername);
         adminCommandDTO.setPassword(dbPass);
-        adminCommandDTO.setIp(ip);
+        adminCommandDTO.setHost(ip);
         adminCommandDTO.setPort(port);
+        adminCommandDTO.setAdditional("encoding=win1251&amp;useUnicode=true&amp;characterEncoding=win1251&amp;defaultResultSetHoldable=true");
+        adminCommandDTO.setDbType("firebirdsql");
+        adminCommandDTO.setPool(new DatasourcePoolDTO() {{
+            setMaximumPoolSize(10L);
+            setIdleTimeout(3000L);
+            setConnectionTimeout(30000L);
+            setAutoCommit(true);
+            setMaxLifeTime(100000L);
+        }});
 
         admCmd = new AdminCommandDatabaseImpl(adminCommandDTO);
         propProducer = new PropertyProducerTestImpl();
@@ -85,8 +96,7 @@ public class PropertiesChangerFileTestNG {
             propChanger.change(prop);
 
             List<String> newProps = propsReader.read();
-            assertEquals(newProps.size(), oldProps.size());
-            for(int i = 0; i < newProps.size(); i++) {
+            for(int i = 0; i < oldProps.size(); i++) {
                 String oldPr = oldProps.get(i);
                 String newPr = newProps.get(i);
 

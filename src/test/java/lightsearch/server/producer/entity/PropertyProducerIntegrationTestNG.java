@@ -108,9 +108,9 @@ public class PropertyProducerIntegrationTestNG extends AbstractTestNGSpringConte
     public void getSpringDatasourceURLFirebirdWindowsPropertyInstance() {
         testMethod("getSpringDatasourceURLFirebirdWindowsPropertyInstance()");
 
-        Property<String> prop = producer.getSpringDatasourceURLFirebirdWindowsPropertyInstance(new HashMap<>());
+        Property<String> prop = producer.getSpringDatasourceURLPropertyInstance(new HashMap<>());
         System.out.println("instance: " + prop);
-        assertTrue(prop instanceof SpringDatasourceURLFirebirdWindowsPropertyImpl);
+        assertTrue(prop instanceof SpringDatasourceURLPropertyImpl);
     }
 
     @Test

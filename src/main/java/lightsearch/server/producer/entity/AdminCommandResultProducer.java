@@ -17,14 +17,20 @@
 
 package lightsearch.server.producer.entity;
 
+import lightsearch.server.data.AdminCommandResultWithDatasourceDTO;
+import lightsearch.server.data.AdminCommandResultWithLogsDTO;
 import lightsearch.server.entity.AdminCommandResult;
 import lightsearch.server.entity.Client;
 
 import java.util.List;
+import java.util.Map;
 
 public interface AdminCommandResultProducer {
     AdminCommandResult getAdminCommandResultSimpleInstance(boolean isDone, String message);
     AdminCommandResult getAdminCommandResultAddBlacklistInstance(AdminCommandResult admCmdRes, String hashIMEI);
     AdminCommandResult getAdminCommandResultWithBlacklistInstance(AdminCommandResult admCmdRes, List<String> blacklist);
+    AdminCommandResult getAdminCommandResultWithClientTimeoutInstance(AdminCommandResult admCmdRes, long clientTimeout);
     AdminCommandResult getAdminCommandResultWithClientInstance(AdminCommandResult admCmdRes, List<Client> clients);
+    AdminCommandResult getAdminCommandResultWithDatasourceInstance(AdminCommandResultWithDatasourceDTO dto);
+    AdminCommandResult getAdminCommandResultWithLogsInstance(AdminCommandResult admCmdRes, Map<String, List<String>> logMap);
 }

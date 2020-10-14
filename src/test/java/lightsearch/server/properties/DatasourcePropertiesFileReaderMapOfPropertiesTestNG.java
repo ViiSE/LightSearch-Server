@@ -38,8 +38,12 @@ public class DatasourcePropertiesFileReaderMapOfPropertiesTestNG {
     public void setUpClass() {
         propertiesReader = new DatasourcePropertiesFileReaderMapOfPropertiesImpl(
                 new PropertyProducerTestImpl(),
-                new ApplicationPropertiesDirectoryImpl(
-                        new CurrentServerDirectoryTestImpl()));
+                new PropertiesFileReaderListOfStringImpl(
+                        new ApplicationPropertiesDirectoryImpl(
+                                new CurrentServerDirectoryTestImpl()
+                        )
+                )
+        );
     }
 
     @Test

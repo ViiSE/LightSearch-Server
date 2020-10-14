@@ -26,16 +26,61 @@ public class PropertyProducerImpl implements PropertyProducer {
     }
 
     @Override
+    public Property<String> getDbTypePropertyInstance(String value) {
+        return (DbTypePropertyImpl) ctx.getBean("dbTypeProperty", value);
+    }
+
+    @Override
+    public Property<String> getDbAdditionalPropertyInstance(String value) {
+        return (DbAdditionalPropertyImpl) ctx.getBean("dbAdditionalProperty", value);
+    }
+
+    @Override
     public Property<String> getDatabaseNamePropertyInstance(String value) {
         return (DatabaseNamePropertyImpl) ctx.getBean("databaseNameProperty", value);
     }
 
     @Override
-    public Property<String> getSpringDatasourceURLFirebirdWindowsPropertyInstance(
+    public Property<String> getSpringDatasourceURLPropertyInstance(
             Map<String, Property<String>> properties) {
-        return (SpringDatasourceURLFirebirdWindowsPropertyImpl) ctx.getBean(
-                "springDatasourceURLFirebirdWindowsProperty",
+        return (SpringDatasourceURLPropertyImpl) ctx.getBean(
+                "springDatasourceURLProperty",
                 properties);
+    }
+
+    @Override
+    public Property<Boolean> getPoolAutoCommitPropertyInstance(boolean value) {
+        return (PoolAutoCommitPropertyImpl) ctx.getBean(
+                "poolAutoCommitProperty",
+                value);
+    }
+
+    @Override
+    public Property<Long> getPoolConnectionTimeoutPropertyInstance(long value) {
+        return (PoolConnectionTimeoutPropertyImpl) ctx.getBean(
+                "poolConnectionTimeoutProperty",
+                value);
+    }
+
+    @Override
+    public Property<Long> getPoolIdleTimeoutPropertyInstance(long value) {
+        return (PoolIdleTimeoutPropertyImpl) ctx.getBean(
+                "poolIdleTimeoutProperty",
+                value);
+    }
+
+    @Override
+    public Property<Long> getPoolMaxLifeTimePropertyInstance(long value) {
+        return (PoolMaxLifeTimePropertyImpl) ctx.getBean(
+                "poolMaxLifeTimeProperty",
+                value);
+    }
+
+    @Override
+    public Property<Long> getMaximumPoolSizePropertyInstance(long value) {
+        return (MaximumPoolSizePropertyImpl) ctx.getBean(
+                "maximumPoolSizeProperty",
+                value);
     }
 
     @Override
@@ -54,7 +99,17 @@ public class PropertyProducerImpl implements PropertyProducer {
     }
 
     @Override
-    public Property<String> getSpringDatasourcePropertyInstance(Map<String, Property<String>> props) {
+    public Property<String> getScriptEncodingPropertyInstance(String value) {
+        return (ScriptEncodingPropertyImpl) ctx.getBean("scriptEncodingProperty", value);
+    }
+
+    @Override
+    public Property<String> getDriverClassNamePropertyInstance(String value) {
+        return (DriverClassNamePropertyImpl) ctx.getBean("driverClassNameProperty", value);
+    }
+
+    @Override
+    public Property<String> getSpringDatasourcePropertyInstance(Map<String, Property<?>> props) {
         return (SpringDatasourcePropertyImpl) ctx.getBean("springDatasourceProperty", props);
     }
 
@@ -66,6 +121,11 @@ public class PropertyProducerImpl implements PropertyProducer {
     @Override
     public Property<String> getClientTimeoutPropertyInstance(int value) {
         return (ClientTimeoutPropertyImpl) ctx.getBean("clientTimeoutProperty", value);
+    }
+
+    @Override
+    public Property<Integer> getClientTimeoutPropertyValueInstance(int value) {
+        return (ClientTimeoutPropertyValueImpl) ctx.getBean("clientTimeoutPropertyValue", value);
     }
 
     @Override

@@ -17,7 +17,8 @@
 
 package lightsearch.server.properties;
 
-import lightsearch.server.data.AdminCommandDTO;
+import lightsearch.server.data.AdminChangeDatabaseCommandDTO;
+import lightsearch.server.data.DatasourcePoolDTO;
 import lightsearch.server.entity.AdminCommand;
 import lightsearch.server.entity.AdminCommandDatabaseImpl;
 import lightsearch.server.entity.ClientTimeoutPropertyImpl;
@@ -47,12 +48,21 @@ public class PropertiesChangerLocalTestNG {
     @BeforeClass
     @Parameters({"dbName", "dbUsername", "dbPass", "dbIp", "dbPort"})
     public void setUpClass(String dbName, String dbUsername, String dbPass, String ip, int port) {
-        AdminCommandDTO adminCommandDTO = new AdminCommandDTO();
+        AdminChangeDatabaseCommandDTO adminCommandDTO = new AdminChangeDatabaseCommandDTO();
         adminCommandDTO.setDbName(dbName);
         adminCommandDTO.setUsername(dbUsername);
         adminCommandDTO.setPassword(dbPass);
-        adminCommandDTO.setIp(ip);
+        adminCommandDTO.setHost(ip);
         adminCommandDTO.setPort(port);
+        adminCommandDTO.setAdditional("encoding=win1251&amp;useUnicode=true&amp;characterEncoding=win1251&amp;defaultResultSetHoldable=true");
+        adminCommandDTO.setDbType("firebirdsql");
+        adminCommandDTO.setPool(new DatasourcePoolDTO() {{
+            setMaxLifeTime(100000L);
+            setAutoCommit(true);
+            setConnectionTimeout(30000L);
+            setIdleTimeout(3000L);
+            setMaximumPoolSize(10L);
+        }});
 
         admCmd = new AdminCommandDatabaseImpl(adminCommandDTO);
         propProducer = new PropertyProducerTestImpl();
