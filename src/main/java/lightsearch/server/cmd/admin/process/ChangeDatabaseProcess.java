@@ -56,7 +56,7 @@ public class ChangeDatabaseProcess implements AdminProcess<AdminCommandResult> {
             checker.check(command);
             Property<String> prop = propertyCreator.create(command);
             propertiesChanger.change(prop);
-            return admCmdResProducer.getAdminCommandResultSimpleInstance(true, "Datasource has been changed.");
+            return admCmdResProducer.getAdminCommandResultSimpleInstance(true, "Datasource has been changed. Need restart from apply changes.");
         } catch (PropertiesException | CheckerException ex) {
             return admCmdResProducer.getAdminCommandResultSimpleInstance(false, ex.getMessage());
         }

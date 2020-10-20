@@ -15,32 +15,47 @@
  */
 package lightsearch.server.cmd.admin.process;
 
+import lightsearch.server.LightSearchServer;
 import lightsearch.server.entity.AdminCommand;
 import lightsearch.server.entity.AdminCommandResult;
 import lightsearch.server.producer.entity.AdminCommandResultProducer;
-import org.springframework.cloud.context.restart.RestartEndpoint;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.SpringApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Component;
 
 /**
  *
  * @author ViiSE
  */
-@Component("restartProcess")
-public class RestartProcess implements AdminProcess<AdminCommandResult> {
+@Component("restartManualProcess")
+public class RestartManualProcess implements AdminProcess<AdminCommandResult> {
 
-    private final RestartEndpoint restartEndpoint;
+    private ConfigurableApplicationContext ctx;
     private final AdminCommandResultProducer admCmdResultProducer;
 
-    public RestartProcess(RestartEndpoint restartEndpoint, AdminCommandResultProducer admCmdResultProducer) {
-        this.restartEndpoint = restartEndpoint;
+    public RestartManualProcess(ConfigurableApplicationContext ctx, AdminCommandResultProducer admCmdResultProducer) {
+        this.ctx = ctx;
         this.admCmdResultProducer = admCmdResultProducer;
     }
 
     @Override
     synchronized public AdminCommandResult apply(AdminCommand ignore) {
-        restartEndpoint.restart();
+        ApplicationArguments args = ctx.getBean(ApplicationArguments.class);
 
-        return admCmdResultProducer
-                .getAdminCommandResultSimpleInstance(true, "Server restart was successful!");
+        Thread reloadTh = new Thread(() -> {
+            ctx.close();
+            ctx = SpringApplication.run(LightSearchServer.class, args.getSourceArgs());
+        });
+
+        reloadTh.setDaemon(false);
+        reloadTh.start();
+        try {
+            reloadTh.join();
+            return admCmdResultProducer
+                    .getAdminCommandResultSimpleInstance(true, "Server reboot was successful!");
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

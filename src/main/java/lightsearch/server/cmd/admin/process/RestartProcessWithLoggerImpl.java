@@ -40,7 +40,7 @@ public class RestartProcessWithLoggerImpl implements AdminProcess<AdminCommandRe
     @Override
     public AdminCommandResult apply(AdminCommand command) {
         AdminCommandResult result = adminProcess.apply(command);
-        logger.info(AdminCommandsController.class, "Admin started server reboot process");
+        logger.info(AdminCommandsController.class, "Admin restarted server");
         return result;
     }
 }
