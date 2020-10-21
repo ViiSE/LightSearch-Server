@@ -19,6 +19,8 @@ package lightsearch.server.configuration;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -31,8 +33,9 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 @Configuration
+@Profile("dev")
 @EnableWebSecurity
-public class LightSearchSecurityConfiguration extends WebSecurityConfigurerAdapter {
+public class DevSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Value("${lightsearch.server.admin.username}")
     private String adminName;
@@ -79,27 +82,15 @@ public class LightSearchSecurityConfiguration extends WebSecurityConfigurerAdapt
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-                .and()
+                .csrf().disable()
                 .authorizeRequests()
-                    .antMatchers("/")
-                        .authenticated()
-                    .antMatchers(
-                            "/session/admin",
-                            "/admins/commands/**")
-                        .hasAnyRole("DEV", "ADMIN")
-                    .antMatchers("/docs",
-                            "/api-docs",
-                            "/swagger-ui.html")
-                        .hasRole("DEV")
-                .and()
-                .formLogin()
-                    .loginPage("/login")
-                    .permitAll()
-                    .failureUrl("/login?error")
-                    .successHandler(lightSearchAuthenticationSuccessHandler())
-                .and()
-                    .logout()
-                    .logoutSuccessUrl("/login");
+                .antMatchers(HttpMethod.GET, "/admins/commands/**")
+                .permitAll()
+                .antMatchers(HttpMethod.POST, "/admins/commands/**")
+                .permitAll()
+                .antMatchers(HttpMethod.PUT, "/admins/commands/**")
+                .permitAll()
+                .antMatchers(HttpMethod.DELETE, "/admins/commands/**")
+                .permitAll();
     }
 }

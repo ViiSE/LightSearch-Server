@@ -29,7 +29,7 @@ public class ThymeleafConfiguration {
     public SpringResourceTemplateResolver templateResolver() {
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
         templateResolver.setCacheable(false);
-        templateResolver.setPrefix("classpath:/templates/");
+        templateResolver.setPrefix("classpath:/public/");
         templateResolver.setSuffix(".html");
         return templateResolver;
     }

@@ -42,7 +42,6 @@ import java.util.List;
 @EnableSwagger2
 @EnableWebMvc
 @PropertySource("classpath:swagger.properties")
-@PropertySource("classpath:application.properties")
 public class SwaggerConfiguration {
 
     private final Version version;
