@@ -24,6 +24,8 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+import java.util.List;
+
 @ApiModel(value = "AdminCommandAddBlacklistResult", description = "Результат добавления клиента в черный список")
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -33,17 +35,17 @@ public class AdminCommandAddBlacklistResultDTO {
     private final boolean isDone;
     @ApiModelProperty(notes = "Сообщение", position = 2)
     private final String message;
-    @ApiModelProperty(notes = "Хэш IMEI", position = 3)
-    private final String IMEI;
+    @ApiModelProperty(notes = "Список хэшей IMEI", position = 3)
+    private final List<String> IMEIList;
 
     @JsonCreator
     public AdminCommandAddBlacklistResultDTO(
             @JsonProperty("is_done") boolean isDone,
             @JsonProperty("message") String message,
-            @JsonProperty("imei") String IMEI) {
+            @JsonProperty("imei_list") List<String> IMEIList) {
         this.isDone = isDone;
         this.message = message;
-        this.IMEI = IMEI;
+        this.IMEIList = IMEIList;
     }
 
     public boolean getIsDone() {
@@ -54,7 +56,7 @@ public class AdminCommandAddBlacklistResultDTO {
         return message;
     }
 
-    public String getIMEI() {
-        return IMEI;
+    public List<String> getIMEIList() {
+        return IMEIList;
     }
 }

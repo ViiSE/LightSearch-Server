@@ -29,6 +29,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import java.util.ArrayList;
+
 import static org.testng.Assert.assertTrue;
 import static test.message.TestMessage.*;
 
@@ -49,7 +51,7 @@ public class AdminCommandProducerIntegrationTestNG extends AbstractTestNGSpringC
     public void getAdminCommandAddBlacklistInstance(String IMEI) {
         testMethod("getAdminCommandAddBlacklistInstance()");
 
-        AdminCommand command = producer.getAdminCommandAddBlacklistInstance(IMEI);
+        AdminCommand command = producer.getAdminCommandAddBlacklistInstance(new ArrayList<>() {{add(IMEI);}});
         System.out.println("instance: " + command);
         assertTrue(command instanceof AdminCommandAddBlacklistImpl);
     }

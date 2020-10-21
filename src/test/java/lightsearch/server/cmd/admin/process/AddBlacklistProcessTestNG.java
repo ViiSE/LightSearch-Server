@@ -44,6 +44,7 @@ import java.io.BufferedWriter;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.testng.Assert.assertFalse;
@@ -113,7 +114,7 @@ public class AddBlacklistProcessTestNG {
     }
 
     private Object test(String IMEI) {
-        AdminCommand admCmd = new AdminCommandAddBlacklistImpl(IMEI);
+        AdminCommand admCmd = new AdminCommandAddBlacklistImpl(new ArrayList<>() {{ add(IMEI); }});
         return addBlProc.apply(admCmd).formForSend();
     }
 

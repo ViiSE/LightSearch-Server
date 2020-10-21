@@ -4,14 +4,16 @@ import lightsearch.server.constants.AdminCommands;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component("adminCommandAddBlacklist")
 @Scope("prototype")
 public class AdminCommandAddBlacklistImpl implements AdminCommand {
 
-    private final String IMEI;
+    private final List<String> IMEIList;
 
-    public AdminCommandAddBlacklistImpl(String IMEI) {
-        this.IMEI = IMEI;
+    public AdminCommandAddBlacklistImpl(List<String> IMEIList) {
+        this.IMEIList = IMEIList;
     }
 
     @Override
@@ -19,7 +21,7 @@ public class AdminCommandAddBlacklistImpl implements AdminCommand {
         return AdminCommands.ADD_BLACKLIST;
     }
 
-    public String IMEI() {
-        return IMEI;
+    public List<String> IMEIList() {
+        return IMEIList;
     }
 }

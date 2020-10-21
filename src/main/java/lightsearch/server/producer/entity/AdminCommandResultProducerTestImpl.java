@@ -31,7 +31,7 @@ public class AdminCommandResultProducerTestImpl implements AdminCommandResultPro
     }
 
     @Override
-    public AdminCommandResult getAdminCommandResultAddBlacklistInstance(AdminCommandResult admCmdRes, String hashIMEI) {
+    public AdminCommandResult getAdminCommandResultAddBlacklistInstance(AdminCommandResult admCmdRes, List<String> hashIMEI) {
         return new AdminCommandResultAddBlacklistImpl(admCmdRes, hashIMEI);
     }
 

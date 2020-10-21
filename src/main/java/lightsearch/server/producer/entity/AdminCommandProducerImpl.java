@@ -35,8 +35,8 @@ public class AdminCommandProducerImpl implements AdminCommandProducer {
     }
 
     @Override
-    public AdminCommand getAdminCommandAddBlacklistInstance(String IMEI) {
-        return (AdminCommand) ctx.getBean("adminCommandAddBlacklist", IMEI);
+    public AdminCommand getAdminCommandAddBlacklistInstance(List<String> IMEIList) {
+        return (AdminCommand) ctx.getBean("adminCommandAddBlacklist", IMEIList);
     }
 
     @Override

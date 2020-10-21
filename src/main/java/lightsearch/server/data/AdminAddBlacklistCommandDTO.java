@@ -22,19 +22,21 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-@ApiModel(value = "AdminAddBlacklistCommand", description = "Команда запроса черного списка")
+import java.util.List;
+
+@ApiModel(value = "AdminAddBlacklistCommand", description = "Команда добавления клиентов в черный список")
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AdminAddBlacklistCommandDTO {
 
-    @ApiModelProperty(notes = "Уникальный идентификатор клиента")
-    private String IMEI;
+    @ApiModelProperty(notes = "Список IMEI клиентов")
+    private List<String> IMEIList;
 
-    public void setIMEI(String IMEI) {
-        this.IMEI = IMEI;
+    public void setIMEIList(List<String> IMEIList) {
+        this.IMEIList = IMEIList;
     }
 
-    public String getIMEI() {
-        return IMEI;
+    public List<String> getIMEIList() {
+        return IMEIList;
     }
 }

@@ -23,7 +23,7 @@ import lightsearch.server.entity.AdminCommand;
 import java.util.List;
 
 public interface AdminCommandProducer {
-    AdminCommand getAdminCommandAddBlacklistInstance(String IMEI);
+    AdminCommand getAdminCommandAddBlacklistInstance(List<String> IMEI);
     AdminCommand getAdminCommandClientTimeoutInstance(int timeout);
     AdminCommand getAdminCommandDatabaseInstance(AdminChangeDatabaseCommandDTO cmdDTO);
     AdminCommand getAdminCommandDelBlacklistInstance(String IMEI);

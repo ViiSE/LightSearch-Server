@@ -26,6 +26,8 @@ import lightsearch.server.service.BlacklistService;
 import lightsearch.server.service.BlacklistServiceImpl;
 import org.testng.annotations.*;
 
+import java.util.ArrayList;
+
 import static test.message.TestMessage.*;
 
 public class CommandCheckerAdminAddBlacklistTestNG {
@@ -51,7 +53,7 @@ public class CommandCheckerAdminAddBlacklistTestNG {
         testMethod("check() [valid IMEI]");
 
         try {
-            AdminCommand cmd = new AdminCommandAddBlacklistImpl(IMEI);
+            AdminCommand cmd = new AdminCommandAddBlacklistImpl(new ArrayList<>(){{ add(IMEI); }});
             cmdChecker.check(cmd);
         } catch (CheckerException ex) {
             catchMessage(ex);
@@ -63,7 +65,7 @@ public class CommandCheckerAdminAddBlacklistTestNG {
     public void check_invalid(String IMEI, String cause) throws CheckerException {
         testMethod("check() [invalid IMEI " + cause + "]");
 
-        AdminCommand cmd = new AdminCommandAddBlacklistImpl(IMEI);
+        AdminCommand cmd = new AdminCommandAddBlacklistImpl(new ArrayList<>() {{ add(IMEI); }});
         cmdChecker.check(cmd);
     }
 
@@ -72,7 +74,7 @@ public class CommandCheckerAdminAddBlacklistTestNG {
     public void check_IMEIAlreadyInBlacklist(String IMEI) throws CheckerException {
         testMethod("check() [IMEI already in the blacklist]");
 
-        AdminCommand cmd = new AdminCommandAddBlacklistImpl(IMEI);
+        AdminCommand cmd = new AdminCommandAddBlacklistImpl(new ArrayList<>() {{ add(IMEI); }});
         cmdChecker.check(cmd);
     }
 

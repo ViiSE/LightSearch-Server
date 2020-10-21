@@ -22,6 +22,8 @@ import lightsearch.server.exception.CheckerException;
 import lightsearch.server.service.BlacklistService;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component("commandCheckerAdminAddBlacklist")
 public class CommandCheckerAdminAddBlacklistImpl implements Checker<AdminCommand> {
 
@@ -37,13 +39,17 @@ public class CommandCheckerAdminAddBlacklistImpl implements Checker<AdminCommand
     public void check(AdminCommand cmd) throws CheckerException {
         AdminCommandAddBlacklistImpl command = (AdminCommandAddBlacklistImpl) cmd;
 
-        if(checker.isNull(command.IMEI()))
-            throw new CheckerException("Wrong command format. IMEI is null!", "AddBlacklist: unknown client: IMEI is null.");
+        List<String> IMEIList = command.IMEIList();
 
-        if(checker.isEmpty(command.IMEI()))
-            throw new CheckerException("Wrong command format. IMEI is empty!", "AddBlacklist: unknown client: IMEI is empty.");
+        for(String IMEI: IMEIList) {
+            if(checker.isNull(IMEI))
+                throw new CheckerException("Wrong command format. IMEI is null!", "AddBlacklist: unknown client: IMEI is null.");
 
-        if(blacklistService.contains(command.IMEI()))
-            throw new CheckerException("This client is already in the blacklist!", "Client " + command.IMEI() + " already in the blacklist.");
+            if(checker.isEmpty(IMEI))
+                throw new CheckerException("Wrong command format. IMEI is empty!", "AddBlacklist: unknown client: IMEI is empty.");
+
+            if(blacklistService.contains(IMEI))
+                throw new CheckerException("This client is already in the blacklist!", "Client " + command.IMEIList() + " already in the blacklist.");
+        }
     }
 }

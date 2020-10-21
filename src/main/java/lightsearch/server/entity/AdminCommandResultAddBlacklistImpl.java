@@ -4,14 +4,16 @@ import lightsearch.server.data.AdminCommandAddBlacklistResultDTO;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component("adminCommandResultAddBlacklist")
 @Scope("prototype")
 public class AdminCommandResultAddBlacklistImpl implements AdminCommandResult {
 
     private final AdminCommandResult admCmdRes;
-    private final String hashIMEI;
+    private final List<String> hashIMEI;
 
-    public AdminCommandResultAddBlacklistImpl(AdminCommandResult admCmdRes, String hashIMEI) {
+    public AdminCommandResultAddBlacklistImpl(AdminCommandResult admCmdRes, List<String> hashIMEI) {
         this.admCmdRes = admCmdRes;
         this.hashIMEI = hashIMEI;
     }
