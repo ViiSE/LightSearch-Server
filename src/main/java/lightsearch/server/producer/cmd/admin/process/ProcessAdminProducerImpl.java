@@ -31,6 +31,11 @@ public class ProcessAdminProducerImpl implements ProcessAdminProducer<AdminComma
     }
 
     @Override
+    public AdminProcess<AdminCommandResult> getHashIMEIProcessInstance() {
+        return ctx.getBean(HashIMEIProcess.class);
+    }
+
+    @Override
     public AdminProcess<AdminCommandResult> getAddBlacklistProcessInstance() {
         return ctx.getBean(AddBlacklistProcess.class);
     }
@@ -93,5 +98,10 @@ public class ProcessAdminProducerImpl implements ProcessAdminProducer<AdminComma
     @Override
     public AdminProcess<AdminCommandResult> getRestartProcessInstance() {
         return ctx.getBean(RestartProcessWithLoggerImpl.class);
+    }
+
+    @Override
+    public AdminProcess<AdminCommandResult> getChangePassProcessInstance() {
+        return ctx.getBean(ChangePassProcess.class);
     }
 }

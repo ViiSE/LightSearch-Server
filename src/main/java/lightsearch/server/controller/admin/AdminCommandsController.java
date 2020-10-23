@@ -22,6 +22,7 @@ import lightsearch.server.cmd.Processes;
 import lightsearch.server.constants.AdminCommands;
 import lightsearch.server.data.*;
 import lightsearch.server.entity.AdminCommand;
+import lightsearch.server.entity.AdminCommandHashIMEIImpl;
 import lightsearch.server.entity.AdminCommandResult;
 import lightsearch.server.exception.AdminErrorException;
 import lightsearch.server.producer.entity.AdminCommandProducer;
@@ -29,7 +30,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Api(tags="Admin Commands Controller", description = "Контроллер точек для работы с командами администратора")
 @RestController
@@ -45,11 +45,34 @@ public class AdminCommandsController {
         this.commandProducer = commandProducer;
     }
 
+    @ApiOperation(value = "Изменяет пароль администратора")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200,
+                    message = "Пароль изменен."),
+            @ApiResponse(code = 500,
+                    message = "Произошла ошибка во время изменения пароля.")})
+    @PutMapping("/admins/commands/password")
+    public AdminCommandSimpleResultDTO changeAdminPass(
+            @ApiParam(required = true)
+            @RequestBody AdminChangePassCommandDTO commandDTO) throws AdminErrorException {
+        AdminCommand cmd = commandProducer.getAdminCommandChangePassInstance(commandDTO.getPassword());
+        return (AdminCommandSimpleResultDTO) getCommandResult(AdminCommands.CHANGE_PASS, cmd, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
     @ApiOperation(value = "Выгружает черный список клиентов")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Черный список выгружен.")})
     @GetMapping("/admins/commands/blacklist")
     public AdminCommandResultWithBlacklistDTO requestBlacklist() throws AdminErrorException {
         return (AdminCommandResultWithBlacklistDTO) getCommandResult(AdminCommands.BLACKLIST, null, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ApiOperation(value = "Поиск хэш IMEI клинта по IMEI")
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "Хэш IMEI найден."),
+                           @ApiResponse(code = 404, message = "Хэш IMEI не найден.")})
+    @GetMapping("/admins/commands/imei/hash")
+    public AdminCommandResultWithHashIMEIDTO requestHashIMEI(@RequestParam(name = "pure") String pure) throws AdminErrorException {
+        AdminCommand admCmd = new AdminCommandHashIMEIImpl(pure);
+        return (AdminCommandResultWithHashIMEIDTO) getCommandResult(AdminCommands.HASH_IMEI, admCmd, HttpStatus.NOT_FOUND);
     }
 
     @ApiOperation(value = "Добавляет клиентов в черный список")

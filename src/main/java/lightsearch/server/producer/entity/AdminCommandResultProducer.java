@@ -27,6 +27,7 @@ import java.util.Map;
 
 public interface AdminCommandResultProducer {
     AdminCommandResult getAdminCommandResultSimpleInstance(boolean isDone, String message);
+    AdminCommandResult getAdminCommandResultHashIMEIInstance(AdminCommandResult admCmdRes, String hashIMEI);
     AdminCommandResult getAdminCommandResultAddBlacklistInstance(AdminCommandResult admCmdRes, List<String> hashIMEIList);
     AdminCommandResult getAdminCommandResultWithBlacklistInstance(AdminCommandResult admCmdRes, List<String> blacklist);
     AdminCommandResult getAdminCommandResultWithClientTimeoutInstance(AdminCommandResult admCmdRes, long clientTimeout);

@@ -5,6 +5,7 @@ import lightsearch.server.entity.Property;
 import java.util.Map;
 
 public interface PropertyProducer {
+    Property<String> getAdminPasswordPropertyInstance(String password);
     Property<String> getIpPropertyInstance(String value);
     Property<String> getPortPropertyInstance(int value);
     Property<String> getDbTypePropertyInstance(String value);

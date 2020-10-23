@@ -16,6 +16,11 @@ public class PropertyProducerImpl implements PropertyProducer {
     }
 
     @Override
+    public Property<String> getAdminPasswordPropertyInstance(String password) {
+        return (AdminPasswordPropertyImpl) ctx.getBean("adminPasswordProperty", password);
+    }
+
+    @Override
     public Property<String> getIpPropertyInstance(String value) {
         return (IpPropertyImpl) ctx.getBean("ipProperty", value);
     }

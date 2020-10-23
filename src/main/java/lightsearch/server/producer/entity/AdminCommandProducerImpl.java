@@ -68,4 +68,9 @@ public class AdminCommandProducerImpl implements AdminCommandProducer {
     public AdminCommand getAdminCommandClientKickInstance(List<String> IMEIList) {
         return (AdminCommand) ctx.getBean("adminCommandKickList", IMEIList);
     }
+
+    @Override
+    public AdminCommand getAdminCommandChangePassInstance(String password) {
+        return (AdminCommand) ctx.getBean("adminCommandChangePass", password);
+    }
 }

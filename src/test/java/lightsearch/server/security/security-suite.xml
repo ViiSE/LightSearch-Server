@@ -15,6 +15,7 @@
             <class name="lightsearch.server.security.KeysRSATestNG"/>
             <class name="lightsearch.server.security.EncryptedInformationTestNG"/>
             <class name="lightsearch.server.security.DecryptedInformationTestNG"/>
+            <class name="lightsearch.server.security.HashAlgorithmBCryptTestNG"/>
         </classes>
     </test>
 

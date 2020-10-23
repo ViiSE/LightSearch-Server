@@ -32,6 +32,7 @@ public class AdminProcessesWithAdminResultImpl implements Processes<AdminCommand
     private final Map<String, AdminProcess<AdminCommandResult>> processes = new HashMap<>();
 
     public AdminProcessesWithAdminResultImpl(ProcessAdminProducer<AdminCommandResult> prcAdmProducer) {
+        processes.put(AdminCommands.HASH_IMEI, prcAdmProducer.getHashIMEIProcessInstance());
         processes.put(AdminCommands.BLACKLIST, prcAdmProducer.getBlacklistRequestProcessInstance());
         processes.put(AdminCommands.ADD_BLACKLIST, prcAdmProducer.getAddBlacklistProcessInstance());
         processes.put(AdminCommands.DEL_BLACKLIST, prcAdmProducer.getDelBlacklistProcessInstance());
@@ -42,6 +43,7 @@ public class AdminProcessesWithAdminResultImpl implements Processes<AdminCommand
         processes.put(AdminCommands.KICK, prcAdmProducer.getClientKickProcessInstance());
         processes.put(AdminCommands.KICK_LIST, prcAdmProducer.getClientKickListProcessInstance());
         processes.put(AdminCommands.DATASOURCE, prcAdmProducer.getDatasourceProcessInstance());
+        processes.put(AdminCommands.CHANGE_PASS, prcAdmProducer.getChangePassProcessInstance());
         processes.put(AdminCommands.CHANGE_DATABASE, prcAdmProducer.getChangeDatabaseProcessInstance());
         processes.put(AdminCommands.LOG, prcAdmProducer.getLogProcessInstance());
         processes.put(AdminCommands.RESTART, prcAdmProducer.getRestartProcessInstance());

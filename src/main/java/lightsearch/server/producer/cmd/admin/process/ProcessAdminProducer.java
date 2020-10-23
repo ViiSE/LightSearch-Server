@@ -19,6 +19,7 @@ package lightsearch.server.producer.cmd.admin.process;
 import lightsearch.server.cmd.admin.process.AdminProcess;
 
 public interface ProcessAdminProducer<R> {
+    AdminProcess<R> getHashIMEIProcessInstance();
     AdminProcess<R> getAddBlacklistProcessInstance();
     AdminProcess<R> getDelBlacklistProcessInstance();
     AdminProcess<R> getDelBlacklistListProcessInstance();
@@ -32,4 +33,5 @@ public interface ProcessAdminProducer<R> {
     AdminProcess<R> getClientTimeoutProcessInstance();
     AdminProcess<R> getChangeClientTimeoutProcessInstance();
     AdminProcess<R> getRestartProcessInstance();
+    AdminProcess<R> getChangePassProcessInstance();
 }

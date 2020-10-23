@@ -7,6 +7,11 @@ import java.util.Map;
 public class PropertyProducerTestImpl implements PropertyProducer {
 
     @Override
+    public Property<String> getAdminPasswordPropertyInstance(String password) {
+        return new AdminPasswordPropertyImpl(password);
+    }
+
+    @Override
     public Property<String> getIpPropertyInstance(String value) {
         return new IpPropertyImpl(value);
     }
